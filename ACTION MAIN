@@ -1,0 +1,210 @@
+ACTION BUT MAIN
+local getBattleMemberAppliedStats_upvr =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib")).import(script, game:GetService("ReplicatedStorage"), "shared", "game",
+"battle").getBattleMemberAppliedStats
+local healAllyAction_upvw
+function healAllyAction_upvw(arg1, arg2, arg3, arg4) -- Line 79, Named "healAllyAction"
+--[[ Upvalues[1]:
+[1]: getBattleMemberAppliedStats_upvr (readonly)
+]]
+local var19
+if var19 <= 0 then
+var19 = 1
+end
+local var20 = arg1.self.attack[arg2]
+assert(var20, "member was undefined")
+local getBattleMemberAppliedStats_upvr_result1 =
+getBattleMemberAppliedStats_upvr(var20, arg1.round, true)
+local var22 = getBattleMemberAppliedStats_upvr_result1.battle_health -
+getBattleMemberAppliedStats_upvr(var20, arg1.round).battle_health
+local module_7 = {
+type = "add_eﬀect";
+}
+local tbl_4 = {
+type = "stat_change";
+meta = "stat_heal";
+}
+local tbl_3 = {}
+local tbl_2 = {}
+local battle_health = getBattleMemberAppliedStats_upvr_result1.battle_health
+tbl_2.set = battle_health
+if var19 < var22 then
+battle_health = -var22 + var19
+else
+battle_health = nil
+end
+tbl_2.add = battle_health
+tbl_3.battle_health = tbl_2
+tbl_4.stats = tbl_3
+module_7.eﬀect = tbl_4
+module_7.targetPosition = arg2
+module_7.targetSide = arg1.self.side
+module_7.fireTrigger = arg4
+return module_7
+end
+local reviveAllyAction_upvw
+function reviveAllyAction_upvw(arg1, arg2, arg3, arg4) -- Line 109, Named "reviveAllyAction"
+--[[ Upvalues[1]:
+[1]: getBattleMemberAppliedStats_upvr (readonly)
+]]
+local var29
+if var29 <= 0 then
+var29 = 1
+end
+local var30 = arg1.self.attack[arg2]
+assert(var30, "revive targetMember was undefined")
+local battle_health_2 = getBattleMemberAppliedStats_upvr(var30, arg1.round,
+true).battle_health
+local module_8 = {
+type = "add_eﬀect";
+eﬀect = {
+type = "stat_change";
+meta = "stat_reive";
+stats = {
+battle_health = {
+set = battle_health_2;
+add = -(battle_health_2 - var29);
+};
+};
+};
+}
+module_8.targetPosition = arg2
+module_8.targetSide = arg1.self.side
+module_8.fireTrigger = arg4
+return module_8
+end
+return {
+delayAction = function(arg1) -- Line 6, Named "delayAction"
+local module_6 = {
+type = "delay";
+}
+module_6.secs = arg1
+return module_6
+end;
+damageEnemyAction = function(arg1, arg2, arg3) -- Line 12, Named
+"damageEnemyAction"
+local var3
+if var3 <= 0 then
+var3 = 1
+end
+local module = {
+type = "add_eﬀect";
+eﬀect = {
+type = "stat_change";
+meta = "stat_damage";
+stats = {
+battle_health = {
+add = -var3;
+};
+};
+};
+targetPosition = arg1.opponent.position;
+targetSide = arg1.opponent.side;
+}
+module.fireTrigger = arg3
+return module
+end;
+damageSelfAction = function(arg1, arg2, arg3) -- Line 32, Named "damageSelfAction"
+local var8
+if var8 <= 0 then
+var8 = 1
+end
+local module_3 = {
+type = "add_eﬀect";
+}
+local tbl_5 = {
+type = "stat_change";
+meta = "stat_damage";
+stats = {
+battle_health = {
+add = -var8;
+};
+};
+}
+module_3.eﬀect = tbl_5
+if arg1.inPosition then
+tbl_5 = arg1.self.position
+else
+tbl_5 = arg1.selfMemberPosition
+end
+module_3.targetPosition = tbl_5
+module_3.targetSide = arg1.self.side
+module_3.fireTrigger = arg3
+return module_3
+end;
+damageEnemyAtPostionAction = function(arg1, arg2, arg3, arg4) -- Line 52, Named
+"damageEnemyAtPostionAction"
+local var13
+if var13 <= 0 then
+var13 = 1
+end
+assert(arg1.opponent.attack[arg2], `There was no member at {arg2}`)
+local module_4 = {
+type = "add_eﬀect";
+eﬀect = {
+type = "stat_change";
+meta = "stat_damage";
+stats = {
+battle_health = {
+add = -var13;
+};
+};
+};
+}
+module_4.targetPosition = arg2
+module_4.targetSide = arg1.opponent.side
+module_4.fireTrigger = arg4
+return module_4
+end;
+healSelfAction = function(arg1, arg2, arg3) -- Line 76, Named "healSelfAction"
+--[[ Upvalues[1]:
+[1]: healAllyAction_upvw (read and write)
+]]
+return healAllyAction_upvw(arg1, arg1.self.position, arg2, arg3)
+end;
+healAllyAction = healAllyAction_upvw;
+reviveSelfAction = function(arg1, arg2, arg3) -- Line 106, Named "reviveSelfAction"
+--[[ Upvalues[1]:
+[1]: reviveAllyAction_upvw (read and write)
+]]
+return reviveAllyAction_upvw(arg1, arg1.self.position, arg2, arg3)
+end;
+reviveAllyAction = reviveAllyAction_upvw;
+buﬀSelfAction = function(arg1, arg2) -- Line 133, Named "buﬀSelfAction"
+local var36
+if arg1.inPosition then
+var36 = arg1.self.position
+else
+var36 = arg1.selfMemberPosition
+end
+local module_5 = {
+type = "add_eﬀect";
+}
+local tbl = {
+type = "stat_change";
+meta = "stat_buﬀ";
+}
+tbl.stats = arg2
+module_5.eﬀect = tbl
+module_5.targetPosition = var36
+module_5.targetSide = arg1.self.side
+module_5.fireTrigger = false
+return module_5
+end;
+removeSelfEﬀectAction = function(arg1, arg2) -- Line 148, Named
+"removeSelfEﬀectAction"
+local module_2 = {}
+local var40 = "remove_eﬀect"
+module_2.type = var40
+module_2.id = arg2
+if arg1.inPosition then
+var40 = arg1.self.position
+else
+var40 = arg1.selfMemberPosition
+end
+module_2.targetPosition = var40
+module_2.targetSide = arg1.self.side
+return module_2
+end;
+}

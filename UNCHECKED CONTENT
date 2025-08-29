@@ -1,0 +1,127 @@
+UNCHECKED CONTENT
+local module_2 =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local allCards_upvr = module_2.import(script, game:GetService("ReplicatedStorage"), "shared",
+"game", "cards").allCards
+local countCardsOverDenominator_upvw
+local getUnclaimedCompletedQuests_upvw
+function countCardsOverDenominator_upvw(arg1, arg2) -- Line 34, Named
+"countCardsOverDenominator"
+--[[ Upvalues[1]:
+[1]: allCards_upvr (readonly)
+]]
+local var18
+for i, v in pairs(arg1) do
+if allCards_upvr[i].denom >= arg2 then
+var18 += v
+end
+end
+return var18
+end
+local dailyQuests_upvr = module_2.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "quests", "daily").dailyQuests
+local challengeQuests_upvr = module_2.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "quests", "challenge").challengeQuests
+local characterQuests_upvr = module_2.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "quests", "character").characterQuests
+function getUnclaimedCompletedQuests_upvw(arg1) -- Line 44, Named
+"getUnclaimedCompletedQuests"
+--[[ Upvalues[3]:
+[1]: dailyQuests_upvr (readonly)
+[2]: challengeQuests_upvr (readonly)
+[3]: characterQuests_upvr (readonly)
+]]
+local _ = {
+daily = {};
+challenge = {};
+character = {};
+total = 0;
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+}
+local ipairs_result1, ipairs_result2, ipairs_result3 = ipairs(arg1.daily)
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [84] 56. Error Block 13 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [84] 56. Error Block 13 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [22] 14. Error Block 2 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [84.7]
+-- KONSTANTERROR: [22] 14. Error Block 2 end (CF ANALYSIS FAILED)
+end
+return {
+defaultUncheckedContent = function(arg1) -- Line 8, Named "defaultUncheckedContent"
+--[[ Upvalues[2]:
+[1]: countCardsOverDenominator_upvw (read and write)
+[2]: getUnclaimedCompletedQuests_upvw (read and write)
+]]
+local module = {
+deck = {
+checkedDeck = {};
+checked = 0;
+unchecked = 0;
+unchecked = 0;
+};
+quests = {
+};
+}
+if arg1 then
+local tbl = {}
+local clone = table.clone(arg1.deck)
+setmetatable(clone, nil)
+tbl.checkedDeck = clone
+tbl.checked = countCardsOverDenominator_upvw(arg1.deck,
+arg1.settings.skip_roll_denom)
+tbl.unchecked = 0
+module.deck = tbl
+module.quests = {
+unchecked =
+getUnclaimedCompletedQuests_upvw(arg1.questProgress).total;
+}
+end
+return module
+end;
+countCardsOverDenominator = countCardsOverDenominator_upvw;
+getUnclaimedCompletedQuests = getUnclaimedCompletedQuests_upvw;
+modalToUncheckedContentType = function(arg1) -- Line 134, Named
+"modalToUncheckedContentType"
+if arg1 == 6 then
+return "deck"
+end
+if arg1 == 24 then
+return "quests"
+end
+if arg1 == 17 then
+return "battlepass"
+end
+if arg1 == 14 then
+return "upgrades"
+end
+end;
+"isCardUnchecked"
+isCardUnchecked = function(arg1, arg2, arg3, arg4) -- Line 148, Named
+--[[ Upvalues[1]:
+[1]: allCards_upvr (readonly)
+]]
+variable assignments
+local deck = arg1.deck
+local var27 = deck.checkedDeck[arg4]
+if var27 == nil then
+var27 = 0
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect
+end
+local var28 = arg3[arg4]
+if var28 == nil then
+var28 = 0
+end
+if var27 >= var28 then
+deck = false
+else
+end
+return true
+}
+end;
+deck = true
+end
+if deck then
+else
+end
+if arg2.skip_roll_denom > allCards_upvr[arg4].denom then

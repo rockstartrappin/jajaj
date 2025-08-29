@@ -1,0 +1,99 @@
+ROLL
+local module =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local any_import_result1 = module.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "cards")
+local tbl_upvr = {}
+for _, v in pairs(module.import(script, game:GetService("ReplicatedStorage"), "shared", "game",
+"places").places) do
+if v.type == 1 then
+for i_2 in pairs(v.bosses) do
+tbl_upvr[i_2] = true
+end
+end
+end
+local allCards_upvr = any_import_result1.allCards
+local splitCardId_upvr = any_import_result1.splitCardId
+local characterQuests_upvr = module.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "quests", "character").characterQuests
+local function cardPool_upvr(arg1) -- Line 17, Named "cardPool"
+--[[ Upvalues[4]:
+[1]: allCards_upvr (readonly)
+[2]: splitCardId_upvr (readonly)
+[3]: characterQuests_upvr (readonly)
+[4]: tbl_upvr (readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local pairs_result1_2, pairs_result2, pairs_result3 = pairs(allCards_upvr)
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [158] 110. Error Block 38 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [158] 110. Error Block 38 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [7] 6. Error Block 2 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [158.9]
+-- KONSTANTERROR: [7] 6. Error Block 2 end (CF ANALYSIS FAILED)
+end
+"rng").Rng
+return {
+local Rng_upvr = module.import(script, game:GetService("ReplicatedStorage"), "shared", "math",
+cardPool = cardPool_upvr;
+roll = function(arg1, arg2, arg3) -- Line 88, Named "roll"
+--[[ Upvalues[2]:
+[1]: cardPool_upvr (readonly)
+[2]: Rng_upvr (readonly)
+]]
+if arg2 == nil then
+end
+local var27 = arg3
+if not var27 then
+var27 = cardPool_upvr(arg1)
+end
+local len = #var27
+local module_upvr = {}
+for i_3 = 0, len - 1 do
+table.create(len)[i_3 + 1] = 0 + 1 * arg1.stats.luck / var27[i_3 + 1].denom
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+local var31
+end
+incorrect
+local function _(arg1_2) -- Line 106, Named "add"
+--[[ Upvalues[1]:
+[1]: module_upvr (readonly)
+]]
+local var32 = module_upvr[arg1_2]
+if var32 == nil then
+var32 = 0
+end
+module_upvr[arg1_2] = var32 + 1
+end
+for _ = 0, 1 - 1 do
+local const_number = 0
+local var34 = len - 1
+local var35
+while const_number <= var34 do
+local var36 = (const_number + var34) // 2
+-- KONSTANTERROR: Expression was reused, decompilation is
+if Rng_upvr.number() <= table.create(len)[var36 + 1] then
+var35 = var36
+else
+end
+end
+if var35 == nil then
+local card = var27[len].card
+local var38 = module_upvr[card]
+if var38 == nil then
+var38 = 0
+end
+module_upvr[card] = var38 + 1
+else
+local card_2 = var27[var35 + 1].card
+local var40 = module_upvr[card_2]
+if var40 == nil then
+var40 = 0
+end
+module_upvr[card_2] = var40 + 1
+end
+end
+return module_upvr
+end;
+}

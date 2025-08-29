@@ -1,0 +1,1292 @@
+ITEMS
+local tbl_upvr = {
+potion = {
+name = "Potion";
+order = 1;
+};
+elixir = {
+name = "Elixir";
+order = 2;
+};
+instant_roll = {
+name = "Instant Roll";
+order = 3;
+};
+title = {
+name = "Title";
+order = 4;
+};
+equipment = {
+name = "Equipment";
+order = 5;
+};
+artifact = {
+name = "Artifact";
+order = 6;
+};
+relic = {
+name = "Relic";
+order = 7;
+};
+accessory = {
+name = "Accessory";
+order = 8;
+};
+boss_gear = {
+name = "Boss Gear";
+order = 9;
+};
+card_cosmetic = {
+name = "Card Cosmetic";
+order = 10;
+};
+raid = {
+name = "Raid";
+order = 11;
+};
+misc = {
+name = "Misc";
+order = 12;
+};
+}
+};
+trait = {
+name = "Trait";
+order = 13;
+local tbl_upvr_2 = {
+small_luck_potion = {
+name = "Small Luck Potion";
+category = "stats_potion";
+rarity = "basic";
+type = "luck";
+size = "small";
+userCategory = "potion";
+};
+medium_luck_potion = {
+name = "Medium Luck Potion";
+category = "stats_potion";
+rarity = "gold";
+type = "luck";
+size = "medium";
+userCategory = "potion";
+};
+large_luck_potion = {
+name = "Large Luck Potion";
+category = "stats_potion";
+rarity = "rainbow";
+type = "luck";
+size = "large";
+userCategory = "potion";
+};
+xlarge_luck_potion = {
+name = "X-Large Luck Potion";
+category = "stats_potion";
+rarity = "rainbow";
+type = "luck";
+size = "xlarge";
+userCategory = "potion";
+};
+xxlarge_luck_potion = {
+name = "XX-Large Luck Potion";
+category = "stats_potion";
+rarity = "secret";
+type = "luck";
+size = "xxlarge";
+userCategory = "potion";
+};
+luck_jug = {
+name = "Luck Jug";
+category = "stats_potion";
+rarity = "secret";
+type = "luck";
+size = "jug";
+userCategory = "potion";
+};
+small_cooldown_reduction_potion = {
+name = "Small Roll Speed Potion";
+category = "stats_potion";
+rarity = "basic";
+type = "cooldown_reduction";
+size = "small";
+userCategory = "potion";
+};
+medium_cooldown_reduction_potion = {
+name = "Medium Roll Speed Potion";
+category = "stats_potion";
+rarity = "gold";
+type = "cooldown_reduction";
+size = "medium";
+userCategory = "potion";
+};
+large_cooldown_reduction_potion = {
+name = "Large Roll Speed Potion";
+category = "stats_potion";
+rarity = "rainbow";
+type = "cooldown_reduction";
+size = "large";
+userCategory = "potion";
+};
+xlarge_cooldown_reduction_potion = {
+name = "X-Large Roll Speed Potion";
+category = "stats_potion";
+rarity = "rainbow";
+type = "cooldown_reduction";
+size = "xlarge";
+userCategory = "potion";
+};
+xxlarge_cooldown_reduction_potion = {
+name = "XX-Large Roll Speed Potion";
+category = "stats_potion";
+rarity = "secret";
+type = "cooldown_reduction";
+size = "xxlarge";
+userCategory = "potion";
+};
+cooldown_reduction_jug = {
+name = "Roll Speed Jug";
+category = "stats_potion";
+rarity = "secret";
+type = "cooldown_reduction";
+size = "jug";
+userCategory = "potion";
+};
+border_chance_potion = {
+name = "Border Chance Potion";
+category = "stats_potion";
+rarity = "gold";
+type = "border_chance";
+size = "large";
+userCategory = "potion";
+};
+xlarge_border_chance_potion = {
+name = "X-Large Border Chance Potion";
+category = "stats_potion";
+rarity = "rainbow";
+type = "border_chance";
+size = "xlarge";
+userCategory = "potion";
+};
+xxlarge_border_chance_potion = {
+name = "XX-Large Border Chance Potion";
+category = "stats_potion";
+rarity = "secret";
+type = "border_chance";
+size = "xxlarge";
+userCategory = "potion";
+};
+boss_chance_potion = {
+name = "Boss Chance Potion";
+category = "stats_potion";
+rarity = "gold";
+type = "boss_chance";
+size = "large";
+userCategory = "potion";
+};
+xlarge_boss_chance_potion = {
+name = "X-Large Boss Chance Potion";
+category = "stats_potion";
+rarity = "rainbow";
+type = "boss_chance";
+size = "xlarge";
+userCategory = "potion";
+};
+xxlarge_boss_chance_potion = {
+name = "XX-Large Boss Chance Potion";
+category = "stats_potion";
+rarity = "secret";
+type = "boss_chance";
+size = "xxlarge";
+userCategory = "potion";
+};
+weak_luck_elixir = {
+name = "Weak Luck Elixir";
+category = "stats_potion";
+rarity = "gold";
+type = "luck_elixir";
+size = "weak";
+userCategory = "elixir";
+};
+strong_luck_elixir = {
+name = "Strong Luck Elixir";
+category = "stats_potion";
+rarity = "rainbow";
+type = "luck_elixir";
+size = "strong";
+userCategory = "elixir";
+};
+potent_luck_elixir = {
+name = "Potent Luck Elixir";
+category = "stats_potion";
+rarity = "secret";
+type = "luck_elixir";
+size = "potent";
+userCategory = "elixir";
+};
+weak_inferno_elixir = {
+name = "Weak Inferno Elixir";
+category = "stats_potion";
+rarity = "gold";
+type = "inferno_elixir";
+size = "weak";
+userCategory = "elixir";
+};
+strong_inferno_elixir = {
+name = "Strong Inferno Elixir";
+category = "stats_potion";
+rarity = "rainbow";
+type = "inferno_elixir";
+size = "strong";
+userCategory = "elixir";
+};
+potent_inferno_elixir = {
+name = "Potent Inferno Elixir";
+category = "stats_potion";
+rarity = "secret";
+type = "inferno_elixir";
+size = "potent";
+userCategory = "elixir";
+};
+moon_cycle_reroll_potion = {
+name = "Moon Cycle Reroll Potion";
+category = "moon_cycle_reroll_potion";
+rarity = "rainbow";
+userCategory = "potion";
+};
+full_moon_potion = {
+name = "Full Moon Potion";
+category = "moon_cycle_potion";
+rarity = "basic";
+moonCycle = "full_moon";
+userCategory = "potion";
+};
+harvest_moon_potion = {
+name = "Harvest Moon Potion";
+category = "moon_cycle_potion";
+rarity = "gold";
+moonCycle = "harvest_moon";
+userCategory = "potion";
+};
+snow_moon_potion = {
+name = "Snow Moon Potion";
+category = "moon_cycle_potion";
+rarity = "gold";
+moonCycle = "snow_moon";
+userCategory = "potion";
+};
+blood_moon_potion = {
+name = "Blood Moon Potion";
+category = "moon_cycle_potion";
+rarity = "rainbow";
+moonCycle = "blood_moon";
+userCategory = "potion";
+};
+eclipse_moon_potion = {
+name = "Eclipse Moon Potion";
+category = "moon_cycle_potion";
+rarity = "rainbow";
+moonCycle = "eclipse_moon";
+userCategory = "potion";
+};
+blue_moon_potion = {
+name = "Blue Moon Potion";
+category = "moon_cycle_potion";
+rarity = "rainbow";
+moonCycle = "blue_moon";
+userCategory = "potion";
+};
+wolf_moon_potion = {
+name = "Wolf Moon Potion";
+category = "moon_cycle_potion";
+rarity = "rainbow";
+moonCycle = "wolf_moon";
+userCategory = "potion";
+};
+monarch_moon_potion = {
+name = "Monarch Moon Potion";
+category = "moon_cycle_potion";
+rarity = "rainbow";
+moonCycle = "monarch_moon";
+userCategory = "potion";
+};
+tsukuyomi_moon_potion = {
+name = "Tsukuyomi Moon Potion";
+category = "moon_cycle_potion";
+rarity = "rainbow";
+moonCycle = "tsukuyomi_moon";
+userCategory = "potion";
+};
+inferno_moon_potion = {
+name = "Inferno Moon Potion";
+category = "moon_cycle_potion";
+rarity = "rainbow";
+moonCycle = "inferno_moon";
+userCategory = "potion";
+};
+dragon_seeker = {
+category = "equipment";
+name = "Dragon Seeker";
+slot = "equipment";
+rarity = "basic";
+stats = {
+luck = {
+add = 1;
+};
+};
+userCategory = "equipment";
+};
+straw_cap = {
+category = "equipment";
+name = "Straw Cap";
+slot = "equipment";
+rarity = "basic";
+stats = {
+luck = {
+add = 1;
+};
+cooldown_reduction = {
+add = 0.15;
+};
+};
+userCategory = "equipment";
+};
+soul_blade = {
+category = "equipment";
+name = "Soul Blade";
+slot = "equipment";
+rarity = "basic";
+stats = {
+luck = {
+};
+add = 2;
+};
+userCategory = "equipment";
+};
+holy_gear = {
+category = "equipment";
+name = "Holy Gear";
+slot = "equipment";
+rarity = "gold";
+stats = {
+luck = {
+add = 3;
+};
+cooldown_reduction = {
+add = 0.1;
+};
+};
+userCategory = "equipment";
+};
+sun_spirit_axe = {
+category = "equipment";
+name = "Sun Spirit Axe";
+slot = "equipment";
+rarity = "gold";
+stats = {
+luck = {
+add = 3.5;
+};
+cooldown_reduction = {
+add = 0.15;
+};
+};
+userCategory = "equipment";
+};
+fate_notebook = {
+category = "equipment";
+name = "Fate Notebook";
+slot = "equipment";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 7;
+};
+};
+userCategory = "equipment";
+};
+white_mask = {
+category = "equipment";
+name = "White Mask";
+slot = "equipment";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 15;
+multiply = 1.03;
+};
+cooldown_reduction = {
+add = 0.15;
+};
+};
+userCategory = "equipment";
+};
+inferno_hat = {
+category = "equipment";
+name = "Inferno Hat";
+slot = "equipment";
+rarity = "secret";
+stats = {
+luck = {
+add = 30;
+multiply = 1.05;
+cooldown_reduction = {
+add = 0.15;
+};
+};
+};
+userCategory = "equipment";
+};
+black_ops_visor = {
+category = "equipment";
+name = "Black Ops Visor";
+slot = "artifact";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 6;
+};
+cooldown_reduction = {
+add = 0.15;
+};
+border_chance = {
+add = 0.05;
+};
+};
+userCategory = "artifact";
+};
+sixfold_gaze = {
+category = "equipment";
+name = "Sixfold Gaze";
+slot = "artifact";
+rarity = "basic";
+stats = {
+luck = {
+add = 1;
+};
+};
+userCategory = "artifact";
+};
+hunters_badge = {
+category = "equipment";
+name = "Hunter's Badge";
+slot = "artifact";
+rarity = "gold";
+stats = {
+luck = {
+add = 3;
+};
+};
+userCategory = "artifact";
+};
+spirit_armor = {
+category = "equipment";
+name = "Spirit Armor";
+slot = "artifact";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 5;
+};
+};
+userCategory = "artifact";
+};
+demon_jewel = {
+category = "equipment";
+name = "Demon Jewel";
+slot = "artifact";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 7;
+};
+border_chance = {
+add = 0.05;
+};
+cooldown_reduction = {
+add = 0.15;
+};
+};
+userCategory = "artifact";
+};
+divine_staﬀ = {
+category = "equipment";
+name = "Divine Staﬀ";
+slot = "relic";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 3;
+};
+boss_chance = {
+add = 0.05;
+};
+};
+userCategory = "relic";
+};
+egyptian_totem = {
+category = "equipment";
+name = "Egyptian Totem";
+slot = "relic";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 5;
+};
+boss_chance = {
+add = 0.05;
+};
+};
+userCategory = "relic";
+};
+black_heart = {
+category = "equipment";
+name = "Black Heart";
+slot = "relic";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 8;
+};
+boss_chance = {
+add = 0.05;
+};
+};
+userCategory = "relic";
+};
+golden_snail = {
+category = "equipment";
+name = "Golden Snail";
+slot = "artifact";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 10;
+};
+cooldown_reduction = {
+add = 0.15;
+};
+border_chance = {
+add = 0.05;
+};
+};
+userCategory = "artifact";
+};
+sky_king_drums = {
+category = "equipment";
+name = "Sky King Drums";
+slot = "bossGear";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 35;
+multiply = 1.05;
+};
+};
+userCategory = "boss_gear";
+};
+flame_fruit = {
+category = "equipment";
+name = "Flame Fruit";
+slot = "relic";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 5;
+};
+potion_duration = {
+add = 0.03;
+};
+boss_chance = {
+add = 0.05;
+};
+};
+userCategory = "relic";
+};
+dragon_fruit = {
+category = "equipment";
+name = "Dragon Fruit";
+slot = "relic";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 8;
+};
+potion_duration = {
+add = 0.05;
+};
+boss_chance = {
+add = 0.05;
+};
+};
+userCategory = "relic";
+};
+dark_fruit = {
+category = "equipment";
+name = "Dark Fruit";
+slot = "relic";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 10;
+};
+potion_duration = {
+add = 0.05;
+};
+boss_chance = {
+add = 0.05;
+};
+};
+userCategory = "relic";
+};
+wind_deity_fruit = {
+category = "equipment";
+name = "Wind Deity Fruit";
+slot = "relic";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 15;
+};
+potion_duration = {
+add = 0.05;
+};
+boss_chance = {
+add = 0.05;
+};
+};
+userCategory = "relic";
+};
+sun_deity_fruit = {
+category = "equipment";
+name = "Sun Deity Fruit";
+slot = "relic";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 25;
+};
+potion_duration = {
+add = 0.05;
+};
+boss_chance = {
+add = 0.05;
+};
+};
+userCategory = "relic";
+};
+ninja_scroll = {
+category = "equipment";
+name = "Ninja Scroll";
+slot = "accessory";
+rarity = "basic";
+stats = {
+luck = {
+add = 3;
+multiply = 1.03;
+};
+};
+userCategory = "accessory";
+};
+hollow_mask = {
+category = "equipment";
+name = "Hollow Mask";
+slot = "relic";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 30;
+};
+boss_chance = {
+add = 0.05;
+};
+potion_duration = {
+add = 0.1;
+};
+};
+userCategory = "relic";
+};
+dragon_ball = {
+category = "equipment";
+name = "Dragon Ball";
+slot = "accessory";
+rarity = "basic";
+stats = {
+luck = {
+add = 5;
+multiply = 1.03;
+};
+};
+userCategory = "accessory";
+};
+cursed_finger = {
+category = "equipment";
+name = "Cursed Finger";
+slot = "accessory";
+rarity = "basic";
+stats = {
+luck = {
+add = 8;
+multiply = 1.03;
+};
+};
+userCategory = "accessory";
+};
+titan_syringe = {
+category = "equipment";
+name = "Titan Syringe";
+slot = "accessory";
+rarity = "gold";
+stats = {
+luck = {
+add = 10;
+multiply = 1.05;
+};
+};
+biwa = {
+};
+userCategory = "accessory";
+category = "equipment";
+name = "Biwa";
+slot = "accessory";
+rarity = "gold";
+stats = {
+luck = {
+add = 15;
+multiply = 1.05;
+};
+};
+userCategory = "accessory";
+};
+soul_queen_hat = {
+category = "equipment";
+name = "Soul Queen's Hat";
+slot = "accessory";
+rarity = "gold";
+stats = {
+luck = {
+add = 20;
+multiply = 1.05;
+};
+};
+userCategory = "accessory";
+};
+dragon_king_daggers = {
+category = "equipment";
+name = "Dragon King's Daggers";
+slot = "accessory";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 25;
+multiply = 1.08;
+};
+};
+userCategory = "accessory";
+};
+hidden_mask = {
+category = "equipment";
+name = "Hidden Mask";
+slot = "accessory";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 30;
+multiply = 1.08;
+};
+};
+userCategory = "accessory";
+};
+chakra_fruit = {
+category = "equipment";
+name = "Chakra Fruit";
+slot = "accessory";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 40;
+multiply = 1.08;
+};
+};
+userCategory = "accessory";
+};
+undead_staﬀ = {
+category = "equipment";
+name = "Undead Staﬀ";
+slot = "accessory";
+rarity = "secret";
+stats = {
+luck = {
+add = 50;
+multiply = 1.1;
+};
+};
+userCategory = "accessory";
+};
+chainsaw_dog = {
+category = "equipment";
+name = "Chainsaw Dog";
+slot = "artifact";
+rarity = "rainbow";
+stats = {
+luck = {
+add = 15;
+};
+border_chance = {
+add = 0.05;
+};
+cooldown_reduction = {
+add = 0.15;
+};
+};
+userCategory = "artifact";
+};
+instant_roll_50 = {
+name = "50x Instant Roll";
+category = "instant_roll_pack";
+rarity = "basic";
+rolls = 50;
+userCategory = "instant_roll";
+};
+instant_roll_100 = {
+name = "100x Instant Roll";
+category = "instant_roll_pack";
+rarity = "basic";
+rolls = 100;
+userCategory = "instant_roll";
+};
+instant_roll_500 = {
+name = "500x Instant Roll";
+category = "instant_roll_pack";
+rarity = "gold";
+rolls = 500;
+userCategory = "instant_roll";
+};
+instant_roll_1000 = {
+name = "1,000x Instant Roll";
+category = "instant_roll_pack";
+rarity = "gold";
+rolls = 1000;
+userCategory = "instant_roll";
+};
+instant_roll_5000 = {
+name = "5,000x Instant Roll";
+category = "instant_roll_pack";
+rarity = "gold";
+rolls = 5000;
+userCategory = "instant_roll";
+};
+instant_roll_10000 = {
+name = "10,000x Instant Roll";
+category = "instant_roll_pack";
+rarity = "rainbow";
+rolls = 10000;
+userCategory = "instant_roll";
+};
+instant_roll_25000 = {
+name = "25,000x Instant Roll";
+category = "instant_roll_pack";
+rarity = "rainbow";
+rolls = 25000;
+userCategory = "instant_roll";
+};
+instant_roll_50000 = {
+name = "50,000x Instant Roll";
+category = "instant_roll_pack";
+rarity = "rainbow";
+rolls = 50000;
+userCategory = "instant_roll";
+};
+instant_roll_100000 = {
+name = "100,000x Instant Roll";
+category = "instant_roll_pack";
+rarity = "rainbow";
+rolls = 100000;
+userCategory = "instant_roll";
+};
+instant_roll_250000 = {
+name = "250,000x Instant Roll";
+category = "instant_roll_pack";
+rarity = "secret";
+rolls = 250000;
+userCategory = "instant_roll";
+};
+instant_roll_500000 = {
+name = "500,000x Instant Roll";
+category = "instant_roll_pack";
+rarity = "secret";
+rolls = 500000;
+userCategory = "instant_roll";
+};
+default_card_back = {
+name = "Default Card Back Cosmetic";
+category = "card_cosmetic";
+cosmetic = "default";
+rarity = "basic";
+userCategory = "card_cosmetic";
+};
+celestial_surge_card_back = {
+name = "Celestial Surge Card Back Cosmetic";
+category = "card_cosmetic";
+cosmetic = "celestial_surge";
+rarity = "basic";
+userCategory = "card_cosmetic";
+};
+eternal_flame_card_back = {
+name = "Eternal Flame Card Back Cosmetic";
+category = "card_cosmetic";
+cosmetic = "eternal_flame";
+rarity = "gold";
+userCategory = "card_cosmetic";
+};
+arcane_card_back = {
+name = "Arcane Card Back Cosmetic";
+category = "card_cosmetic";
+cosmetic = "arcane";
+rarity = "rainbow";
+userCategory = "card_cosmetic";
+};
+monarch_card_back = {
+name = "Monarch Card Back Cosmetic";
+category = "card_cosmetic";
+cosmetic = "monarch";
+rarity = "rainbow";
+userCategory = "card_cosmetic";
+};
+inferno_burst_card_back = {
+name = "Inferno Burst Card Back Cosmetic";
+category = "card_cosmetic";
+cosmetic = "inferno_burst";
+rarity = "rainbow";
+userCategory = "card_cosmetic";
+};
+egg_hunt_card_back = {
+name = "Egg Hunt Card Back Cosmetic";
+category = "card_cosmetic";
+cosmetic = "egg_hunt";
+rarity = "rainbow";
+userCategory = "card_cosmetic";
+};
+sun_deity_card_back = {
+name = "Sun Deity Card Back Cosmetic";
+category = "card_cosmetic";
+cosmetic = "sun_deity";
+rarity = "rainbow";
+userCategory = "card_cosmetic";
+};
+vip = {
+category = "equipment";
+name = "VIP";
+slot = "title";
+rarity = "secret";
+stats = {};
+userCategory = "title";
+};
+nightmare_warrior = {
+category = "equipment";
+name = "Nightmare Warrior";
+slot = "title";
+rarity = "rainbow";
+stats = {};
+userCategory = "title";
+};
+pirate_warrior = {
+category = "equipment";
+name = "Pirate Warrior";
+slot = "title";
+rarity = "rainbow";
+stats = {};
+userCategory = "title";
+};
+the_climber = {
+category = "equipment";
+name = "The Climber";
+slot = "title";
+rarity = "secret";
+stats = {};
+userCategory = "title";
+};
+trait_reroll = {
+category = "other";
+name = "Trait Reroll";
+description = "Can be used in the Trait Shop to reroll your cards' traits.";
+rarity = "rainbow";
+userCategory = "trait";
+};
+egg_common = {
+category = "other";
+name = "Common Egg";
+description = "A common egg.";
+rarity = "rainbow";
+userCategory = "instant_roll";
+};
+egg_rare = {
+category = "other";
+name = "Rare Egg";
+description = "A rare egg.";
+rarity = "rainbow";
+userCategory = "instant_roll";
+};
+egg_legendary = {
+category = "other";
+name = "Legendary Egg";
+description = "A legendary egg.";
+rarity = "rainbow";
+userCategory = "instant_roll";
+};
+treasure_coin = {
+category = "other";
+name = "Treasure Coin";
+description = "A coin that can be used to open a treasure chest.";
+rarity = "basic";
+userCategory = "raid";
+};
+boss_shard = {
+category = "other";
+name = "Eternal Wing";
+description = "A wing dropped by the Eternal Dragon raid boss, used to craft the
+Eternal Dragon card.";
+rarity = "rainbow";
+userCategory = "raid";
+};
+shadow_rune = {
+category = "other";
+name = "Shadow Rune";
+description = "A rune dropped by the Shadow Dragon raid boss, used to craft the
+Shadow Dragon card.";
+rarity = "rainbow";
+userCategory = "raid";
+};
+shadow_daggers = {
+category = "other";
+name = "Shadow Daggers";
+description = "The fangs of humanity's greatest calamity, the Shadow Dragon.";
+rarity = "rainbow";
+userCategory = "misc";
+};
+sky_king_drum = {
+category = "other";
+name = "Drum";
+description = "A drum dropped by the Sky King, used in crafting Sky King items.";
+rarity = "rainbow";
+userCategory = "misc";
+};
+yellow_crystal = {
+category = "other";
+name = "Yellow Crystal";
+description = "A crystal gathered from the Ninja Village Tower, used in crafting a
+Ninja Scroll or the Death Ninja card.";
+rarity = "basic";
+userCategory = "misc";
+};
+green_crystal = {
+category = "other";
+name = "Green Crystal";
+description = "A crystal gathered from the Green Planet Tower, used in crafting a
+Dragon Ball or the Berserk Warrior card.";
+rarity = "basic";
+userCategory = "misc";
+};
+purple_crystal = {
+category = "other";
+name = "Purple Crystal";
+description = "A crystal gathered from the Shibuya Station Tower, used in crafting a
+Cursed Finger or the Deranged Curse card.";
+rarity = "basic";
+userCategory = "misc";
+};
+orange_crystal = {
+category = "other";
+name = "Orange Crystal";
+description = "A crystal gathered from the Titans City Tower, used in crafting a
+Titan Syringe or the Elder Combat Giant card.";
+rarity = "gold";
+userCategory = "misc";
+};
+red_crystal = {
+category = "other";
+name = "Red Crystal";
+description = "A crystal gathered from the Dimensional Fortress Tower, used in
+crafting a Biwa or the Biwa Demon card.";
+rarity = "gold";
+userCategory = "misc";
+};
+white_crystal = {
+category = "other";
+name = "White Crystal";
+description = "A crystal gathered from the Candy Island Tower, used in crafting the
+Soul Queen's Hat or the Lunar Beast card.";
+rarity = "gold";
+userCategory = "misc";
+};
+regal_crystal = {
+category = "other";
+name = "Regal Crystal";
+description = "A crystal gathered from the Solo City Tower, used in crafting the
+Dragon King's Daggers or the Fragment Of Light card.";
+rarity = "rainbow";
+userCategory = "misc";
+};
+emanating_black_crystal = {
+category = "other";
+name = "Emanating Black Crystal";
+description = "A crystal gathered from the Eminence Lookout Tower, used in
+crafting a Hidden Mask or the Catastrophe Mage card.";
+rarity = "rainbow";
+userCategory = "misc";
+};
+shadow_crystal = {
+category = "other";
+name = "Shadow Crystal";
+description = "A crystal gathered from the Invaded Ninja Village Tower, used in
+crafting a Chakra Fruit or the Fallen Deity card.";
+rarity = "rainbow";
+userCategory = "misc";
+};
+grim_black_crystal = {
+category = "other";
+name = "Grim Black Crystal";
+description = "A crystal gathered from the Necromancer Graveyard Tower, used in
+crafting an Undead Staﬀ or the Undead Actor card.";
+rarity = "secret";
+userCategory = "misc";
+};
+infernal_core = {
+category = "other";
+name = "Infernal Core";
+description = "A crafting ingredient that has a 5% chance to be dropped by one of
+Creator of Flames' minions.";
+rarity = "basic";
+userCategory = "raid";
+};
+demon_infernal_core = {
+category = "other";
+name = "Demon Infernal Core";
+description = "A crafting ingredient that has a 5% chance to be dropped by one of
+Creator of Flames' minions.";
+rarity = "gold";
+userCategory = "raid";
+};
+flame_boss_core = {
+category = "other";
+name = "Flame Boss Core";
+description = "A core dropped by the Creator of Flames boss, used to craft the
+Creator of Flames card.";
+rarity = "rainbow";
+userCategory = "raid";
+};
+sword_boss_core = {
+category = "other";
+name = "Sword Boss Core";
+description = "A core dropped by the Sword Deity boss, used to craft the Sword
+Deity card.";
+rarity = "rainbow";
+userCategory = "raid";
+};
+}
+local rarities_upvr =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib")).import(script, game:GetService("ReplicatedStorage"), "shared", "game", "rarity").rarities
+return {
+itemCompare = function(arg1, arg2) -- Line 1179, Named "itemCompare"
+--[[ Upvalues[3]:
+[1]: tbl_upvr_2 (readonly)
+[2]: tbl_upvr (readonly)
+[3]: rarities_upvr (readonly)
+]]
+variable assignments
+local var249 = tbl_upvr_2[arg1]
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect
+local var250 = tbl_upvr_2[arg2]
+local var251
+"instant_roll_pack" then
+if var249.category == "instant_roll_pack" and var250.category ==
+local rolls_2 = var249.rolls
+if rolls_2 ~= var250.rolls then
+if var250.rolls >= var249.rolls then
+rolls_2 = false
+else
+rolls_2 = true
+end
+return rolls_2
+end
+end
+if var249.category == "equipment" then
+if var250.category == "equipment" then
+local luck_4 = var249.stats.luck
+if luck_4 ~= nil then
+luck_4 = luck_4.add
+end
+local var254 = luck_4
+if var254 == nil then
+var254 = 0
+end
+var251 = var249.stats
+local luck_3 = var251.luck
+if luck_3 ~= nil then
+luck_3 = luck_3.multiply
+end
+var251 = luck_3
+if var251 == nil then
+var251 = 1
+end
+local luck_2 = var250.stats.luck
+if luck_2 ~= nil then
+luck_2 = luck_2.add
+end
+local var257 = luck_2
+if var257 == nil then
+var257 = 0
+end
+local luck_5 = var250.stats.luck
+if luck_5 ~= nil then
+luck_5 = luck_5.multiply
+end
+local var259 = luck_5
+if var259 == nil then
+var259 = 1
+end
+local var260 = var254 * var251
+local var261 = var257 * var259
+local var262
+if var260 ~= var261 then
+if var261 >= var260 then
+var262 = false
+else
+var262 = true
+end
+return var262
+end
+}
+end
+end
+local var263
+local var264 = tbl_upvr[var249.userCategory]
+local var265 = tbl_upvr[var250.userCategory]
+if var264.order ~= var265.order then
+if var264.order >= var265.order then
+else
+end
+return true
+end
+local var266 = rarities_upvr[var249.rarity]
+local var267 = rarities_upvr[var250.rarity]
+if var266.order ~= var267.order then
+if var267.order >= var266.order then
+else
+end
+return true
+end
+if arg1 >= arg2 then
+else
+end
+return true
+end;
+userItemCategories = tbl_upvr;
+equipmentSlotNames = {
+equipment = "Equipment";
+artifact = "Artifact";
+relic = "Relic";
+title = "Title";
+accessory = "Accessory";
+bossGear = "Boss Gear";
+};
+items = tbl_upvr_2;

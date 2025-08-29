@@ -1,0 +1,773 @@
+STAT SPEC
+local module_2 =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local any_import_result1 = module_2.import(script, game:GetService("ReplicatedStorage"),
+"rbxts_include", "node_modules", "@rbxts", "jest-globals", "src")
+local guid_upvr = module_2.import(script, game:GetService("ReplicatedStorage"), "shared",
+"guid").guid
+local any_import_result1_2 = module_2.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "cards")
+local function _(arg1, arg2) -- Line 12, Named "makeEﬀect"
+--[[ Upvalues[1]:
+[1]: guid_upvr (readonly)
+]]
+local clone_25 = table.clone(arg1)
+setmetatable(clone_25, nil)
+clone_25.id = guid_upvr()
+clone_25.startedAtRound = arg2
+clone_25.sourceSide = "player_1"
+clone_25.sourcePosition = 1
+clone_25.sourceSupport = false
+return clone_25
+end
+local function _(arg1, arg2, arg3) -- Line 22, Named "makeMember"
+local module = {
+type = "attack";
+}
+module.card = arg1
+module.eﬀects = arg2
+module.trait = arg3
+return module
+end
+local it_upvr = any_import_result1.it
+local splitCardId_upvr = any_import_result1_2.splitCardId
+local adjustCardForRarity_upvr = any_import_result1_2.adjustCardForRarity
+local getBattleMemberAppliedStats_upvr = module_2.import(script,
+game:GetService("ReplicatedStorage"), "shared", "game", "battle",
+"stat").getBattleMemberAppliedStats
+local expect_upvr = any_import_result1.expect
+any_import_result1.describe("getBattleMemberAppliedStats", function() -- Line 30
+--[[ Upvalues[6]:
+[1]: it_upvr (readonly)
+[2]: splitCardId_upvr (readonly)
+[3]: adjustCardForRarity_upvr (readonly)
+[4]: guid_upvr (readonly)
+[5]: getBattleMemberAppliedStats_upvr (readonly)
+[6]: expect_upvr (readonly)
+]]
+it_upvr("should handle basic attacks", function() -- Line 31
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted_9 = `{"green_bomber"}:{"gold"}`
+local splitCardId_upvr_result1_8, var9_result2_3 = splitCardId_upvr(formatted_9)
+local var10_result1_3 = adjustCardForRarity_upvr(splitCardId_upvr_result1_8,
+var9_result2_3)
+assert(not var10_result1_3.support)
+local tbl = {}
+local clone_2 = table.clone({
+type = "stat_change";
+meta = "stat_damage";
+stats = {
+battle_health = {
+add = -100;
+};
+};
+})
+setmetatable(clone_2, nil)
+clone_2.id = guid_upvr()
+clone_2.startedAtRound = 0
+clone_2.sourceSide = "player_1"
+clone_2.sourcePosition = 1
+clone_2.sourceSupport = false
+tbl[1] = clone_2
+expect_upvr(getBattleMemberAppliedStats_upvr({
+type = "attack";
+card = formatted_9;
+eﬀects = tbl;
+trait = nil;
+}, 0).battle_health).toBeCloseTo(var10_result1_3.health - 100)
+end)
+it_upvr("should handle burn-like eﬀects", function() -- Line 50
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted_3 = `{"green_bomber"}:{"gold"}`
+local var9_result1, splitCardId_upvr_result2_7 = splitCardId_upvr(formatted_3)
+local var10_result1_4 = adjustCardForRarity_upvr(var9_result1,
+splitCardId_upvr_result2_7)
+assert(not var10_result1_4.support)
+local tbl_3 = {}
+local clone_4 = table.clone({
+type = "continuous_stat_change";
+meta = "continuous_burn";
+stats = {
+battle_health = {
+add = -10;
+};
+};
+lastForRounds = 2;
+})
+setmetatable(clone_4, nil)
+clone_4.id = guid_upvr()
+clone_4.startedAtRound = 0
+clone_4.sourceSide = "player_1"
+clone_4.sourcePosition = 1
+clone_4.sourceSupport = false
+tbl_3[1] = clone_4
+local tbl_7 = {
+type = "attack";
+card = formatted_3;
+eﬀects = tbl_3;
+trait = nil;
+}
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_7,
+0).battle_health).toBeCloseTo(var10_result1_4.health - 10)
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_7,
+1).battle_health).toBeCloseTo(var10_result1_4.health - 20)
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_7,
+10).battle_health).toBeCloseTo(var10_result1_4.health - 20)
+end)
+it_upvr("should handle multiple StatChange eﬀects correctly", function() -- Line 74
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted_5 = `{"green_bomber"}:{"gold"}`
+local splitCardId_upvr_result1, splitCardId_upvr_result2_5 =
+splitCardId_upvr(formatted_5)
+local adjustCardForRarity_upvr_result1_2 =
+adjustCardForRarity_upvr(splitCardId_upvr_result1, splitCardId_upvr_result2_5)
+assert(not adjustCardForRarity_upvr_result1_2.support)
+local tbl_15 = {}
+local clone_27 = table.clone({
+type = "stat_change";
+meta = "stat_damage";
+stats = {
+battle_health = {
+add = -50;
+};
+};
+})
+setmetatable(clone_27, nil)
+clone_27.id = guid_upvr()
+clone_27.startedAtRound = 0
+clone_27.sourceSide = "player_1"
+clone_27.sourcePosition = 1
+clone_27.sourceSupport = false
+local clone_3 = table.clone({
+type = "stat_change";
+meta = "stat_buﬀ";
+stats = {
+battle_damage = {
+multiply = 1.5;
+};
+};
+})
+setmetatable(clone_3, nil)
+clone_3.id = guid_upvr()
+clone_3.startedAtRound = 0
+clone_3.sourceSide = "player_1"
+clone_3.sourcePosition = 1
+clone_3.sourceSupport = false
+local clone_23 = table.clone({
+type = "stat_change";
+meta = "stat_debuﬀ";
+stats = {
+battle_health = {
+add = -25;
+};
+};
+})
+setmetatable(clone_23, nil)
+clone_23.id = guid_upvr()
+clone_23.startedAtRound = 0
+clone_23.sourceSide = "player_1"
+clone_23.sourcePosition = 1
+clone_23.sourceSupport = false
+tbl_15[1] = clone_27
+tbl_15[2] = clone_3
+tbl_15[3] = clone_23
+local var11_result1 = getBattleMemberAppliedStats_upvr({
+type = "attack";
+card = formatted_5;
+eﬀects = tbl_15;
+trait = nil;
+}, 0)
+expect_upvr(var11_result1.battle_health).toBeCloseTo(adjustCardForRarity_upvr_result1_2.health
+- 50 - 25)
+expect_upvr(var11_result1.battle_damage).toBeCloseTo(adjustCardForRarity_upvr_result1_2.dam
+age * 1.5)
+end)
+it_upvr("should handle multiple ContinuousStatChange eﬀects correctly", function() -- Line
+110
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted_4 = `{"green_bomber"}:{"gold"}`
+local splitCardId_upvr_result1_9, splitCardId_upvr_result2 =
+splitCardId_upvr(formatted_4)
+local var10_result1 = adjustCardForRarity_upvr(splitCardId_upvr_result1_9,
+splitCardId_upvr_result2)
+assert(not var10_result1.support)
+local tbl_13 = {}
+local clone = table.clone({
+type = "continuous_stat_change";
+meta = "continuous_burn";
+stats = {
+battle_health = {
+add = -10;
+};
+};
+lastForRounds = 3;
+})
+setmetatable(clone, nil)
+clone.id = guid_upvr()
+clone.startedAtRound = 0
+clone.sourceSide = "player_1"
+clone.sourcePosition = 1
+clone.sourceSupport = false
+local clone_26 = table.clone({
+type = "continuous_stat_change";
+meta = "continuous_bleed";
+stats = {
+battle_health = {
+add = -5;
+};
+};
+lastForRounds = 2;
+})
+setmetatable(clone_26, nil)
+clone_26.id = guid_upvr()
+clone_26.startedAtRound = 1
+clone_26.sourceSide = "player_1"
+clone_26.sourcePosition = 1
+clone_26.sourceSupport = false
+tbl_13[1] = clone
+tbl_13[2] = clone_26
+local tbl_5 = {
+type = "attack";
+card = formatted_4;
+eﬀects = tbl_13;
+trait = nil;
+}
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_5,
+0).battle_health).toBeCloseTo(var10_result1.health - 10)
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_5,
+1).battle_health).toBeCloseTo(var10_result1.health - 20 - 5)
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_5,
+2).battle_health).toBeCloseTo(var10_result1.health - 30 - 10)
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_5,
+3).battle_health).toBeCloseTo(var10_result1.health - 30 - 10)
+end)
+it_upvr("should handle mixed StatChange and ContinuousStatChange eﬀects", function()
+-- Line 145
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted_10 = `{"green_bomber"}:{"gold"}`
+local splitCardId_upvr_result1_6, splitCardId_upvr_result2_6 =
+splitCardId_upvr(formatted_10)
+local var10_result1_6 = adjustCardForRarity_upvr(splitCardId_upvr_result1_6,
+splitCardId_upvr_result2_6)
+assert(not var10_result1_6.support)
+local tbl_16 = {}
+local clone_16 = table.clone({
+type = "stat_change";
+meta = "stat_damage";
+stats = {
+battle_health = {
+add = -30;
+};
+};
+})
+setmetatable(clone_16, nil)
+clone_16.id = guid_upvr()
+clone_16.startedAtRound = 0
+clone_16.sourceSide = "player_1"
+clone_16.sourcePosition = 1
+clone_16.sourceSupport = false
+local clone_22 = table.clone({
+type = "stat_change";
+meta = "stat_buﬀ";
+stats = {
+battle_damage = {
+add = 15;
+};
+};
+lastForRounds = 2;
+})
+setmetatable(clone_22, nil)
+clone_22.id = guid_upvr()
+clone_22.startedAtRound = 0
+clone_22.sourceSide = "player_1"
+clone_22.sourcePosition = 1
+clone_22.sourceSupport = false
+local clone_6 = table.clone({
+type = "continuous_stat_change";
+meta = "continuous_burn";
+stats = {
+battle_health = {
+add = -8;
+};
+};
+lastForRounds = 3;
+})
+setmetatable(clone_6, nil)
+clone_6.id = guid_upvr()
+clone_6.startedAtRound = 0
+clone_6.sourceSide = "player_1"
+clone_6.sourcePosition = 1
+clone_6.sourceSupport = false
+local clone_14 = table.clone({
+type = "stat_change";
+meta = "stat_debuﬀ";
+stats = {
+battle_damage = {
+multiply = 0.8;
+};
+};
+lastForRounds = 2;
+})
+setmetatable(clone_14, nil)
+clone_14.id = guid_upvr()
+clone_14.startedAtRound = 1
+clone_14.sourceSide = "player_1"
+clone_14.sourcePosition = 1
+clone_14.sourceSupport = false
+tbl_16[1] = clone_16
+tbl_16[2] = clone_22
+tbl_16[3] = clone_6
+tbl_16[4] = clone_14
+local tbl_4 = {
+type = "attack";
+card = formatted_10;
+eﬀects = tbl_16;
+30 - 8)
++ 15)
+trait = nil;
+}
+local var11_result1_8 = getBattleMemberAppliedStats_upvr(tbl_4, 0)
+expect_upvr(var11_result1_8.battle_health).toBeCloseTo(var10_result1_6.health -
+expect_upvr(var11_result1_8.battle_damage).toBeCloseTo(var10_result1_6.damage
+local var11_result1_3 = getBattleMemberAppliedStats_upvr(tbl_4, 1)
+expect_upvr(var11_result1_3.battle_health).toBeCloseTo(var10_result1_6.health -
+30 - 16)
+expect_upvr(var11_result1_3.battle_damage).toBeCloseTo((var10_result1_6.damage + 15) * 0.8)
+local var11_result1_4 = getBattleMemberAppliedStats_upvr(tbl_4, 2)
+expect_upvr(var11_result1_4.battle_health).toBeCloseTo(var10_result1_6.health -
+30 - 24)
+expect_upvr(var11_result1_4.battle_damage).toBeCloseTo(var10_result1_6.damage
+* 0.8)
+local getBattleMemberAppliedStats_upvr_result1_2 =
+getBattleMemberAppliedStats_upvr(tbl_4, 3)
+expect_upvr(getBattleMemberAppliedStats_upvr_result1_2.battle_health).toBeCloseTo(var10_resu
+lt1_6.health - 30 - 24)
+expect_upvr(getBattleMemberAppliedStats_upvr_result1_2.battle_damage).toBeCloseTo(var10_re
+sult1_6.damage)
+end)
+it_upvr.skip("should handle overlapping eﬀects with complex stat modifiers", function() --
+Line 201
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted = `{"green_bomber"}:{"gold"}`
+local splitCardId_upvr_result1_5, var9_result2_2 = splitCardId_upvr(formatted)
+local adjustCardForRarity_upvr_result1 =
+adjustCardForRarity_upvr(splitCardId_upvr_result1_5, var9_result2_2)
+assert(not adjustCardForRarity_upvr_result1.support)
+local tbl_14 = {}
+local clone_18 = table.clone({
+type = "stat_change";
+meta = "stat_buﬀ";
+stats = {
+battle_damage = {
+add = 20;
+};
+};
+})
+setmetatable(clone_18, nil)
+clone_18.id = guid_upvr()
+clone_18.startedAtRound = 0
+clone_18.sourceSide = "player_1"
+clone_18.sourcePosition = 1
+clone_18.sourceSupport = false
+local clone_5 = table.clone({
+type = "stat_change";
+meta = "stat_buﬀ";
+stats = {
+battle_damage = {
+multiply = 1.5;
+};
+};
+})
+setmetatable(clone_5, nil)
+clone_5.id = guid_upvr()
+clone_5.startedAtRound = 0
+clone_5.sourceSide = "player_1"
+clone_5.sourcePosition = 1
+clone_5.sourceSupport = false
+local clone_7 = table.clone({
+type = "continuous_stat_change";
+meta = "continuous_bleed";
+stats = {
+battle_health = {
+multiply = 0.9;
+};
+};
+lastForRounds = 3;
+})
+setmetatable(clone_7, nil)
+clone_7.id = guid_upvr()
+clone_7.startedAtRound = 0
+clone_7.sourceSide = "player_1"
+clone_7.sourcePosition = 1
+clone_7.sourceSupport = false
+local clone_24 = table.clone({
+type = "continuous_stat_change";
+meta = "continuous_burn";
+stats = {
+battle_health = {
+add = -5;
+};
+};
+lastForRounds = 2;
+})
+setmetatable(clone_24, nil)
+clone_24.id = guid_upvr()
+clone_24.startedAtRound = 1
+clone_24.sourceSide = "player_1"
+clone_24.sourcePosition = 1
+clone_24.sourceSupport = false
+tbl_14[1] = clone_18
+tbl_14[2] = clone_5
+tbl_14[3] = clone_7
+tbl_14[4] = clone_24
+local tbl_9 = {
+type = "attack";
+card = formatted;
+eﬀects = tbl_14;
+trait = nil;
+}
+local var11_result1_2 = getBattleMemberAppliedStats_upvr(tbl_9, 0)
+expect_upvr(var11_result1_2.battle_damage).toBeCloseTo((adjustCardForRarity_upvr_result1.dam
+age + 20) * 1.5)
+expect_upvr(var11_result1_2.battle_health).toBeCloseTo(adjustCardForRarity_upvr_result1.health
+* 0.9)
+local getBattleMemberAppliedStats_upvr_result1_3 =
+getBattleMemberAppliedStats_upvr(tbl_9, 1)
+expect_upvr(getBattleMemberAppliedStats_upvr_result1_3.battle_damage).toBeCloseTo((adjustC
+ardForRarity_upvr_result1.damage + 20) * 1.5)
+expect_upvr(getBattleMemberAppliedStats_upvr_result1_3.battle_health).toBeCloseTo((adjustCar
+dForRarity_upvr_result1.health - 5) * 0.9 * 0.9)
+local getBattleMemberAppliedStats_upvr_result1 =
+getBattleMemberAppliedStats_upvr(tbl_9, 2)
+expect_upvr(getBattleMemberAppliedStats_upvr_result1.battle_damage).toBeCloseTo((adjustCar
+dForRarity_upvr_result1.damage + 20) * 1.5)
+expect_upvr(getBattleMemberAppliedStats_upvr_result1.battle_health).toBeCloseTo((adjustCardF
+orRarity_upvr_result1.health - 10) * 0.9 * 0.9 * 0.9)
+local var11_result1_5 = getBattleMemberAppliedStats_upvr(tbl_9, 3)
+expect_upvr(var11_result1_5.battle_damage).toBeCloseTo((adjustCardForRarity_upvr_result1.dam
+age + 20) * 1.5)
+expect_upvr(var11_result1_5.battle_health).toBeCloseTo((adjustCardForRarity_upvr_result1.health
+- 10) * 0.9 * 0.9 * 0.9)
+end)
+it_upvr("should ignore negative eﬀects when ignoreNegatives is true", function() -- Line
+256
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted_6 = `{"green_bomber"}:{"gold"}`
+local splitCardId_upvr_result1_2, var9_result2 = splitCardId_upvr(formatted_6)
+local var10_result1_5 = adjustCardForRarity_upvr(splitCardId_upvr_result1_2,
+var9_result2)
+assert(not var10_result1_5.support)
+local tbl_2 = {}
+local clone_21 = table.clone({
+type = "stat_change";
+meta = "stat_damage";
+stats = {
+battle_health = {
+add = -50;
+};
+};
+})
+setmetatable(clone_21, nil)
+clone_21.id = guid_upvr()
+clone_21.startedAtRound = 0
+clone_21.sourceSide = "player_1"
+clone_21.sourcePosition = 1
+clone_21.sourceSupport = false
+local clone_20 = table.clone({
+type = "stat_change";
+meta = "stat_buﬀ";
+stats = {
+battle_damage = {
+add = 25;
+};
+};
+})
+setmetatable(clone_20, nil)
+clone_20.id = guid_upvr()
+clone_20.startedAtRound = 0
+clone_20.sourceSide = "player_1"
+clone_20.sourcePosition = 1
+clone_20.sourceSupport = false
+local clone_9 = table.clone({
+type = "stat_change";
+meta = "stat_debuﬀ";
+stats = {
+battle_damage = {
+multiply = 0.7;
+};
+};
+})
+setmetatable(clone_9, nil)
+clone_9.id = guid_upvr()
+clone_9.startedAtRound = 0
+clone_9.sourceSide = "player_1"
+clone_9.sourcePosition = 1
+clone_9.sourceSupport = false
+local clone_19 = table.clone({
+type = "continuous_stat_change";
+meta = "continuous_burn";
+stats = {
+battle_health = {
+add = -10;
+};
+};
+lastForRounds = 3;
+})
+setmetatable(clone_19, nil)
+clone_19.id = guid_upvr()
+clone_19.startedAtRound = 0
+clone_19.sourceSide = "player_1"
+clone_19.sourcePosition = 1
+clone_19.sourceSupport = false
+tbl_2[1] = clone_21
+tbl_2[2] = clone_20
+tbl_2[3] = clone_9
+tbl_2[4] = clone_19
+local tbl_12 = {
+type = "attack";
+card = formatted_6;
+eﬀects = tbl_2;
+trait = nil;
+}
+local var11_result1_6 = getBattleMemberAppliedStats_upvr(tbl_12, 1)
+expect_upvr(var11_result1_6.battle_health).toBeCloseTo(var10_result1_5.health -
+50 - 20)
+expect_upvr(var11_result1_6.battle_damage).toBeCloseTo((var10_result1_5.damage + 25) * 0.7)
+local var11_result1_7 = getBattleMemberAppliedStats_upvr(tbl_12, 1, true)
+expect_upvr(var11_result1_7.battle_health).toBeCloseTo(var10_result1_5.health)
+expect_upvr(var11_result1_7.battle_damage).toBeCloseTo(var10_result1_5.damage
++ 25)
+end)
+it_upvr("should ensure damage stat never goes below one with many negative modifiers",
+function() -- Line 304
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted_2 = `{"green_bomber"}:{"gold"}`
+local splitCardId_upvr_result1_7, splitCardId_upvr_result2_4 =
+splitCardId_upvr(formatted_2)
+local var10_result1_2 = adjustCardForRarity_upvr(splitCardId_upvr_result1_7,
+splitCardId_upvr_result2_4)
+assert(not var10_result1_2.support)
+local tbl_11 = {}
+local clone_11 = table.clone({
+type = "stat_change";
+meta = "stat_debuﬀ";
+stats = {
+battle_damage = {
+add = -1000;
+};
+};
+})
+setmetatable(clone_11, nil)
+clone_11.id = guid_upvr()
+clone_11.startedAtRound = 0
+clone_11.sourceSide = "player_1"
+clone_11.sourcePosition = 1
+clone_11.sourceSupport = false
+local clone_17 = table.clone({
+type = "stat_change";
+meta = "stat_debuﬀ";
+stats = {
+battle_damage = {
+multiply = 0.1;
+};
+};
+})
+setmetatable(clone_17, nil)
+clone_17.id = guid_upvr()
+clone_17.startedAtRound = 0
+clone_17.sourceSide = "player_1"
+clone_17.sourcePosition = 1
+clone_17.sourceSupport = false
+tbl_11[1] = clone_11
+tbl_11[2] = clone_17
+expect_upvr(getBattleMemberAppliedStats_upvr({
+type = "attack";
+card = formatted_2;
+eﬀects = tbl_11;
+trait = nil;
+}, 0).battle_damage).toBeGreaterThanOrEqual(1)
+expect_upvr((var10_result1_2.damage - 1000) * 0.1).toBeLessThan(0)
+end)
+it_upvr("should handle set stats", function() -- Line 333
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted_7 = `{"green_bomber"}:{"gold"}`
+local splitCardId_upvr_result1_4, splitCardId_upvr_result2_3 =
+splitCardId_upvr(formatted_7)
+assert(not adjustCardForRarity_upvr(splitCardId_upvr_result1_4,
+splitCardId_upvr_result2_3).support)
+local tbl_10 = {}
+local clone_15 = table.clone({
+type = "stat_change";
+meta = "stat_buﬀ";
+stats = {
+battle_damage = {
+add = 20;
+};
+};
+})
+setmetatable(clone_15, nil)
+clone_15.id = guid_upvr()
+clone_15.startedAtRound = 0
+clone_15.sourceSide = "player_1"
+clone_15.sourcePosition = 1
+clone_15.sourceSupport = false
+local clone_13 = table.clone({
+type = "stat_change";
+meta = "stat_buﬀ";
+stats = {
+battle_damage = {
+set = 50;
+};
+};
+})
+setmetatable(clone_13, nil)
+clone_13.id = guid_upvr()
+clone_13.startedAtRound = 0
+clone_13.sourceSide = "player_1"
+clone_13.sourcePosition = 1
+clone_13.sourceSupport = false
+local clone_12 = table.clone({
+type = "stat_change";
+meta = "stat_buﬀ";
+stats = {
+battle_damage = {
+add = -10;
+};
+};
+})
+setmetatable(clone_12, nil)
+clone_12.id = guid_upvr()
+clone_12.startedAtRound = 0
+clone_12.sourceSide = "player_1"
+clone_12.sourcePosition = 1
+clone_12.sourceSupport = false
+tbl_10[1] = clone_15
+tbl_10[2] = clone_13
+tbl_10[3] = clone_12
+expect_upvr(getBattleMemberAppliedStats_upvr({
+type = "attack";
+card = formatted_7;
+eﬀects = tbl_10;
+trait = nil;
+}, 0).battle_damage).toBe(40)
+end)
+it_upvr("should handle overriden stats properly", function() -- Line 368
+--[[ Upvalues[5]:
+[1]: splitCardId_upvr (copied, readonly)
+[2]: adjustCardForRarity_upvr (copied, readonly)
+[3]: guid_upvr (copied, readonly)
+[4]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[5]: expect_upvr (copied, readonly)
+]]
+local formatted_8 = `{"unstoppable_fist"}:{"basic"}`
+local splitCardId_upvr_result1_3, splitCardId_upvr_result2_2 =
+splitCardId_upvr(formatted_8)
+assert(not adjustCardForRarity_upvr(splitCardId_upvr_result1_3,
+splitCardId_upvr_result2_2).support)
+local tbl_8 = {}
+local clone_8 = table.clone({
+type = "stat_change";
+meta = "stat_boss";
+stats = {
+battle_damage = {
+multiply = 0.35;
+};
+battle_health = {
+multiply = 0.35;
+};
+};
+})
+setmetatable(clone_8, nil)
+clone_8.id = guid_upvr()
+clone_8.startedAtRound = 0
+clone_8.sourceSide = "player_1"
+clone_8.sourcePosition = 1
+clone_8.sourceSupport = false
+local clone_10 = table.clone({
+type = "stat_change";
+meta = "stat_damage";
+stats = {
+battle_health = {
+add = -7;
+};
+};
+})
+setmetatable(clone_10, nil)
+clone_10.id = guid_upvr()
+clone_10.startedAtRound = 1
+clone_10.sourceSide = "player_1"
+clone_10.sourcePosition = 1
+clone_10.sourceSupport = false
+tbl_8[1] = clone_8
+tbl_8[2] = clone_10
+local tbl_6 = {
+type = "attack";
+card = formatted_8;
+eﬀects = tbl_8;
+trait = nil;
+}
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_6,
+0).battle_health).toBeCloseTo(211.04999999999998)
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_6, 0,
+true).battle_health).toBeCloseTo(211.04999999999998)
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_6,
+1).battle_health).toBeCloseTo(204.04999999999998)
+expect_upvr(getBattleMemberAppliedStats_upvr(tbl_6, 1,
+true).battle_health).toBeCloseTo(211.04999999999998)
+end)
+end)

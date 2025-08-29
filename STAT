@@ -1,0 +1,188 @@
+STAT
+local module_2 =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local any_import_result1 = module_2.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "cards")
+local emptyBattleMemberAppliedStats_upvw
+local applyStat_upvr = module_2.import(script, game:GetService("ReplicatedStorage"), "shared",
+"game", "stat").applyStat
+local function getBattleMemberAppliedStats_upvr(arg1, arg2, arg3, arg4) -- Line 8, Named
+"getBattleMemberAppliedStats"
+--[[ Upvalues[2]:
+[1]: emptyBattleMemberAppliedStats_upvw (read and write)
+[2]: applyStat_upvr (readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 30 start (CF ANALYSIS FAILED)
+if arg3 == nil then
+end
+local var7_upvw = false
+local tbl_upvr_2 = {}
+local function _(arg1_2, arg2_2) -- Line 13, Named "pushModifier"
+--[[ Upvalues[2]:
+[1]: var7_upvw (read and write)
+[2]: tbl_upvr_2 (readonly)
+]]
+if var7_upvw and arg2_2 ~= "stat_trait" and arg2_2 ~= "stat_boss" then
+for _, v in pairs(arg1_2) do
+if v.add ~= nil and v.add < 0 then
+return nil
+end
+if v.multiply ~= nil and v.multiply < 1 then
+return nil
+end
+if v.set ~= nil and v.set < 0 then
+return nil
+end
+[75.12]
+incorrect
+end
+end
+table.insert(tbl_upvr_2, arg1_2)
+end
+-- KONSTANTERROR: [0] 1. Error Block 30 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [75] 54. Error Block 20 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [75] 54. Error Block 20 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [13] 11. Error Block 45 start (CF ANALYSIS FAILED)
+local function INLINED() -- Internal function, doesn't exist in bytecode
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [75.11]
+return nil
+end
+if not arg4 or INLINED() or arg2 >= nil then
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [75.13]
+if nil == "stat_change" then
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+local function INLINED_2() -- Internal function, doesn't exist in bytecode
+-- KONSTANTERROR: Expression was reused, decompilation is
+return nil > arg2
+else
+incorrect
+with nil [75.14]
+replaced with nil [75.16]
+replaced with nil [75.15]
+end
+if nil == nil or INLINED_2() then
+-- KONSTANTWARNING: GOTO [75] #54
+end
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+if nil == "continuous_stat_change" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+if nil ~= nil then
+end
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+if nil < nil then
+-- KONSTANTWARNING: Failed to evaluate expression,
+-- KONSTANTWARNING: Failed to evaluate expression,
+for _ = nil, nil, nil do
+-- KONSTANTERROR: Expression was reused,
+end
+decompilation is incorrect
+end
+end
+end
+end
+-- KONSTANTERROR: [13] 11. Error Block 45 end (CF ANALYSIS FAILED)
+end
+local splitCardId_upvr = any_import_result1.splitCardId
+local adjustCardForRarity_upvr = any_import_result1.adjustCardForRarity
+function emptyBattleMemberAppliedStats_upvw(arg1) -- Line 90, Named
+"emptyBattleMemberAppliedStats"
+--[[ Upvalues[2]:
+[1]: splitCardId_upvr (readonly)
+[2]: adjustCardForRarity_upvr (readonly)
+]]
+local splitCardId_upvr_result1, splitCardId_upvr_result2 = splitCardId_upvr(arg1)
+local adjustCardForRarity_upvr_result1 =
+adjustCardForRarity_upvr(splitCardId_upvr_result1, splitCardId_upvr_result2)
+assert(not adjustCardForRarity_upvr_result1.support, "Support battle members don't have
+stats")
+return {
+battle_health = adjustCardForRarity_upvr_result1.health;
+battle_damage = adjustCardForRarity_upvr_result1.damage;
+rng = 1;
+}
+end
+local tbl_upvr = {
+battle_health = "Health";
+battle_damage = "Damage";
+rng = "RNG";
+}
+return {
+getBattleMemberAppliedStats = getBattleMemberAppliedStats_upvr;
+getBattleMemberBaseStats = function(arg1) -- Line 67, Named
+"getBattleMemberBaseStats"
+--[[ Upvalues[2]:
+[1]: getBattleMemberAppliedStats_upvr (readonly)
+[2]: emptyBattleMemberAppliedStats_upvw (read and write)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local function _(arg1_3) -- Line 70
+local var16 = false
+if arg1_3.type == "stat_change" then
+var16 = false
+if arg1_3.meta == "stat_boss" then
+if arg1_3.startedAtRound ~= 0 then
+var16 = false
+else
+var16 = true
+end
+end
+end
+return var16
+end
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [29] 22. Error Block 9 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [29] 22. Error Block 9 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [8] 8. Error Block 2 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [29.10]
+-- KONSTANTERROR: [8] 8. Error Block 2 end (CF ANALYSIS FAILED)
+end;
+emptyBattleMemberAppliedStats = emptyBattleMemberAppliedStats_upvw;
+isBattleMemberAlive = function(arg1, arg2) -- Line 101, Named "isBattleMemberAlive"
+--[[ Upvalues[1]:
+[1]: getBattleMemberAppliedStats_upvr (readonly)
+]]
+local var23 = arg1
+if 0 >= getBattleMemberAppliedStats_upvr(var23, arg2).battle_health then
+var23 = false
+else
+var23 = true
+end
+return var23
+end;
+displayBattleStatModifiers = function(arg1, arg2) -- Line 110, Named
+"displayBattleStatModifiers"
+--[[ Upvalues[1]:
+[1]: tbl_upvr (readonly)
+]]
+local module = {}
+local pairs_result1, pairs_result2_2, pairs_result3_2 = pairs(arg1)
+for i_3, v_2 in pairs_result1, pairs_result2_2, pairs_result3_2 do
+local var33 = tbl_upvr[i_3]
+local add = v_2.add
+if add ~= 0 and add == add and add then
+local formatted = `{math.floor(v_2.add)}`
+if 0 < v_2.add then
+formatted = '+'
+else
+formatted = ""
+end
+table.insert(module, `{formatted}{formatted} {var33}`)
+end
+local multiply = v_2.multiply
+if multiply ~= 0 and multiply == multiply and multiply then
+table.insert(module, `x{v_2.multiply} {var33}`)
+end
+local set = v_2.set
+if set ~= 0 and set == set and set then
+table.insert(module, `= {v_2.set} {var33}`)
+end
+end
+pairs_result1 = arg2
+local var38 = pairs_result1
+if var38 == nil then
+var38 = ", "
+end
+return table.concat(module, var38)
+end;
+}

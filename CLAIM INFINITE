@@ -1,0 +1,186 @@
+CLAIM INFINITE
+local script =
+game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_module
+s"):WaitForChild("@rbxts"):WaitForChild("ReactLua"):WaitForChild("node_modules"):WaitForChild(
+"@jsdotlua"):WaitForChild("scheduler"):WaitForChild("forks"):WaitForChild("SchedulerHostConfig.
+default")
+-- Decompiler will be improved VERY SOON!
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://
+discord.gg/brNTY8nX8t)
+-- Decompiled on 2025-08-28 19:44:00
+-- Luau version 6, Types version 3
+-- Time taken: 0.003458 seconds
+local module_2 = require(script.Parent.Parent.Parent.Parent:WaitForChild(".luau-
+aliases"):WaitForChild("@jsdotlua"):WaitForChild("luau-polyfill"))
+local Object_upvr = module_2.Object
+local module = require(script.Parent.Parent.Parent.Parent:WaitForChild(".luau-
+aliases"):WaitForChild("@jsdotlua"):WaitForChild("shared"))
+local var5_upvw = false
+local var6_upvw
+local None_upvw = Object_upvr.None
+local var8_upvw = 15
+local var9_upvw = 0
+local console_upvr = module.console
+local describeError_upvr = module.describeError
+local errorToString_upvr = module.errorToString
+local function var29_upvw() -- Line 69, Named "performWorkUntilDeadline"
+--[[ Upvalues[7]:
+[1]: var6_upvw (read and write)
+[2]: var9_upvw (read and write)
+[3]: var8_upvw (read and write)
+[4]: var5_upvw (read and write)
+[5]: var29_upvw (read and write)
+[6]: describeError_upvr (readonly)
+[7]: errorToString_upvr (readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [3] 3. Error Block 19 start (CF ANALYSIS FAILED)
+local var14_upvr = os.clock() * 1000
+var9_upvw = var14_upvr + var8_upvw
+local var15
+if not _G.__YOLO__ then
+local xpcall_result1, _ = xpcall(function() -- Line 79, Named "doWork"
+--[[ Upvalues[4]:
+[1]: var6_upvw (copied, read and write)
+[2]: var14_upvr (readonly)
+[3]: var5_upvw (copied, read and write)
+[4]: var29_upvw (copied, read and write)
+]]
+if not var6_upvw(true, var14_upvr) then
+var5_upvw = false
+var6_upvw = nil
+else
+task.delay(0, var29_upvw)
+end
+return nil
+end, describeError_upvr)
+var15 = xpcall_result1
+else
+if not var6_upvw(true, var14_upvr) then
+var5_upvw = false
+var6_upvw = nil
+else
+task.delay(0, var29_upvw)
+end
+var15 = true
+end
+-- KONSTANTERROR: [3] 3. Error Block 19 end (CF ANALYSIS FAILED)
+end
+local function _(arg1) -- Line 124, Named "wrapPerformWorkWithCoroutine"
+local coroutine_create_result1_upvr_2 = coroutine.create(function() -- Line 125
+--[[ Upvalues[1]:
+[1]: arg1 (readonly)
+]]
+while true do
+local pcall_result1_2, pcall_result2 = pcall(coroutine.wrap(arg1))
+coroutine.yield(pcall_result1_2, pcall_result2)
+end
+end)
+return function() -- Line 135
+--[[ Upvalues[1]:
+[1]: coroutine_create_result1_upvr_2 (readonly)
+]]
+local _, coroutine_resume_result2, coroutine_resume_result3_2 =
+coroutine.resume(coroutine_create_result1_upvr_2)
+if not coroutine_resume_result2 then
+error(coroutine_resume_result3_2)
+end
+end
+end
+local coroutine_create_result1_upvr = coroutine.create(function() -- Line 125
+--[[ Upvalues[1]:
+[1]: var29_upvw (readonly)
+]]
+while true do
+local pcall_result1, pcall_result2_2 = pcall(coroutine.wrap(var29_upvw))
+coroutine.yield(pcall_result1, pcall_result2_2)
+end
+end)
+function var29_upvw() -- Line 135
+--[[ Upvalues[1]:
+[1]: coroutine_create_result1_upvr (readonly)
+]]
+local _, coroutine_resume_result2_2, coroutine_resume_result3 =
+coroutine.resume(coroutine_create_result1_upvr)
+if not coroutine_resume_result2_2 then
+error(coroutine_resume_result3)
+end
+end
+function coroutine_create_result1_upvr() -- Line 154, Named "cancelHostCallback"
+--[[ Upvalues[1]:
+[1]: var6_upvw (read and write)
+]]
+var6_upvw = nil
+end
+local setTimeout_upvr = module_2.setTimeout
+local clearTimeout_upvr = module_2.clearTimeout
+return {
+requestHostCallback = function(arg1) -- Line 145, Named "requestHostCallback"
+--[[ Upvalues[3]:
+[1]: var6_upvw (read and write)
+[2]: var5_upvw (read and write)
+[3]: var29_upvw (read and write)
+]]
+var6_upvw = arg1
+if not var5_upvw then
+var5_upvw = true
+task.delay(0, var29_upvw)
+end
+end;
+cancelHostCallback = coroutine_create_result1_upvr;
+requestHostTimeout = function(arg1, arg2) -- Line 158, Named "requestHostTimeout"
+--[[ Upvalues[2]:
+[1]: None_upvw (read and write)
+[2]: setTimeout_upvr (readonly)
+]]
+None_upvw = setTimeout_upvr(function() -- Line 159
+--[[ Upvalues[1]:
+[1]: arg1 (readonly)
+]]
+end, arg2)
+arg1(os.clock() * 1000)
+end;
+cancelHostTimeout = function() -- Line 164, Named "cancelHostTimeout"
+--[[ Upvalues[3]:
+[1]: clearTimeout_upvr (readonly)
+[2]: None_upvw (read and write)
+[3]: Object_upvr (readonly)
+]]
+clearTimeout_upvr(None_upvw)
+None_upvw = Object_upvr.None
+end;
+shouldYieldToHost = function() -- Line 46, Named "shouldYieldToHost"
+--[[ Upvalues[1]:
+[1]: var9_upvw (read and write)
+]]
+local var10
+if var9_upvw > os.clock() * 1000 then
+var10 = false
+else
+var10 = true
+end
+return var10
+end;
+end;
+requestPaint = function() -- Line 51, Named "requestPaint"
+getCurrentTime = function() -- Line 19
+return os.clock() * 1000
+end;
+forceFrameRate = function(arg1) -- Line 53, Named "forceFrameRate"
+--[[ Upvalues[2]:
+[1]: console_upvr (readonly)
+[2]: var8_upvw (read and write)
+]]
+if arg1 < 0 or 125 < arg1 then
+console_upvr.warn("forceFrameRate takes a positive int between 0 and 125,
+forcing frame rates higher than 125 fps is not supported")
+else
+if 0 < arg1 then
+return
+var8_upvw = math.floor(1000 / arg1)
+end
+var8_upvw = 5
+end
+end;
+}

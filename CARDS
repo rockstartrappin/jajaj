@@ -1,0 +1,2391 @@
+CARDS
+local module_4 =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local any_import_result1 = module_4.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "rarity")
+local tbl_3_upvr = {
+basic = 1;
+gold = 4;
+rainbow = 16;
+secret = 64;
+}
+local tbl_2_upvr = {
+basic = 1;
+gold = 100;
+rainbow = 10000;
+secret = 1000000;
+}
+local var29_upvw
+local function adjustCardForRarity_upvr(arg1, arg2) -- Line 51, Named "adjustCardForRarity"
+--[[ Upvalues[3]:
+[1]: var29_upvw (read and write)
+[2]: tbl_3_upvr (readonly)
+[3]: tbl_2_upvr (readonly)
+]]
+local var30 = var29_upvw[arg1]
+if var30.support then
+return var30
+end
+local clone = table.clone(var30)
+setmetatable(clone, nil)
+clone.health = math.floor(var30.health * tbl_3_upvr[arg2])
+clone.damage = math.floor(var30.damage * tbl_3_upvr[arg2])
+clone.denom = math.floor(var30.denom * tbl_2_upvr[arg2])
+return clone
+end
+local tbl = {
+green_bomber = {
+name = "Green Bomber";
+denom = 2;
+support = false;
+health = 14;
+damage = 7;
+skill = "acidicAttack";
+};
+wild_hunter = {
+name = "Wild Hunter";
+denom = 3;
+support = false;
+health = 16;
+damage = 8;
+skill = "nenCharge";
+};
+science_king = {
+name = "Science King";
+denom = 4;
+support = false;
+health = 18;
+damage = 9;
+skill = "geniusSolution";
+};
+space_cowboy = {
+name = "Space Cowboy";
+denom = 8;
+support = false;
+health = 21;
+damage = 11;
+skill = "expertMarksman";
+};
+chainsaw_fiend = {
+name = "Chainsaw Fiend";
+denom = 10;
+support = false;
+health = 22;
+damage = 11;
+skill = "chainsawStrike";
+};
+cat_burglar = {
+name = "Cat Burglar";
+denom = 25;
+support = false;
+health = 30;
+damage = 15;
+skill = "thunderboltTempo";
+};
+crimson_eyes = {
+name = "Crimson Eyes";
+denom = 45;
+support = false;
+health = 36;
+damage = 18;
+skill = "chainControl";
+};
+shadow_summoner = {
+name = "Shadow Summoner";
+denom = 60;
+support = false;
+health = 38;
+damage = 19;
+skill = "cursedBeastStrike";
+};
+golden_king = {
+name = "Golden King";
+denom = 100;
+support = false;
+health = 44;
+damage = 22;
+skill = "gateOfWealth";
+};
+knight_of_light = {
+name = "Knight of Light";
+denom = 200;
+support = false;
+health = 55;
+damage = 28;
+skill = "excalibursRadiance";
+};
+metal_alchemist = {
+name = "Metal Alchemist";
+denom = 350;
+support = false;
+health = 63;
+damage = 32;
+skill = "fullmetalTransmutation";
+};
+sacred_ronin = {
+name = "Sacred Ronin";
+denom = 350;
+support = false;
+health = 63;
+damage = 32;
+skill = "swordsmansResolve";
+};
+water_hashira = {
+name = "Water Hashira";
+denom = 400;
+support = false;
+health = 67;
+damage = 34;
+skill = "waterBreathing";
+};
+blade_rebel = {
+name = "Blade Rebel";
+denom = 500;
+support = false;
+health = 74;
+damage = 37;
+skill = "scissorBladeReaper";
+};
+star_fist = {
+name = "Star Fist";
+denom = 750;
+support = false;
+health = 84;
+damage = 42;
+skill = "starPlatinumsBarrage";
+};
+light_admiral = {
+name = "Light Admiral";
+denom = 1000;
+support = false;
+health = 88;
+damage = 44;
+skill = "flash";
+};
+half_demon_swordsman = {
+name = "Half-Demon Swordsman";
+denom = 2000;
+support = false;
+health = 109;
+damage = 55;
+skill = "backlashWave";
+};
+muscle_head = {
+name = "Muscle Head";
+denom = 2500;
+support = false;
+health = 116;
+damage = 58;
+skill = "berserkerStrike";
+};
+golden_wind = {
+name = "Golden Wind";
+denom = 3000;
+support = false;
+health = 123;
+damage = 62;
+skill = "lifeCreation";
+};
+ripple_knight = {
+name = "Ripple Knight";
+denom = 3500;
+support = false;
+health = 127;
+damage = 64;
+skill = "sunlightYellowOverdrive";
+};
+thunder_flash = {
+name = "Thunder Flash";
+denom = 4000;
+support = false;
+health = 136;
+damage = 68;
+skill = "thunderBreathing";
+};
+the_irregular = {
+name = "The Irregular";
+denom = 5000;
+support = false;
+health = 143;
+damage = 72;
+skill = "marchsPower";
+};
+deranged_assassin = {
+name = "Deranged Assassin";
+denom = 7500;
+support = false;
+health = 160;
+damage = 80;
+skill = "godspeed";
+};
+crow_master = {
+name = "Crow Master";
+denom = 10000;
+support = false;
+health = 176;
+damage = 88;
+skill = "illusionaryCrows";
+};
+promised_child = {
+name = "Promised Child";
+denom = 20000;
+support = false;
+health = 217;
+damage = 109;
+skill = "rasenbang";
+};
+dark_avenger = {
+name = "Dark Avenger";
+denom = 35000;
+support = false;
+health = 238;
+damage = 119;
+skill = "amaterasuFlames";
+};
+homeroom_teacher = {
+name = "Homeroom Teacher";
+denom = 40000;
+support = false;
+health = 268;
+damage = 134;
+skill = "failedTest";
+};
+death_log = {
+name = "Death Log";
+denom = 55000;
+support = false;
+health = 284;
+damage = 142;
+skill = "writtenFate";
+};
+black_swordsman = {
+name = "Black Swordsman";
+denom = 70000;
+support = false;
+health = 317;
+damage = 159;
+skill = "dualBlades";
+};
+masked_emperor = {
+name = "Masked Emperor";
+denom = 85000;
+support = false;
+health = 336;
+damage = 168;
+skill = "geassCommand";
+};
+fire_dragon = {
+name = "Fire Dragon";
+denom = 100000;
+support = false;
+health = 352;
+damage = 176;
+skill = "dragonSlayersRoar";
+};
+black_demon = {
+name = "Black Demon";
+denom = 120000;
+support = false;
+health = 372;
+damage = 186;
+skill = "antiMagicSlash";
+};
+stark_gunner = {
+name = "Stark Gunner";
+denom = 150000;
+support = false;
+health = 389;
+damage = 195;
+skill = "ceroRapidFire";
+};
+titania = {
+name = "Titania";
+denom = 200000;
+support = false;
+health = 426;
+damage = 213;
+skill = "requipMastery";
+};
+white_ghoul = {
+name = "White Ghoul";
+denom = 250000;
+support = false;
+health = 464;
+damage = 232;
+skill = "kaguneRage";
+};
+snake_hashira = {
+name = "Snake Hashira";
+denom = 350000;
+support = false;
+health = 514;
+damage = 257;
+skill = "serpentBreathing";
+};
+crimson_vampire = {
+name = "Crimson Vampire";
+denom = 350000;
+support = false;
+health = 514;
+damage = 257;
+skill = "bloodPact";
+};
+psycho_stalker = {
+name = "Psycho Stalker";
+denom = 450000;
+support = false;
+health = 554;
+damage = 277;
+skill = "futureDiary";
+};
+berserker_shinigami = {
+name = "Berserker Shinigami";
+denom = 500000;
+support = false;
+health = 572;
+damage = 286;
+skill = "devour";
+};
+sword_saint = {
+name = "Sword Saint";
+denom = 500000;
+support = false;
+health = 572;
+damage = 286;
+skill = "starSplash";
+};
+insect_hashira = {
+name = "Insect Hashira";
+denom = 750000;
+support = false;
+health = 646;
+damage = 323;
+skill = "wisteriaStrike";
+};
+healing_fist = {
+name = "Healing Fist";
+denom = 850000;
+support = false;
+health = 682;
+damage = 341;
+skill = "healingField";
+};
+ice_empress = {
+name = "Ice Empress";
+denom = 1000000;
+support = false;
+health = 726;
+damage = 363;
+skill = "frostbite";
+};
+red_pilot = {
+name = "Red Pilot";
+denom = 1250000;
+support = false;
+health = 753;
+damage = 377;
+skill = "syncBoost";
+};
+wizard_king = {
+name = "Wizard King";
+denom = 1500000;
+support = false;
+health = 796;
+damage = 398;
+skill = "timeWarp";
+};
+esper_prodigy = {
+name = "Esper Prodigy";
+denom = 2000000;
+support = false;
+health = 868;
+damage = 434;
+skill = "psychicBurst";
+};
+sun_lion = {
+name = "Sun Lion";
+denom = 2500000;
+support = false;
+health = 928;
+damage = 464;
+skill = "solarFlare";
+};
+terrible_tornado = {
+name = "Terrible Tornado";
+denom = 3000000;
+support = false;
+health = 980;
+damage = 490;
+skill = "psychicReflect";
+};
+mist_hashira = {
+name = "Mist Hashira";
+denom = 5000000;
+support = false;
+health = 1143;
+damage = 572;
+skill = "mistBreathing";
+};
+the_impure_ghost = {
+name = "The Impure Ghost";
+denom = 10000000;
+support = false;
+health = 1408;
+damage = 704;
+skill = "susanno";
+};
+forest_sage = {
+name = "Forest Sage";
+denom = 30000000;
+support = false;
+health = 1960;
+damage = 980;
+skill = "forestBlessing";
+};
+black_flame = {
+name = "Black Flame";
+denom = 50000000;
+support = false;
+health = 2286;
+damage = 1143;
+skill = "cursedFlame";
+};
+ice_empress_shinigami = {
+name = "Ice Empress Shinigami";
+denom = 100000000;
+support = false;
+health = 2816;
+damage = 1408;
+skill = "whiteHazePunishment";
+};
+eternal_mage = {
+name = "Eternal Mage";
+denom = 250000000;
+support = false;
+health = 3711;
+damage = 1856;
+skill = "timelessWisdom";
+};
+bamboo_demon = {
+name = "Bamboo Demon";
+denom = 10000;
+support = false;
+health = 176;
+damage = 88;
+pack = "demons_slayers";
+skill = "demonArtExplodingPact";
+};
+peaceful_swordsman = {
+name = "Peaceful Swordsman";
+denom = 50000;
+support = false;
+health = 280;
+damage = 140;
+pack = "demons_slayers";
+skill = "waterExhalation";
+};
+pale_demon_lord = {
+name = "Pale Demon Lord";
+denom = 150000;
+support = false;
+health = 389;
+damage = 195;
+pack = "demons_slayers";
+skill = "bloodCurse";
+};
+six_eyed_slayer = {
+name = "Six-Eyed Slayer";
+denom = 350000;
+support = false;
+health = 514;
+damage = 257;
+pack = "demons_slayers";
+skill = "moonBreathing";
+};
+frost_demon = {
+name = "Frost Demon";
+denom = 500000;
+support = false;
+health = 572;
+damage = 286;
+pack = "demons_slayers";
+skill = "iceBloom";
+};
+lost_hunter = {
+name = "Lost Hunter";
+denom = 50000;
+support = false;
+health = 280;
+damage = 140;
+pack = "pirate_warriors";
+skill = "threeSwordStyle";
+};
+straw_hat = {
+name = "Straw Hat";
+denom = 250000;
+support = false;
+health = 464;
+damage = 232;
+pack = "pirate_warriors";
+skill = "jetPistol";
+};
+sun_deity = {
+name = "Sun Deity";
+denom = 500000;
+support = false;
+health = 572;
+damage = 286;
+pack = "pirate_warriors";
+skill = "boundlessFreedom";
+};
+red_emperor = {
+name = "Red Emperor";
+denom = 1000000;
+support = false;
+health = 726;
+damage = 363;
+pack = "pirate_warriors";
+skill = "conquerorsHaki";
+};
+prideful_prince = {
+name = "Prideful Prince";
+denom = 250000;
+support = false;
+health = 464;
+damage = 232;
+pack = "galaxy_defenders";
+skill = "finalFlash";
+};
+earth_strongest = {
+name = "Earth's Strongest";
+denom = 500000;
+support = false;
+health = 572;
+damage = 286;
+pack = "galaxy_defenders";
+skill = "kamehamehaWave";
+};
+galactic_tyrant = {
+name = "Galactic Tyrant";
+denom = 1000000;
+support = false;
+health = 726;
+damage = 363;
+pack = "galaxy_defenders";
+skill = "deathStrike";
+};
+destroyer_deity = {
+name = "Destroyer Deity";
+denom = 3500000;
+support = false;
+health = 1003;
+damage = 502;
+pack = "galaxy_defenders";
+skill = "destructionSphere";
+};
+divine_guide = {
+name = "Divine Guide";
+denom = 7500000;
+support = false;
+health = 1315;
+damage = 658;
+pack = "galaxy_defenders";
+skill = "heavenlyBlessing";
+};
+golden_vampire = {
+name = "Golden Vampire";
+denom = 50000;
+support = false;
+health = 280;
+damage = 140;
+skill = "theWorld";
+};
+awakened_wild_hunter = {
+name = "Awakened Wild Hunter";
+denom = 250000;
+support = false;
+health = 464;
+damage = 232;
+skill = "rock";
+};
+bald_hero = {
+name = "Bald Hero";
+denom = 1000000;
+support = false;
+health = 726;
+damage = 363;
+skill = "onePunch";
+};
+blue_slime = {
+name = "Blue Slime";
+denom = 10000000;
+support = false;
+health = 1408;
+damage = 704;
+skill = "predatorMode";
+};
+lunar_guardian = {
+name = "Lunar Guardian";
+denom = 30000000;
+support = false;
+health = 1960;
+damage = 980;
+skill = "moonlitResonance";
+};
+shadow_duelist = {
+name = "Shadow Duelist";
+denom = 100000000;
+support = false;
+health = 2816;
+damage = 1408;
+skill = "darkJudgement";
+};
+surgeon_of_death = {
+name = "Surgeon Of Death";
+denom = 50000;
+support = false;
+health = 420;
+damage = 210;
+moonCycle = "full_moon";
+skill = "mes";
+};
+diamond_warrior = {
+name = "Diamond Warrior";
+denom = 250000;
+support = false;
+health = 695;
+damage = 348;
+moonCycle = "full_moon";
+skill = "brilliantPunk";
+};
+nekomata = {
+name = "Nekomata";
+denom = 1000000;
+support = false;
+health = 1090;
+damage = 545;
+moonCycle = "full_moon";
+skill = "senjutsuAndYoujutsu";
+};
+lunar_angel = {
+name = "Lunar Angel";
+denom = 250000;
+support = false;
+health = 765;
+damage = 383;
+moonCycle = "harvest_moon";
+skill = "empoweredSwing";
+};
+sun_blaze_shinigami = {
+name = "Sun Blaze Shinigami";
+denom = 1500000;
+support = false;
+health = 1313;
+damage = 657;
+moonCycle = "harvest_moon";
+skill = "incinerate";
+};
+love_hashira = {
+name = "Love Hashira";
+denom = 3000000;
+support = false;
+health = 1618;
+damage = 809;
+moonCycle = "harvest_moon";
+skill = "ribbonSlash";
+};
+ice_dragon = {
+name = "Ice Dragon";
+denom = 350000;
+support = false;
+health = 925;
+damage = 463;
+moonCycle = "snow_moon";
+skill = "iceWings";
+};
+snake_empress = {
+name = "Snake Empress";
+denom = 3500000;
+support = false;
+health = 1808;
+damage = 904;
+moonCycle = "snow_moon";
+skill = "loveGaze";
+};
+white_dragon_emperor = {
+name = "White Dragon Emperor";
+denom = 5000000;
+support = false;
+health = 2060;
+damage = 1030;
+moonCycle = "snow_moon";
+skill = "divineDivide";
+};
+flame_deity = {
+name = "Flame Deity";
+denom = 500000;
+support = false;
+health = 1718;
+damage = 859;
+moonCycle = "wolf_moon";
+skill = "unyieldingFlame";
+};
+dragon_king = {
+name = "Dragon King";
+denom = 5000000;
+support = false;
+health = 3434;
+damage = 1717;
+moonCycle = "wolf_moon";
+skill = "dragonKingRoar";
+};
+final_shinigami = {
+name = "Final Shinigami";
+denom = 7500000;
+support = false;
+health = 3948;
+damage = 1974;
+moonCycle = "wolf_moon";
+skill = "innerMugetsu";
+};
+blood_fiend = {
+name = "Blood Fiend";
+denom = 350000;
+support = false;
+health = 1542;
+damage = 771;
+moonCycle = "blood_moon";
+skill = "lifeline";
+};
+crimson_empress = {
+name = "Crimson Empress";
+denom = 2500000;
+support = false;
+health = 2784;
+damage = 1392;
+moonCycle = "blood_moon";
+skill = "temptation";
+};
+red_dragon_emperor = {
+name = "Red Dragon Emperor";
+denom = 5000000;
+support = false;
+health = 3432;
+damage = 1716;
+moonCycle = "blood_moon";
+skill = "divineBoost";
+};
+white_panther = {
+name = "White Panther";
+denom = 3500000;
+support = false;
+health = 3514;
+damage = 1757;
+moonCycle = "blue_moon";
+skill = "empoweringBlow";
+};
+stone_hashira = {
+name = "Stone Hashira";
+denom = 5000000;
+support = false;
+health = 4003;
+damage = 2002;
+moonCycle = "blue_moon";
+skill = "stoneBreathing";
+};
+seven_sea_king = {
+name = "Seven Sea King";
+denom = 10000000;
+support = false;
+health = 4927;
+damage = 2464;
+moonCycle = "blue_moon";
+skill = "kingsVessel";
+};
+cosmic_villain = {
+name = "Cosmic Villain";
+denom = 10000000;
+support = false;
+health = 5280;
+damage = 2640;
+moonCycle = "eclipse_moon";
+skill = "powerStorage";
+};
+soul_king = {
+name = "Soul King";
+denom = 30000000;
+support = false;
+health = 7350;
+damage = 3675;
+moonCycle = "eclipse_moon";
+skill = "judgementDay";
+};
+null = {
+name = "Null";
+denom = 50000000;
+support = false;
+health = 8571;
+damage = 4286;
+moonCycle = "eclipse_moon";
+skill = "universePull";
+};
+unstoppable_fist = {
+name = "Unstoppable Fist";
+denom = 250000;
+support = false;
+health = 603;
+damage = 302;
+skill = "dynamicEntry";
+};
+copy_ninja = {
+name = "Copy Ninja";
+denom = 350000;
+support = false;
+health = 668;
+damage = 334;
+skill = "sharinganReflection";
+};
+awakened_dark_avenger = {
+name = "Awakened Dark Avenger";
+denom = 500000;
+support = false;
+health = 744;
+damage = 372;
+skill = "chidoriStorm";
+};
+awakened_promised_child = {
+name = "Awakened Promised Child";
+denom = 750000;
+support = false;
+health = 838;
+damage = 419;
+skill = "planetaryRasenbang";
+};
+six_paths_of_pain = {
+name = "Six Paths of Pain";
+denom = 1000000;
+support = false;
+health = 943;
+damage = 472;
+skill = "shinraTensei";
+};
+bijuu_beast = {
+name = "Bijuu Beast";
+denom = 1500000;
+support = false;
+health = 1034;
+damage = 517;
+skill = "tailSwipe";
+};
+ultimate_warrior = {
+name = "Ultimate Warrior";
+denom = 1000000;
+support = false;
+health = 943;
+damage = 472;
+skill = "masenkoBlast";
+};
+body_switcher = {
+name = "Body Switcher";
+denom = 2000000;
+support = false;
+health = 1128;
+damage = 564;
+skill = "bodyChange";
+};
+namekian_sage = {
+name = "Namekian Sage";
+denom = 3500000;
+support = false;
+health = 1306;
+damage = 653;
+skill = "specialBeamCannon";
+};
+awakened_prideful_prince = {
+name = "Awakened Prideful Prince";
+denom = 5000000;
+support = false;
+health = 1487;
+damage = 744;
+skill = "spiritBlast";
+};
+awakened_earth_strongest = {
+name = "Awakened Earth's Strongest";
+denom = 7500000;
+support = false;
+health = 1710;
+damage = 855;
+skill = "kamehamehaBurst";
+};
+awakened_galactic_tyrant = {
+name = "Awakened Galactic Tyrant";
+denom = 10000000;
+support = false;
+health = 1830;
+damage = 915;
+skill = "deathEnergy";
+};
+cursed_doll = {
+name = "Cursed Doll";
+denom = 2500000;
+support = false;
+health = 1205;
+damage = 603;
+skill = "resonatingHammer";
+};
+awakened_shadow_summoner = {
+name = "Awakened Shadow Summoner";
+denom = 6000000;
+support = false;
+health = 1566;
+damage = 783;
+skill = "shadowCreature";
+};
+cursed_fist = {
+name = "Cursed Fist";
+denom = 10000000;
+support = false;
+health = 1830;
+damage = 915;
+skill = "cursedPunch";
+};
+rika_blessing = {
+name = "Rika's Blessing";
+denom = 15000000;
+support = false;
+health = 1991;
+damage = 996;
+skill = "rikasRoar";
+};
+limitless_master = {
+name = "Limitless Master";
+denom = 20000000;
+support = false;
+health = 2140;
+damage = 1070;
+skill = "purple";
+};
+king_of_curses = {
+name = "King of Curses";
+denom = 30000000;
+support = false;
+health = 2548;
+damage = 1274;
+skill = "cursedSlash";
+};
+survey_commander = {
+name = "Survey Commander";
+denom = 4000000;
+support = false;
+health = 1365;
+damage = 683;
+skill = "tacticalAdvantage";
+};
+blade_warrior = {
+name = "Blade Warrior";
+denom = 10000000;
+support = false;
+health = 1830;
+damage = 915;
+skill = "precisionStrike";
+};
+armored_giant = {
+name = "Armored Giant";
+denom = 30000000;
+support = false;
+health = 2548;
+damage = 1274;
+skill = "titanShield";
+};
+beast_giant = {
+name = "Beast Giant";
+denom = 45000000;
+support = false;
+health = 2878;
+damage = 1439;
+skill = "beastlyRampage";
+};
+blade_captain = {
+name = "Blade Captain";
+denom = 60000000;
+support = false;
+health = 3142;
+damage = 1571;
+skill = "relentlessAssault";
+};
+combat_giant = {
+name = "Combat Giant";
+denom = 75000000;
+support = false;
+health = 3350;
+damage = 1675;
+skill = "titansWrath";
+};
+thunder_demon = {
+name = "Thunder Demon";
+denom = 6000000;
+support = false;
+health = 1566;
+damage = 783;
+skill = "lightningSurge";
+};
+childish_demon = {
+name = "Childish Demon";
+denom = 15000000;
+support = false;
+health = 1991;
+damage = 996;
+skill = "woodenDragon";
+};
+compass_demon = {
+name = "Compass Demon";
+denom = 40000000;
+support = false;
+health = 2778;
+damage = 1389;
+skill = "crimsonFist";
+};
+awakened_frost_demon = {
+name = "Awakened Frost Demon";
+denom = 60000000;
+support = false;
+health = 3142;
+damage = 1571;
+skill = "icyReign";
+};
+awakened_six_eyed_slayer = {
+name = "Awakened Six-Eyed Slayer";
+denom = 75000000;
+support = false;
+health = 3350;
+damage = 1675;
+skill = "lunarStrike";
+};
+awakened_pale_demon_lord = {
+name = "Awakened Pale Demon Lord";
+denom = 100000000;
+support = false;
+health = 3660;
+damage = 1830;
+skill = "revolvingStrikes";
+};
+genie_commander = {
+name = "Genie Commander";
+denom = 10000000;
+support = false;
+health = 1830;
+damage = 915;
+skill = "magicOverload";
+};
+candy_master = {
+name = "Candy Master";
+denom = 40000000;
+support = false;
+health = 2778;
+damage = 1389;
+skill = "sweetTrap";
+};
+biscuit_warrior = {
+name = "Biscuit Warrior";
+denom = 100000000;
+support = false;
+health = 3660;
+damage = 1830;
+skill = "biscuitBarrage";
+};
+juice_queen = {
+name = "Juice Queen";
+denom = 250000000;
+support = false;
+health = 4825;
+damage = 2413;
+skill = "refreshingBurst";
+};
+mochi_emperor = {
+name = "Mochi Emperor";
+denom = 500000000;
+support = false;
+health = 5944;
+damage = 2972;
+skill = "elusiveMochiStrike";
+};
+soul_queen = {
+name = "Soul Queen";
+denom = 1000000000;
+support = false;
+health = 7322;
+damage = 3661;
+skill = "soulTrap";
+};
+eternal_dragon = {
+name = "Eternal Dragon";
+denom = 100000000;
+support = false;
+health = 4224;
+damage = 2112;
+skill = "galaxyRoar";
+disableRoll = true;
+};
+awakened_black_demon = {
+name = "Awakened Black Demon";
+denom = 20000000;
+support = false;
+health = 3291;
+damage = 1646;
+skill = "upgradedAntiMagicSlash";
+disableRoll = true;
+hideFromIndex = true;
+};
+sun_slayer = {
+name = "Sun Slayer";
+denom = 35000000;
+support = false;
+health = 3920;
+damage = 1960;
+skill = "sunflowerThrust";
+disableRoll = true;
+hideFromIndex = true;
+};
+awakened_limitless_master = {
+name = "Awakened Limitless Master";
+denom = 75000000;
+support = false;
+health = 5100;
+damage = 2550;
+skill = "twoHundredPurple";
+quest = "the_honored_one";
+};
+awakened_shadow_monarch = {
+name = "Awakened Shadow Monarch";
+denom = 2000000000;
+support = false;
+health = 12972;
+damage = 6486;
+skill = "monarchsDomain";
+quest = "e_rank_hunter";
+};
+elite_shadow_knight = {
+name = "Elite Shadow Knight";
+denom = 2500000;
+support = false;
+health = 928;
+damage = 464;
+skill = "shadowsWrath";
+};
+flame_tyrant = {
+name = "Flame Tyrant";
+denom = 60000000;
+support = false;
+health = 2402;
+damage = 1201;
+skill = "twinFlameExplosion";
+};
+ice_elf = {
+name = "Ice Elf";
+denom = 20000000;
+support = false;
+health = 6584;
+damage = 3292;
+moonCycle = "monarch_moon";
+skill = "iceSpear";
+};
+light_saintess = {
+name = "Light Saintess";
+denom = 150000000;
+support = false;
+health = 4546;
+damage = 2273;
+pack = "manhwa";
+skill = "lightSpeed";
+};
+sentinel_statue = {
+name = "Sentinel Statue";
+denom = 75000000;
+support = false;
+health = 10304;
+damage = 5152;
+moonCycle = "monarch_moon";
+skill = "theSystem";
+};
+shadow_ant = {
+name = "Shadow Ant";
+denom = 1250000000;
+support = false;
+health = 7836;
+damage = 3918;
+pack = "manhwa";
+skill = "skreeeeee";
+};
+shadow_bear = {
+name = "Shadow Bear";
+denom = 400000000;
+support = false;
+health = 6425;
+damage = 3212;
+pack = "manhwa";
+skill = "tank";
+};
+shadow_commander = {
+name = "Shadow Commander";
+denom = 600000000;
+support = false;
+health = 7220;
+damage = 3610;
+pack = "manhwa";
+skill = "commandersStrength";
+};
+shadow_dragon = {
+name = "Shadow Dragon";
+denom = 200000000;
+support = false;
+health = 5378;
+damage = 2688;
+skill = "dragonsFear";
+disableRoll = true;
+};
+shadow_general = {
+name = "Shadow General";
+denom = 150000000;
+support = false;
+health = 12120;
+damage = 6060;
+moonCycle = "monarch_moon";
+skill = "hymn";
+};
+shadow_knight = {
+name = "Shadow Knight";
+denom = 1000000;
+support = false;
+health = 726;
+damage = 363;
+skill = "shadowSlash";
+};
+shadow_monarch = {
+name = "Shadow Monarch";
+denom = 100000;
+support = false;
+health = 352;
+damage = 176;
+skill = "defenseless";
+};
+the_goliath = {
+name = "The Goliath";
+denom = 235000000;
+support = false;
+health = 5518;
+damage = 2759;
+pack = "manhwa";
+skill = "overwhelmingViolence";
+};
+white_tiger = {
+name = "White Tiger";
+denom = 120000000;
+support = false;
+health = 2997;
+damage = 1499;
+skill = "divineClaw";
+};
+dragon_deity = {
+name = "Dragon Deity";
+denom = 150000000;
+support = false;
+health = 11362;
+damage = 5681;
+moonCycle = "eclipse_moon";
+skill = "dragonDeflect";
+disableRoll = true;
+hideFromIndex = true;
+};
+seven_star_hunter = {
+name = "7-Star Hunter";
+denom = 225000000;
+support = false;
+health = 13688;
+damage = 6844;
+moonCycle = "monarch_moon";
+skill = "sevenStarStrike";
+disableRoll = true;
+hideFromIndex = true;
+};
+phantom_leader = {
+name = "Phantom Leader";
+denom = 10000000;
+support = false;
+health = 2252;
+damage = 1126;
+pack = "hunter";
+skill = "sunAndMoon";
+};
+deranged_clown = {
+name = "Deranged Clown";
+denom = 40000000;
+support = false;
+health = 3418;
+damage = 1709;
+pack = "hunter";
+skill = "bungeeGum";
+};
+chain_user = {
+name = "Chain User";
+denom = 80000000;
+support = false;
+health = 3882;
+damage = 1941;
+pack = "hunter";
+skill = "scarletEyes";
+};
+chimera_ant_king = {
+name = "Chimera Ant King";
+denom = 150000000;
+support = false;
+health = 4850;
+damage = 2425;
+pack = "hunter";
+skill = "auraSynthesis";
+};
+phantom_assassin = {
+name = "Phantom Assassin";
+denom = 350000000;
+support = false;
+health = 6678;
+damage = 3339;
+pack = "hunter";
+skill = "painPacker";
+};
+chimera_ant_cat = {
+name = "Chimera Ant Cat";
+denom = 600000000;
+support = false;
+health = 7702;
+damage = 3851;
+pack = "hunter";
+skill = "masterPuppeteer";
+};
+crazy_genius = {
+name = "Crazy Genius";
+denom = 1000000000;
+support = false;
+health = 9010;
+damage = 4505;
+pack = "hunter";
+skill = "clownGame";
+};
+zen_master = {
+name = "Zen Master";
+denom = 1250000000;
+support = false;
+health = 9644;
+damage = 4822;
+pack = "hunter";
+skill = "pathOfEnlightenment";
+};
+deranged_elder_assassin = {
+name = "Deranged Elder Assassin";
+denom = 1500000000;
+support = false;
+health = 10298;
+damage = 5149;
+pack = "hunter";
+skill = "dragonDive";
+};
+awakened_sun_deity = {
+name = "Awakened Sun Deity";
+denom = 1750000000;
+support = false;
+health = 12624;
+damage = 6312;
+skill = "bajrangGun";
+quest = "drums_of_liberation";
+};
+awakened_dragon_king = {
+name = "Awakened Dragon King";
+denom = 2000000000;
+support = false;
+health = 12972;
+damage = 6486;
+skill = "blastBreath";
+quest = "the_worlds_strongest_beast";
+};
+forsaken_hunter = {
+name = "Forsaken Hunter";
+denom = 2250000000;
+support = false;
+health = 13364;
+damage = 6682;
+skill = "nenContract";
+quest = "everything_right_here_right_now";
+};
+vorpal_warrior = {
+name = "Vorpal Warrior";
+denom = 250000000;
+support = false;
+health = 5568;
+damage = 2784;
+skill = "highRiskHighReward";
+mustAlreadyHave = true;
+};
+vorpal_master = {
+name = "Vorpal Master";
+denom = 100000000;
+support = false;
+health = 4424;
+damage = 2112;
+skill = "masterBlacksmith";
+mustAlreadyHave = true;
+};
+eminence_soldier = {
+name = "Eminence Soldier";
+denom = 100000000;
+support = false;
+health = 4504;
+damage = 2252;
+skill = "unwaveringLoyalty";
+disableRoll = true;
+hideFromIndex = true;
+};
+eminence_accountant = {
+name = "Eminence Accountant";
+denom = 250000000;
+support = false;
+health = 5938;
+damage = 2969;
+skill = "eminentBank";
+mustDefeatBoss = {
+place = "eminence_lookout";
+};
+};
+eminence_scout = {
+name = "Eminence Scout";
+denom = 350000000;
+support = false;
+health = 6678;
+damage = 3339;
+skill = "arcaneSurge";
+mustDefeatBoss = {
+place = "eminence_lookout";
+};
+};
+eminence_strategist = {
+name = "Eminence Strategist";
+denom = 600000000;
+support = false;
+health = 7702;
+damage = 3851;
+skill = "strategyOutline";
+mustDefeatBoss = {
+place = "eminence_lookout";
+};
+};
+eminence_cat = {
+name = "Eminence Cat";
+denom = 750000000;
+support = false;
+health = 8324;
+damage = 4162;
+skill = "berserkerOutrage";
+mustDefeatBoss = {
+place = "eminence_lookout";
+};
+};
+eminence_commander = {
+name = "Eminence Commander";
+denom = 1500000000;
+support = false;
+health = 9958;
+damage = 4979;
+skill = "lightningCloak";
+mustDefeatBoss = {
+place = "eminence_lookout";
+};
+};
+lord_of_eminence = {
+name = "Lord of Eminence";
+denom = 2500000000;
+support = false;
+health = 11110;
+damage = 5555;
+skill = "atomic";
+mustDefeatBoss = {
+place = "eminence_lookout";
+};
+};
+crimson_demon = {
+name = "Crimson Demon";
+denom = 10000000;
+support = false;
+health = 4900;
+damage = 2400;
+skill = "explosionnn";
+mustAlreadyHave = true;
+};
+tutorial_boss = {
+name = "Tutorial Boss";
+denom = 100;
+support = false;
+health = 20;
+damage = 10;
+skill = "tutorialBossSkill";
+disableRoll = true;
+hideFromIndex = true;
+};
+ninja_heiress = {
+name = "Ninja Heiress";
+denom = 400000000;
+support = false;
+health = 17556;
+damage = 8778;
+skill = "eightPillarComet";
+moonCycle = "tsukuyomi_moon";
+};
+dimensional_shifter = {
+name = "Dimensional Shifter";
+denom = 250000000;
+support = false;
+health = 15220;
+damage = 7610;
+skill = "dimensionalPull";
+moonCycle = "tsukuyomi_moon";
+};
+flicker_ninja = {
+name = "Flicker Ninja";
+denom = 100000000;
+support = false;
+health = 11546;
+damage = 5773;
+skill = "turnToDust";
+moonCycle = "tsukuyomi_moon";
+};
+sky_king = {
+name = "Sky King";
+denom = 1000000000;
+support = false;
+health = 8446;
+damage = 4223;
+skill = "oneHundredBillionVolts";
+mustAlreadyHave = true;
+};
+awakened_crow_master = {
+name = "Awakened Crow Master";
+denom = 50000000;
+support = false;
+health = 9372;
+damage = 4686;
+skill = "illusionaryRealm";
+moonCycle = "tsukuyomi_moon";
+};
+substitution_log = {
+name = "Substitution Log";
+denom = 1000;
+support = true;
+skill = "substitution";
+};
+ninja_vest = {
+name = "Ninja Vest";
+denom = 2500;
+support = true;
+skill = "demonsBlessing";
+};
+sealed_cube = {
+name = "Sealed Cube";
+denom = 5000;
+support = true;
+skill = "eternalImprisonment";
+};
+cursed_ledger = {
+name = "Cursed Ledger";
+denom = 10000;
+support = true;
+skill = "lifeSiphon";
+};
+mystic_spheres = {
+name = "Mystic Spheres";
+denom = 25000;
+support = true;
+skill = "wishFulfillment";
+};
+beast_contract = {
+name = "Beast Contract";
+denom = 50000;
+support = true;
+skill = "beastSummoner";
+};
+dragon_sin_blades = {
+name = "Dragon Sin Blades";
+denom = 100000;
+support = true;
+skill = "doubleStrike";
+};
+froststorm_blade = {
+name = "Froststorm Blade";
+denom = 150000;
+support = true;
+skill = "iceZone";
+};
+hidden_monarch = {
+name = "Hidden Monarch";
+denom = 250000;
+support = true;
+skill = "rulersOrder";
+};
+limitless = {
+name = "Limitless";
+denom = 350000;
+support = true;
+skill = "infinity";
+};
+music_idol = {
+name = "Music Idol";
+denom = 500000;
+support = true;
+skill = "melodicTone";
+};
+null_blade = {
+name = "Null Blade";
+denom = 500000;
+support = true;
+skill = "apocalypticSlash";
+};
+berserk_mode = {
+name = "Berserk Mode";
+denom = 750000;
+support = true;
+skill = "rage";
+};
+mech_contract = {
+name = "Mech Contract";
+denom = 750000;
+support = true;
+skill = "mechSummon";
+};
+red_thorn = {
+name = "Red Thorn";
+denom = 1000000;
+support = true;
+skill = "redFragment";
+};
+holy_staﬀ = {
+name = "Holy Staﬀ";
+denom = 1000000;
+support = true;
+skill = "divineStrike";
+};
+shinobi_cells = {
+name = "Shinobi Cells";
+denom = 1250000;
+support = true;
+skill = "natureWrath";
+};
+binding_light = {
+name = "Binding Light";
+denom = 1250000;
+support = true;
+skill = "sealOfRestriction";
+};
+heart_of_the_cards = {
+name = "Heart Of The Cards";
+denom = 1500000;
+support = true;
+skill = "forbiddenKnowledge";
+};
+vase_of_greed = {
+name = "Vase Of Greed";
+denom = 1750000;
+support = true;
+skill = "undyingGreed";
+};
+fox_cloak = {
+name = "Fox Cloak";
+denom = 2000000;
+support = true;
+skill = "nineTailsWrath";
+};
+slayer_mark = {
+name = "Slayer Mark";
+denom = 2000000;
+support = true;
+skill = "awaken";
+};
+galaxy_hero = {
+name = "Galaxy Hero";
+denom = 3500000;
+support = true;
+skill = "galaxyImpact";
+};
+fallen_knight = {
+name = "Fallen Knight";
+denom = 3500000;
+support = true;
+skill = "harvest";
+};
+sacred_art_uzumaki = {
+name = "Sacred Art Uzumaki";
+denom = 5000000;
+support = true;
+skill = "maximumUzumaki";
+};
+orb_of_dominance = {
+name = "Orb Of Dominance";
+denom = 100000000;
+support = true;
+skill = "domination";
+};
+shadow_mage = {
+name = "Shadow Mage";
+denom = 7500000;
+support = true;
+skill = "shadowBall";
+};
+ladder = {
+name = "The Ladder";
+denom = 1000000000;
+support = true;
+skill = "theMethod";
+disableRoll = true;
+};
+vorpal_soul = {
+name = "Vorpal Soul";
+denom = 125000000;
+support = true;
+skill = "flashBangStun";
+mustAlreadyHave = true;
+};
+black_slime = {
+name = "Black Slime";
+denom = 25000000;
+support = true;
+skill = "slimeCoat";
+};
+truck_kun = {
+name = "Truck-Kun";
+denom = 150000000;
+support = true;
+skill = "highSpeedAccident";
+};
+sky_drum = {
+name = "Sky Drum";
+denom = 500000000;
+support = true;
+skill = "naturesLightning";
+mustAlreadyHave = true;
+};
+forest_clones = {
+name = "Forest Clones";
+denom = 100000000;
+support = false;
+health = 2816;
+damage = 1408;
+skill = "chainExplosion";
+};
+master_manipulator = {
+name = "Master Manipulator";
+denom = 200000000;
+support = false;
+health = 3584;
+damage = 1792;
+skill = "overgrown";
+};
+celestial_warrior = {
+name = "Celestial Warrior";
+denom = 350000000;
+support = false;
+health = 6678;
+damage = 3339;
+skill = "redBind";
+mustDefeatBoss = {
+place = "invaded_ninja_village";
+};
+};
+mother_of_creation = {
+name = "Mother of Creation";
+denom = 500000000;
+support = false;
+health = 7316;
+damage = 3658;
+skill = "dimensionalDomain";
+mustDefeatBoss = {
+place = "invaded_ninja_village";
+};
+};
+celestial_fisherman = {
+name = "Celestial Fisherman";
+denom = 750000000;
+support = false;
+health = 8324;
+damage = 4162;
+skill = "chakraAbsorption";
+mustDefeatBoss = {
+place = "invaded_ninja_village";
+};
+};
+celestial_destroyer = {
+name = "Celestial Destroyer";
+denom = 1000000000;
+support = false;
+health = 9010;
+damage = 4505;
+skill = "elementalBeastBomb";
+mustDefeatBoss = {
+place = "invaded_ninja_village";
+};
+};
+awakened_impure_ghost = {
+name = "Awakened Impure Ghost";
+denom = 1750000000;
+support = false;
+health = 10100;
+damage = 5050;
+skill = "clonedPurpleLightning";
+mustDefeatBoss = {
+place = "invaded_ninja_village";
+};
+};
+celestial_sovereign = {
+name = "Celestial Sovereign";
+denom = 2750000000;
+support = false;
+health = 11428;
+damage = 5714;
+skill = "molecularManipulation";
+mustDefeatBoss = {
+place = "invaded_ninja_village";
+};
+};
+nature_guardian = {
+name = "Nature Guardian";
+denom = 350000000;
+support = false;
+health = 4174;
+damage = 2087;
+skill = "yggdrasil";
+mustDefeatBoss = {
+place = "necromancer_graveyard";
+boss = "beast_tamer";
+};
+};
+beast_tamer = {
+name = "Beast Tamer";
+denom = 450000000;
+support = false;
+health = 7046;
+damage = 3523;
+skill = "undeadSummon";
+mustDefeatBoss = {
+place = "necromancer_graveyard";
+};
+};
+servant_of_the_undead = {
+name = "Servant of the Undead";
+denom = 600000000;
+support = false;
+health = 7702;
+damage = 3851;
+skill = "jiujutsuCombo";
+mustDefeatBoss = {
+place = "necromancer_graveyard";
+};
+};
+undead_demon = {
+name = "Undead Demon";
+denom = 800000000;
+support = false;
+health = 8550;
+damage = 4275;
+skill = "demonMeteor";
+mustDefeatBoss = {
+place = "necromancer_graveyard";
+};
+};
+undead_commander = {
+name = "Undead Commander";
+denom = 1250000000;
+support = false;
+health = 9644;
+damage = 4822;
+skill = "enamoredLoyalty";
+mustDefeatBoss = {
+place = "necromancer_graveyard";
+};
+};
+blood_valkyrie = {
+name = "Blood Valkyrie";
+denom = 2000000000;
+support = false;
+health = 10378;
+damage = 5189;
+skill = "bloodLineage";
+mustDefeatBoss = {
+place = "necromancer_graveyard";
+};
+};
+undead_king = {
+name = "Undead King";
+denom = 3000000000;
+support = false;
+health = 11696;
+damage = 5848;
+skill = "overlord";
+mustDefeatBoss = {
+place = "necromancer_graveyard";
+};
+};
+white_flame_defender = {
+name = "White Flame Defender";
+denom = 200000000;
+support = false;
+health = 5734;
+damage = 2867;
+skill = "flameProtector";
+pack = "inferno";
+};
+white_flame_knight = {
+name = "White Flame Knight";
+denom = 400000000;
+support = false;
+health = 6852;
+damage = 3426;
+skill = "universalHeatExpansion";
+pack = "inferno";
+};
+white_flame_pillar = {
+name = "White Flame Pillar";
+denom = 750000000;
+support = false;
+health = 8324;
+damage = 4162;
+skill = "smitePillar";
+pack = "inferno";
+};
+flame_paladin = {
+name = "Flame Paladin";
+denom = 100000000;
+support = false;
+health = 11828;
+damage = 5914;
+skill = "boundlessImagination";
+moonCycle = "inferno_moon";
+};
+flame_jester = {
+name = "Flame Jester";
+denom = 250000000;
+support = false;
+health = 15592;
+damage = 7796;
+skill = "jesterGame";
+moonCycle = "inferno_moon";
+};
+flame_head_captain = {
+name = "Flame Head Captain";
+denom = 400000000;
+support = false;
+health = 17984;
+damage = 8892;
+skill = "superiorFlame";
+moonCycle = "inferno_moon";
+};
+flame_king_of_destruction = {
+name = "Flame King of Destruction";
+denom = 500000000;
+support = false;
+health = 19202;
+damage = 9601;
+skill = "sunWheelSlash";
+moonCycle = "inferno_moon";
+};
+creator_of_flames = {
+name = "Creator of Flames";
+denom = 500000000;
+support = false;
+health = 6984;
+damage = 3429;
+skill = "ignitedWorld";
+disableRoll = true;
+};
+integrity_knight = {
+name = "Integrity Knight";
+denom = 100000000;
+support = false;
+health = 2816;
+damage = 1408;
+skill = "enhanceArmament";
+};
+thorn_maiden = {
+name = "Thorn Maiden";
+denom = 200000000;
+support = false;
+health = 5376;
+damage = 2688;
+skill = "greedyThorn";
+};
+piercing_sword_saint = {
+name = "Piercing Sword Saint";
+denom = 500000000;
+support = false;
+health = 4572;
+damage = 2286;
+skill = "elevenHitCombo";
+};
+sword_deity = {
+name = "Sword Deity";
+denom = 750000000;
+support = false;
+health = 7804;
+damage = 3902;
+skill = "absoluteReflection";
+disableRoll = true;
+};
+death_ninja = {
+name = "Death Ninja";
+denom = 1500000;
+support = false;
+health = 2068;
+damage = 1034;
+skill = "reaperSummon";
+mustAlreadyHave = true;
+};
+berserker_warrior = {
+name = "Berserker Warrior";
+denom = 10000000;
+support = false;
+health = 3660;
+damage = 1830;
+skill = "uncontrolledRage";
+mustAlreadyHave = true;
+};
+deranged_curse = {
+name = "Deranged Curse";
+denom = 30000000;
+support = false;
+health = 5096;
+damage = 2548;
+skill = "idleTransfiguration";
+mustAlreadyHave = true;
+};
+elder_combat_giant = {
+name = "Elder Combat Giant";
+denom = 75000000;
+support = false;
+health = 6700;
+damage = 3350;
+skill = "liberatedLeader";
+mustAlreadyHave = true;
+};
+biwa_demon = {
+name = "Biwa Demon";
+denom = 100000000;
+support = false;
+health = 7320;
+damage = 3660;
+skill = "infiniteFortress";
+mustAlreadyHave = true;
+};
+lunar_beast = {
+name = "Lunar Beast";
+denom = 1000000000;
+support = false;
+health = 10144;
+damage = 5072;
+skill = "moonlitStrike";
+mustAlreadyHave = true;
+};
+fragment_of_light = {
+name = "Fragment of Light";
+denom = 2000000000;
+support = false;
+health = 12972;
+damage = 6486;
+skill = "fragmentedDefense";
+mustAlreadyHave = true;
+};
+catastrophe_mage = {
+name = "Catastrophe Mage";
+denom = 2500000000;
+support = false;
+health = 12498;
+damage = 6249;
+skill = "doomsday";
+mustAlreadyHave = true;
+};
+fallen_deity = {
+name = "Fallen Deity";
+denom = 3000000000;
+support = false;
+health = 13158;
+damage = 6579;
+skill = "orbsOfTruth";
+mustAlreadyHave = true;
+};
+undead_actor = {
+name = "Undead Actor";
+denom = 4000000000;
+support = false;
+health = 14054;
+damage = 7027;
+skill = "blackHole";
+mustAlreadyHave = true;
+};
+undead_knight = {
+name = "Undead Knight";
+denom = 100000000;
+support = false;
+health = 4174;
+damage = 2087;
+skill = "gravebind";
+disableRoll = true;
+hideFromIndex = true;
+};
+undead_general = {
+name = "Undead General";
+denom = 100000000;
+support = false;
+health = 4174;
+damage = 2087;
+skill = "generalsGravebind";
+disableRoll = true;
+hideFromIndex = true;
+};
+flame_cat = {
+name = "Flame Cat";
+denom = 15000000;
+support = false;
+health = 2452;
+damage = 1226;
+skill = "infernoBlossom";
+pack = "inferno";
+};
+flame_captain = {
+name = "Flame Captain";
+denom = 50000000;
+support = false;
+health = 3658;
+damage = 1829;
+skill = "flameShield";
+pack = "inferno";
+};
+flame_summoner = {
+name = "Flame Summoner";
+denom = 100000000;
+support = false;
+health = 4504;
+damage = 2252;
+skill = "flameManipulation";
+pack = "inferno";
+};
+infernal = {
+name = "Infernal";
+denom = 50000000;
+support = false;
+health = 2286;
+damage = 1143;
+skill = "hellFire";
+};
+infernal_demon = {
+name = "Demon Infernal";
+denom = 100000000;
+support = false;
+health = 2816;
+damage = 1408;
+skill = "hellFireExplosion";
+};
+awakened_bijuu_beast = {
+name = "Awakened Bijuu Beast";
+denom = 2250000000;
+support = false;
+health = 17360;
+damage = 8680;
+skill = "superNatureRasenbang";
+quest = "bijuus_last_stand";
+};
+divine_tree = {
+name = "Divine Tree";
+denom = 50000000;
+support = true;
+skill = "fruitOfLife";
+};
+truth_seeking_orbs = {
+name = "Truth Seeking Orbs";
+denom = 75000000;
+support = true;
+skill = "pathOfTruth";
+};
+undead_staﬀ = {
+name = "Undead Staﬀ";
+denom = 100000000;
+support = true;
+skill = "overload";
+};
+big_brain = {
+name = "Big Brain";
+denom = 150000000;
+support = true;
+skill = "brainiac";
+};
+chosen_one = {
+name = "Chosen One";
+denom = 2500000000;
+support = false;
+health = 10416;
+damage = 5208;
+skill = "vanishingRasenbang";
+mustAlreadyHave = true;
+};
+}
+var29_upvw = tbl
+local var314_upvw = var29_upvw
+tbl = {}
+local var315_upvr = tbl
+local var316_upvw = 0
+for i_3, v_3 in pairs(var314_upvw) do
+if v_3.support then
+local formatted = `{i_3}:basic`
+var315_upvr[formatted] = v_3
+;({})[formatted] = v_3
+var316_upvw += 1
+else
+for i_4 in pairs(any_import_result1.rarities) do
+var315_upvr[`{i_3}:{i_4}`] = adjustCardForRarity_upvr(i_3, i_4)
+var316_upvw += 1
+end
+end
+end
+local rarityIndex_upvr = any_import_result1.rarityIndex
+local any_import_result1_upvr = module_4.import(script, game:GetService("ReplicatedFirst"),
+"assets")
+local module_2 = {
+splitCardId = function(arg1) -- Line 7, Named "splitCardId"
+local string_split_result1_4 = string.split(arg1, ':')
+return string_split_result1_4[1], string_split_result1_4[2] or "basic"
+end;
+cardArrayToCounts = function(arg1) -- Line 13, Named "cardArrayToCounts"
+local module = {}
+for _, v in arg1 do
+local var15 = module[v]
+if var15 == nil then
+var15 = 0
+end
+module[v] = var15 + 1
+end
+return module
+end;
+combineCardCounts = function(arg1) -- Line 24, Named "combineCardCounts"
+local module_3 = {}
+for i_2, v_2 in pairs(arg1) do
+if v_2 ~= 0 and v_2 == v_2 and v_2 then
+local string_split_result1_2 = string.split(i_2, ':')
+local _1_2 = string_split_result1_2[1]
+string_split_result1_2 = module_3[_1_2]
+local var26 = string_split_result1_2
+if var26 == nil then
+var26 = 0
+end
+module_3[_1_2] = var26 + v_2
+end
+end
+return module_3
+end;
+adjustCardForRarity = adjustCardForRarity_upvr;
+getTotalCards = function() -- Line 2276, Named "getTotalCards"
+--[[ Upvalues[1]:
+[1]: var316_upvw (read and write)
+]]
+return var316_upvw
+end;
+getAllCardsDenomRange = function() -- Line 2279, Named "getAllCardsDenomRange"
+--[[ Upvalues[1]:
+[1]: var315_upvr (readonly)
+]]
+variable assignments
+local var335
+for _, v_4 in pairs(var315_upvr) do
+if 0 < v_4.denom then
+end
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect
+if v_4.denom < var335 then
+var335 = v_4.denom
+end
+end
+return {var335, v_4.denom}
+end;
+cardCompare = function(arg1, arg2, arg3) -- Line 2292, Named "cardCompare"
+--[[ Upvalues[2]:
+[1]: adjustCardForRarity_upvr (readonly)
+[2]: rarityIndex_upvr (readonly)
+]]
+if arg3 == nil then
+local var338 = false
+end
+local string_split_result1_3 = string.split(arg1, ':')
+local _1 = string_split_result1_3[1]
+local var341 = string_split_result1_3[2] or "basic"
+local string_split_result1 = string.split(arg2, ':')
+local _1_3 = string_split_result1[1]
+local var344 = string_split_result1[2] or "basic"
+local adjustCardForRarity_upvr_result1 = adjustCardForRarity_upvr(_1, var341)
+local adjustCardForRarity_result1 = adjustCardForRarity_upvr(_1_3, var344)
+local denom = adjustCardForRarity_upvr_result1.denom
+if denom ~= adjustCardForRarity_result1.denom then
+if var338 then
+if adjustCardForRarity_upvr_result1.denom >=
+adjustCardForRarity_result1.denom then
+denom = false
+else
+denom = true
+end
+return denom
+end
+if adjustCardForRarity_result1.denom >=
+adjustCardForRarity_upvr_result1.denom then
+denom = false
+else
+denom = true
+end
+return denom
+end
+if var341 ~= var344 then
+if var338 then
+if rarityIndex_upvr(var341) >= rarityIndex_upvr(var344) then
+denom = false
+else
+denom = true
+end
+return denom
+end
+if rarityIndex_upvr(var344) >= rarityIndex_upvr(var341) then
+denom = false
+else
+denom = true
+end
+return denom
+end
+if _1 >= _1_3 then
+else
+end
+return true
+end;
+getCardAsset = function(arg1) -- Line 2308, Named "getCardAsset"
+--[[ Upvalues[1]:
+[1]: any_import_result1_upvr (readonly)
+]]
+if any_import_result1_upvr.images.card.character[arg1] ~= nil then
+return any_import_result1_upvr.images.card.character[arg1]
+end
+return any_import_result1_upvr.images.card.character.placeholder
+end;
+getAllObtainableCardIds = function() -- Line 2314, Named "getAllObtainableCardIds"
+--[[ Upvalues[1]:
+[1]: var314_upvw (read and write)
+]]
+for i_6, v_5 in pairs(var314_upvw) do
+if not v_5.disableRoll then
+table.insert({}, i_6)
+end
+end
+return {}
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+end;
+cards = var314_upvw;
+allCards = var315_upvr;
+}
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+module_2.supportCards = {}
+return module_2

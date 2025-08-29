@@ -1,0 +1,86 @@
+ITEM METADATA
+local module =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local statPotions_upvr = module.import(script, game:GetService("ReplicatedStorage"), "shared",
+"game", "statPotions").statPotions
+local displayStatModifiers_upvr = module.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "stat").displayStatModifiers
+local equipmentSlotNames_upvr = module.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "items").equipmentSlotNames
+local formatNumber_upvr = module.import(script, game:GetService("ReplicatedStorage"),
+"shared", "string").formatNumber
+local moonCycles_upvr = module.import(script, game:GetService("ReplicatedStorage"), "shared",
+"game", "moonCycle").moonCycles
+return {
+getItemDescription = function(arg1) -- Line 8, Named "getItemDescription"
+--[[ Upvalues[5]:
+[1]: statPotions_upvr (readonly)
+[2]: displayStatModifiers_upvr (readonly)
+[3]: equipmentSlotNames_upvr (readonly)
+[4]: formatNumber_upvr (readonly)
+[5]: moonCycles_upvr (readonly)
+]]
+if arg1.category == "stats_potion" then
+local var7 = statPotions_upvr[arg1.typ if not
+statPotions_upvr[arg1.type].usePotionDuration then
+formatted = formatted.."\nNote: Po
+local var7 = statPotions_upvr[arg1.typ if not
+statPotions_upvr[arg1.type].usePotionDuration then
+formatted = formatted.."\nNote: Potion Duration boosts do not work
+on Elixirs!"
+end
+return formatted
+end
+if arg1.category == "moon_cycle_reroll_potion" then
+return "Reroll the moon cycle!"tion Duration boosts do not work on Elixirs!"
+end
+return formatted
+end
+if arg1.category == "moon_cycle_reroll_potion" then
+return "Reroll the moon cycle!"
+end
+if arg1.category == "equipment" then
+local displayStatModifiers_upvr_result1 =
+displayStatModifiers_upvr(arg1.stats, ", ")
+local var10
+if displayStatModifiers_upvr_result1 == "" then
+var10 = "This item is cosmetic only."
+else
+var10 = `{displayStatModifiers_e].sizes[arg1.size]
+assert(var7, `Invalid potion settings for type {arg1.type} and size {arg1.size}`)
+local formatted = `{displayStatModifiers_upvr(var7.modifiers, ", ")} for
+{var7.duration} seconds!`
+if not statPotions_upvr[arg1.type].usePotionDuration then
+formatted = formatted.."\nNote: Potion Duration boosts do not work
+on Elixirs!"
+end
+return formatted
+end
+if arg1.category == "moon_cycle_reroll_potion" then
+return "Reroll the moon cycle!"
+end
+if arg1.category == "equipment" then
+local displayStatModifiers_upvr_result1 =
+displayStatModifiers_upvr(arg1.stats, ", ")
+local var10
+if displayStatModifiers_upvr_result1 == "" then
+var10 = "This item is cosmetic only."
+else
+var10 = `{displayStatModifiers_upvr_result1} while this item is
+equipped!`
+end
+return `Equip Slot: {equipmentSlotNames_upvr[arg1.slot]}\n{var10}`
+end
+if arg1.category == "instant_roll_pack" then
+return `Instantly open {formatNumber_upvr(arg1.rolls)} cards!`
+end
+if arg1.category == "card_cosmetic" then
+return "Customize your card back with this item!"
+end
+if arg1.category == "moon_cycle_potion" then
+return `Set the moon cycle to {moonCycles_upvr[arg1.moonCycle].name}!`
+end
+return arg1.description
+end;
+}

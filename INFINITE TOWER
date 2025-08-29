@@ -1,0 +1,3674 @@
+INFINITE TOWER
+-- Decompiler will be improved VERY SOON!
+-- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://
+discord.gg/brNTY8nX8t)
+-- Decompiled on 2025-08-28 19:39:07
+-- Luau version 6, Types version 3
+-- Time taken: 0.095318 seconds
+local longstring1 = "Face wave after wave in a relentless test of skill and strategy. Fight familiar
+foes from %* who grow stronger with each round. Earn %*s to craft %* to increase your luck and
+%* to fill out your deck and push your limits even further!\n%*s have a 1%% chance to drop from
+%*.\nAfter completing every floor, 50 cards are rolled. The roll count increases by 10 every 25
+floors starting at floor 50, and is capped out at 80 cards rolled per floor.\nFor every 5 floors
+climbed, +4 Bonus Luck is applied towards your reward card rolls.\nFor every 25 floors starting at
+floor 50, an additional +2.5%% bonus luck is granted."
+local module_13 =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local any_import_result1_3_upvr = module_13.import(script, game:GetService("ReplicatedFirst"),
+"assets")
+local any_import_result1 = module_13.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "cards")
+local cards_upvr = any_import_result1.cards
+local items_upvr = module_13.import(script, game:GetService("ReplicatedStorage"), "shared",
+"game", "items").items
+local any_import_result1_2 = module_13.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "places")
+local places_upvr = any_import_result1_2.places
+local function _(arg1) -- Line 14, Named "createLuckScalingCallback"
+local addLuckAmount_upvw = arg1.addLuckAmount
+if addLuckAmount_upvw == nil then
+addLuckAmount_upvw = 1
+end
+local addPercentAmount_upvw = arg1.addPercentAmount
+if addPercentAmount_upvw == nil then
+addPercentAmount_upvw = 1
+end
+local addLuckInterval_upvr = arg1.addLuckInterval
+local addPercentInterval_upvr = arg1.addPercentInterval
+local addPercentStartsAtFloor_upvr = arg1.addPercentStartsAtFloor
+return function(arg1_2) -- Line 26
+--[[ Upvalues[5]:
+[1]: addLuckAmount_upvw (read and write)
+[2]: addLuckInterval_upvr (readonly)
+[3]: addPercentInterval_upvr (readonly)
+[4]: addPercentStartsAtFloor_upvr (readonly)
+[5]: addPercentAmount_upvw (read and write)
+]]
+local module_8 = {
+add = addLuckAmount_upvw * math.floor(arg1_2 / addLuckInterval_upvr);
+}
+if addPercentInterval_upvr ~= nil then
+local var19 = addPercentStartsAtFloor_upvr
+if var19 == nil then
+var19 = addPercentInterval_upvr
+end
+local var20 = arg1_2 - var19 + 1
+if 0 < var20 then
+module_8.multiply = 1 + addPercentAmount_upvw / 100 *
+(math.floor(var20 / addPercentInterval_upvr) + 1)
+end
+end
+return module_8
+end
+end
+local function _(arg1) -- Line 45, Named "createRollCountScalingCallback"
+local startingFloor_upvr_9 = arg1.startingFloor
+local addInterval_upvr_11 = arg1.addInterval
+local baseCount_upvr_2 = arg1.baseCount
+local addCount_upvr_2 = arg1.addCount
+local cap_upvr = arg1.cap
+return function(arg1_3) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_9 (readonly)
+[2]: addInterval_upvr_11 (readonly)
+[3]: baseCount_upvr_2 (readonly)
+[4]: addCount_upvr_2 (readonly)
+[5]: cap_upvr (readonly)
+]]
+local var27 = startingFloor_upvr_9
+if var27 == nil then
+var27 = addInterval_upvr_11
+end
+local var28 = baseCount_upvr_2 + addCount_upvr_2 * math.max(0,
+math.floor((arg1_3 - var27) / addInterval_upvr_11) + 1)
+if cap_upvr ~= nil then
+return math.min(var28, cap_upvr)
+end
+return var28
+end
+end
+local function storyTowerStatScaling(arg1) -- Line 66
+return math.clamp(math.pow(1.05, math.clamp(arg1 - 1, 0, 75)) * math.pow(1.04,
+math.clamp(arg1 - 76, 0, 25)) * math.pow(1.03, math.clamp(arg1 - 101, 0, 25)) * math.pow(1.02,
+math.clamp(arg1 - 126, 0, 25)) * math.pow(1.01, math.max(arg1 - 151, 0)), 0,
+450000000000000000)
+end
+local function hardStatScaling(arg1) -- Line 69
+return math.clamp(math.pow(1.05, math.clamp(arg1 - 1, 0, 50)) * math.pow(1.04,
+math.clamp(arg1 - 51, 0, 25)) * math.pow(1.03, math.clamp(arg1 - 76, 0, 25)) * math.pow(1.02,
+math.clamp(arg1 - 101, 0, 25)) * math.pow(1.01, math.max(arg1 - 126, 0)), 0,
+450000000000000000)
+end
+local tbl_12_upvr = {
+mother_of_creation = true;
+}
+local tbl_21_upvr = {}
+local function _(arg1) -- Line 78
+--[[ Upvalues[1]:
+[1]: tbl_12_upvr (readonly)
+]]
+local var32
+if tbl_12_upvr[arg1] == nil then
+var32 = false
+else
+var32 = true
+end
+return not var32
+end
+for i, v in any_import_result1.getAllObtainableCardIds(), nil do
+local var33 = i - 1
+if tbl_12_upvr[v] == nil then
+var33 = false
+else
+var33 = true
+end
+if not var33 == true then
+tbl_21_upvr[0 + 1] = v
+end
+end
+local getCardStoryBossPlace_upvr = any_import_result1_2.getCardStoryBossPlace
+local function getCardsForStoryInfinite_upvr(arg1) -- Line 91, Named "getCardsForStoryInfinite"
+--[[ Upvalues[2]:
+[1]: tbl_21_upvr (readonly)
+[2]: getCardStoryBossPlace_upvr (readonly)
+]]
+for _, v_2 in tbl_21_upvr do
+local var34_result1 = getCardStoryBossPlace_upvr(v_2)
+if var34_result1 == arg1 or var34_result1 == nil then
+table.insert({}, v_2)
+end
+end
+return {}
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+end
+local function _(arg1, arg2, arg3, arg4, arg5) -- Line 101, Named "generateStoryInfiniteDescription"
+--[[ Upvalues[3]:
+[1]: places_upvr (readonly)
+[2]: items_upvr (readonly)
+[3]: cards_upvr (readonly)
+]]
+local var38 = items_upvr[arg2]
+local var39
+if arg5 ~= 0 and arg5 == arg5 and arg5 then
+var39 = `floor {arg5} and above`
+else
+var39 = "every floor"
+end
+return `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes
+from {places_upvr[arg1].name} who grow stronger with each round. Earn {var38.name}s to craft
+{items_upvr[arg4].name} to increase your luck and {cards_upvr[arg3].name} to fill out your deck
+and push your limits even further!\n{var38.name}s have a 1% chance to drop from {var39}.\nAfter
+completing every floor, 50 cards are rolled. The roll count increases by 10 every 25 floors starting
+at floor 50, and is capped out at 80 cards rolled per floor.\nFor every 5 floors climbed, +4 Bonus
+Luck is applied towards your reward card rolls.\nFor every 25 floors starting at floor 50, an
+additional +2.5% bonus luck is granted.`
+end
+local function createStoryInfinite(arg1, arg2) -- Line 111
+--[[ Upvalues[3]:
+[1]: places_upvr (readonly)
+[2]: any_import_result1_3_upvr (readonly)
+[3]: getCardsForStoryInfinite_upvr (readonly)
+]]
+local module = {
+name = `{places_upvr[arg1].name} Tower`;
+background = any_import_result1_3_upvr.images.map[arg1];
+allowedCards = getCardsForStoryInfinite_upvr(arg1);
+}
+for i_3, v_3 in arg2 do
+module[i_3] = v_3
+end
+return module
+end
+local tbl_14 = {}
+local tbl_11 = {
+name = "Infinite Tower";
+description = "The Infinite Tower is an endless challenge where your deck is put to the
+test! Face progressively tougher enemies on each floor, with every battle increasing in diﬃculty.
+\nAfter completing every floor, 50 cards are rolled. The roll count increases by 10 every 100 floors,
+and is capped out at 100 cards rolled per floor.\nFor every 5 floors climbed, +1 Bonus Luck is
+applied towards your reward card rolls.\nFor every 100 floors starting at floor 100, an additional
++2% bonus luck is granted.";
+background = any_import_result1_3_upvr.images.wave.wave_51_75;
+rewards = {{
+inner = {
+}, {
+}, {
+}, {
+}, {
+}, {
+}, {
+type = "item";
+item = "small_luck_potion";
+count = 1;
+};
+chance = 0.4;
+inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.4;
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+inner = {
+}, {
+}, {
+}, {
+}, {
+}, {
+}, {
+}, {
+}, {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+max = 30;
+chance = 0.02;
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+max = 10;
+chance = 0.015;
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+max = 5;
+chance = 0.0075;
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+max = 5;
+chance = 0.0025;
+inner = {
+type = "item";
+item = "shadow_daggers";
+count = 1;
+};
+max = 1;
+chance = 0.001;
+}};
+baseHealth = 20;
+baseDamage = 10;
+baseSpread = 0.1;
+}
+function tbl_11.scalingFn(arg1) -- Line 11, Named "easyStatScaling"
+return math.clamp(math.pow(1.05, math.clamp(arg1 - 1, 0, 25)) * math.pow(1.04,
+math.clamp(arg1 - 26, 0, 25)) * math.pow(1.03, math.clamp(arg1 - 51, 0, 25)) * math.pow(1.02,
+math.clamp(arg1 - 76, 0, 25)) * math.pow(1.01, math.clamp(arg1 - 101, 0, 100)) * math.pow(1.005,
+math.max(arg1 - 201, 0)), 0, 450000000000000000)
+end
+local tbl_39 = {
+baseCount = 50;
+addCount = 10;
+addInterval = 100;
+cap = 100;
+}
+local startingFloor_upvr_14 = tbl_39.startingFloor
+local addInterval_upvr_9 = tbl_39.addInterval
+local baseCount_upvr = tbl_39.baseCount
+local addCount_upvr_6 = tbl_39.addCount
+local cap_upvr_12 = tbl_39.cap
+function tbl_11.rollCountFn(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_14 (readonly)
+[2]: addInterval_upvr_9 (readonly)
+[3]: baseCount_upvr (readonly)
+[4]: addCount_upvr_6 (readonly)
+[5]: cap_upvr_12 (readonly)
+]]
+local var85 = startingFloor_upvr_14
+if var85 == nil then
+var85 = addInterval_upvr_9
+end
+local var86 = baseCount_upvr + addCount_upvr_6 * math.max(0, math.floor((arg1 -
+var85) / addInterval_upvr_9) + 1)
+if cap_upvr_12 ~= nil then
+return math.min(var86, cap_upvr_12)
+end
+return var86
+end
+local tbl_15 = {}
+baseCount_upvr = 5
+tbl_15.addLuckInterval = baseCount_upvr
+baseCount_upvr = 100
+tbl_15.addPercentInterval = baseCount_upvr
+baseCount_upvr = 2
+tbl_15.addPercentAmount = baseCount_upvr
+baseCount_upvr = tbl_15.addLuckInterval
+addCount_upvr_6 = tbl_15.addLuckAmount
+local var88_upvw = addCount_upvr_6
+if var88_upvw == nil then
+var88_upvw = 1
+end
+addInterval_upvr_9 = tbl_15.addPercentInterval
+cap_upvr_12 = tbl_15.addPercentAmount
+local var89_upvw = cap_upvr_12
+if var89_upvw == nil then
+var89_upvw = 1
+end
+startingFloor_upvr_14 = tbl_15.addPercentStartsAtFloor
+function tbl_11.rollLuckFn(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var88_upvw (read and write)
+[2]: baseCount_upvr (readonly)
+[3]: addInterval_upvr_9 (readonly)
+[4]: startingFloor_upvr_14 (readonly)
+[5]: var89_upvw (read and write)
+]]
+local module_5 = {
+add = var88_upvw * math.floor(arg1 / baseCount_upvr);
+}
+if addInterval_upvr_9 ~= nil then
+local var92 = startingFloor_upvr_14
+if var92 == nil then
+var92 = addInterval_upvr_9
+end
+local var93 = arg1 - var92 + 1
+if 0 < var93 then
+module_5.multiply = 1 + var89_upvw / 100 * (math.floor(var93 /
+addInterval_upvr_9) + 1)
+end
+end
+return module_5
+end
+tbl_11.allowedCards = tbl_21_upvr
+tbl_14.base = tbl_11
+local tbl_38 = {
+name = "Hardcore Tower";
+description = "The Hardcore Tower is a terrifying challenge where your deck is put to the
+test! Face progressively tougher enemies on each floor, with every battle increasing in diﬃculty
+and a chance to win rare relics!\nAfter completing every floor, 50 cards are rolled. The roll count
+increases by 10 every 25 floors starting at floor 50, and is capped out at 80 cards rolled per floor.
+\nFor every 5 floors climbed, +4 Bonus Luck is applied towards your reward card rolls.\nFor every
+25 floors starting at floor 50, an additional +2.5% bonus luck is granted.";
+}
+baseCount_upvr = any_import_result1_3_upvr.images
+tbl_38.background = baseCount_upvr.wave.nightmare
+local tbl_13 = {}
+local tbl_19 = {}
+baseCount_upvr = {}
+local var97 = baseCount_upvr
+var97.type = "item"
+var97.item = "small_luck_potion"
+var97.count = 1
+tbl_19.inner = var97
+var97 = 0.4
+tbl_19.chance = var97
+var97 = {}
+local var98_upvr = var97
+var98_upvr.inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+}
+var98_upvr.chance = 0.4
+tbl_13[1] = tbl_19
+tbl_13[2] = var98_upvr
+tbl_13[3] = {
+inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+tbl_13[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+tbl_13[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+tbl_13[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+tbl_13[7] = {
+inner = {
+type = "item";
+item = "xlarge_luck_potion";
+count = 1;
+};
+chance = 0.1;
+floorRange = {25, math.huge};
+}
+tbl_13[8] = {
+inner = {
+type = "item";
+item = "xlarge_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.1;
+floorRange = {25, math.huge};
+}
+tbl_13[9] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+tbl_13[10] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+tbl_13[11] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+tbl_13[12] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03333333333333333;
+}
+tbl_13[13] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+max = 30;
+chance = 0.020833333333333332;
+}
+tbl_13[14] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+max = 10;
+chance = 0.017241379310344827;
+}
+tbl_13[15] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+max = 5;
+chance = 0.007692307692307693;
+}
+tbl_13[16] = {
+inner = {
+type = "item";
+item = "instant_roll_5000";
+count = 1;
+};
+max = 3;
+chance = 0.0020833333333333333;
+floorRange = {50, math.huge};
+}
+tbl_13[17] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+max = 5;
+chance = 0.0025;
+}
+tbl_38.rewards = tbl_13
+tbl_38.baseHealth = 200
+tbl_38.baseDamage = 100
+tbl_38.baseSpread = 0.1
+local tbl_53 = {}
+var98_upvr = 50
+tbl_53.baseCount = var98_upvr
+var98_upvr = 10
+tbl_53.addCount = var98_upvr
+var98_upvr = 25
+tbl_53.addInterval = var98_upvr
+var98_upvr = 80
+tbl_53.cap = var98_upvr
+var98_upvr = 50
+tbl_53.startingFloor = var98_upvr
+var98_upvr = tbl_53.baseCount
+local startingFloor_upvr_7 = tbl_53.startingFloor
+local addInterval_upvr = tbl_53.addInterval
+local addCount_upvr = tbl_53.addCount
+local cap_upvr_10 = tbl_53.cap
+function tbl_38.rollCountFn(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_7 (readonly)
+[2]: addInterval_upvr (readonly)
+[3]: var98_upvr (readonly)
+[4]: addCount_upvr (readonly)
+[5]: cap_upvr_10 (readonly)
+]]
+local var139 = startingFloor_upvr_7
+if var139 == nil then
+var139 = addInterval_upvr
+end
+local var140 = var98_upvr + addCount_upvr * math.max(0, math.floor((arg1 - var139) /
+addInterval_upvr) + 1)
+if cap_upvr_10 ~= nil then
+return math.min(var140, cap_upvr_10)
+end
+return var140
+end
+local tbl_4 = {}
+var98_upvr = 4
+tbl_4.addLuckAmount = var98_upvr
+var98_upvr = 5
+tbl_4.addLuckInterval = var98_upvr
+var98_upvr = 2.5
+tbl_4.addPercentAmount = var98_upvr
+var98_upvr = 25
+tbl_4.addPercentInterval = var98_upvr
+var98_upvr = 50
+tbl_4.addPercentStartsAtFloor = var98_upvr
+var98_upvr = tbl_4.addLuckInterval
+addCount_upvr = tbl_4.addLuckAmount
+local var142_upvw = addCount_upvr
+if var142_upvw == nil then
+var142_upvw = 1
+end
+addInterval_upvr = tbl_4.addPercentInterval
+cap_upvr_10 = tbl_4.addPercentAmount
+local var143_upvw = cap_upvr_10
+if var143_upvw == nil then
+var143_upvw = 1
+end
+startingFloor_upvr_7 = tbl_4.addPercentStartsAtFloor
+function tbl_38.rollLuckFn(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var142_upvw (read and write)
+[2]: var98_upvr (readonly)
+[3]: addInterval_upvr (readonly)
+[4]: startingFloor_upvr_7 (readonly)
+[5]: var143_upvw (read and write)
+]]
+local module_2 = {
+add = var142_upvw * math.floor(arg1 / var98_upvr);
+}
+if addInterval_upvr ~= nil then
+local var146 = startingFloor_upvr_7
+if var146 == nil then
+var146 = addInterval_upvr
+end
+local var147 = arg1 - var146 + 1
+if 0 < var147 then
+module_2.multiply = 1 + var143_upvw / 100 * (math.floor(var147 /
+addInterval_upvr) + 1)
+end
+end
+return module_2
+end
+tbl_38.scalingFn = hardStatScaling
+tbl_38.allowedCards = tbl_21_upvr
+tbl_14.nightmare = tbl_38
+local tbl_6 = {
+disabled = true;
+name = "Pirate Tower";
+description = "Climb the Pirate Tower — a brutal trial that pushes your deck to its limits.
+Only the strongest decks can reach the highest floors — where the rarest fruits await beyond
+Floors 50, 100, and 150.";
+}
+var98_upvr = any_import_result1_3_upvr.images
+tbl_6.background = var98_upvr.wave.pirate_tower
+local tbl_32 = {}
+local tbl_26 = {}
+var98_upvr = {}
+local var151 = var98_upvr
+var151.type = "item"
+var151.item = "small_luck_potion"
+var151.count = 1
+tbl_26.inner = var151
+var151 = 0.4
+tbl_26.chance = var151
+var151 = {}
+local var152 = var151
+var152.inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+}
+var152.chance = 0.4
+tbl_32[1] = tbl_26
+tbl_32[2] = var152
+tbl_32[3] = {
+inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+tbl_32[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+tbl_32[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+tbl_32[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+tbl_32[7] = {
+inner = {
+type = "item";
+item = "xlarge_luck_potion";
+count = 1;
+};
+chance = 0.1;
+floorRange = {25, math.huge};
+}
+tbl_32[8] = {
+inner = {
+type = "item";
+item = "xlarge_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.1;
+floorRange = {25, math.huge};
+}
+tbl_32[9] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+tbl_32[10] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+tbl_32[11] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+tbl_32[12] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.04;
+}
+tbl_32[13] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+max = 30;
+chance = 0.025;
+}
+tbl_32[14] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+max = 10;
+chance = 0.020833333333333332;
+}
+tbl_32[15] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+max = 5;
+chance = 0.009259259259259259;
+}
+tbl_32[16] = {
+inner = {
+type = "item";
+item = "instant_roll_5000";
+count = 1;
+};
+max = 3;
+chance = 0.0025;
+floorRange = {50, math.huge};
+}
+local tbl_43 = {}
+var152 = {}
+local var186 = var152
+var186.type = "item"
+var186.item = "trait_reroll"
+var186.count = 1
+tbl_43.inner = var186
+var186 = 5
+tbl_43.max = var186
+var186 = 0.0025
+tbl_43.chance = var186
+var186 = {}
+local var187_upvr = var186
+var187_upvr.inner = {
+type = "item";
+item = "pirate_warrior";
+count = 1;
+}
+var187_upvr.max = 1
+var187_upvr.chance = 0.002
+tbl_32[17] = tbl_43
+tbl_32[18] = var187_upvr
+tbl_32[19] = {
+inner = {
+type = "item";
+item = "sun_deity_card_back";
+count = 1;
+};
+max = 1;
+chance = 0.002;
+}
+tbl_32[20] = {
+inner = {
+type = "item";
+item = "flame_fruit";
+count = 1;
+};
+max = 1;
+chance = 0.001;
+floorRange = {5, math.huge};
+}
+tbl_32[21] = {
+inner = {
+type = "item";
+item = "dragon_fruit";
+count = 1;
+};
+max = 1;
+chance = 0.0004;
+floorRange = {25, math.huge};
+}
+tbl_32[22] = {
+inner = {
+type = "item";
+item = "dark_fruit";
+count = 1;
+};
+max = 1;
+chance = 0.0002;
+floorRange = {50, math.huge};
+}
+tbl_32[23] = {
+inner = {
+type = "item";
+item = "wind_deity_fruit";
+count = 1;
+};
+max = 1;
+chance = 0.0001;
+floorRange = {100, math.huge};
+}
+tbl_32[24] = {
+inner = {
+type = "item";
+item = "sun_deity_fruit";
+count = 1;
+};
+max = 1;
+chance = 0.00006666666666666667;
+floorRange = {150, math.huge};
+}
+tbl_6.rewards = tbl_32
+tbl_6.baseHealth = 200
+tbl_6.baseDamage = 100
+tbl_6.baseSpread = 0.1
+local tbl_59 = {}
+var187_upvr = 50
+tbl_59.baseCount = var187_upvr
+var187_upvr = 10
+tbl_59.addCount = var187_upvr
+var187_upvr = 25
+tbl_59.addInterval = var187_upvr
+var187_upvr = 80
+tbl_59.cap = var187_upvr
+var187_upvr = 50
+tbl_59.startingFloor = var187_upvr
+var187_upvr = tbl_59.baseCount
+local startingFloor_upvr = tbl_59.startingFloor
+local addInterval_upvr_6 = tbl_59.addInterval
+local addCount_upvr_4 = tbl_59.addCount
+local cap_upvr_2 = tbl_59.cap
+function tbl_6.rollCountFn(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr (readonly)
+[2]: addInterval_upvr_6 (readonly)
+[3]: var187_upvr (readonly)
+[4]: addCount_upvr_4 (readonly)
+[5]: cap_upvr_2 (readonly)
+]]
+local var212 = startingFloor_upvr
+if var212 == nil then
+var212 = addInterval_upvr_6
+end
+addInterval_upvr_6) + 1)
+if cap_upvr_2 ~= nil then
+return math.min(var213, cap_upvr_2)
+local var213 = var187_upvr + addCount_upvr_4 * math.max(0, math.floor((arg1 - var212) /
+end
+return var213
+end
+function tbl_6.rollLuckFn(arg1) -- Line 618
+return {
+add = math.clamp(math.floor(arg1 / 5), 0, 25);
+}
+end
+tbl_6.scalingFn = hardStatScaling
+tbl_6.allowedCards = tbl_21_upvr
+tbl_14.pirate = tbl_6
+local tbl_10 = {
+name = "Potion Tower";
+description = "Climb the Potion Tower — a challenge worthy of those looking to go even
+further beyond. Each floor grants you a chance of getting some of the rarest potions in the game.
+\nThe Hollow Mask has a 1 in 2,500 chance to drop from floor 75 and onward.\nAfter completing
+every floor, 50 cards are rolled. The roll count increases by 10 every 25 floors starting at floor 50,
+and is capped out at 80 cards rolled per floor.\nFor every 5 floors climbed, +2 Bonus Luck is
+applied towards your reward card rolls.\nFor every 25 floors starting at floor 50, an additional +2%
+bonus luck is granted.";
+}
+var187_upvr = any_import_result1_3_upvr.images
+tbl_10.background = var187_upvr.wave.potion_tower
+local tbl_40 = {}
+local tbl_46 = {}
+var187_upvr = {}
+local var218 = var187_upvr
+addCount_upvr_4 = "item"
+var218.type = addCount_upvr_4
+addCount_upvr_4 = "small_luck_potion"
+var218.item = addCount_upvr_4
+addCount_upvr_4 = 1
+var218.count = addCount_upvr_4
+tbl_46.inner = var218
+var218 = 0.4
+tbl_46.chance = var218
+var218 = {}
+local var219 = var218
+addCount_upvr_4 = {}
+local var220 = addCount_upvr_4
+addInterval_upvr_6 = "item"
+var220.type = addInterval_upvr_6
+addInterval_upvr_6 = "small_cooldown_reduction_potion"
+var220.item = addInterval_upvr_6
+addInterval_upvr_6 = 1
+var220.count = addInterval_upvr_6
+var219.inner = var220
+var220 = 0.4
+var219.chance = var220
+var220 = {}
+local var221 = var220
+addInterval_upvr_6 = {}
+local var222 = addInterval_upvr_6
+cap_upvr_2 = "item"
+var222.type = cap_upvr_2
+cap_upvr_2 = "medium_luck_potion"
+var222.item = cap_upvr_2
+cap_upvr_2 = 1
+var222.count = cap_upvr_2
+var221.inner = var222
+var222 = 0.2
+var221.chance = var222
+var222 = {}
+local var223 = var222
+cap_upvr_2 = {}
+local var224 = cap_upvr_2
+startingFloor_upvr = "item"
+var224.type = startingFloor_upvr
+startingFloor_upvr = "medium_cooldown_reduction_potion"
+var224.item = startingFloor_upvr
+startingFloor_upvr = 1
+var224.count = startingFloor_upvr
+var223.inner = var224
+var224 = 0.2
+var223.chance = var224
+var224 = {}
+local var225 = var224
+startingFloor_upvr = {}
+local var226 = startingFloor_upvr
+var226.type = "item"
+var226.item = "large_luck_potion"
+var226.count = 1
+var225.inner = var226
+var226 = 0.1
+var225.chance = var226
+var226 = {}
+local var227 = var226
+var227.inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+}
+var227.chance = 0.1
+tbl_40[1] = tbl_46
+tbl_40[2] = var219
+tbl_40[3] = var221
+tbl_40[4] = var223
+tbl_40[5] = var225
+tbl_40[6] = var227
+tbl_40[7] = {
+inner = {
+type = "item";
+item = "xlarge_luck_potion";
+count = 1;
+};
+chance = 0.025;
+}
+tbl_40[8] = {
+inner = {
+type = "item";
+item = "xxlarge_luck_potion";
+count = 1;
+};
+chance = 0.015;
+}
+tbl_40[9] = {
+inner = {
+type = "item";
+item = "xlarge_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.025;
+}
+tbl_40[10] = {
+inner = {
+type = "item";
+item = "xxlarge_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.015;
+}
+tbl_40[11] = {
+inner = {
+type = "item";
+item = "luck_jug";
+count = 1;
+};
+chance = 0.005;
+}
+tbl_40[12] = {
+inner = {
+type = "item";
+item = "cooldown_reduction_jug";
+count = 1;
+};
+chance = 0.005;
+}
+tbl_40[13] = {
+inner = {
+type = "item";
+item = "weak_luck_elixir";
+count = 1;
+};
+chance = 0.025;
+}
+tbl_40[14] = {
+inner = {
+type = "item";
+item = "strong_luck_elixir";
+count = 1;
+};
+chance = 0.015;
+}
+tbl_40[15] = {
+inner = {
+type = "item";
+item = "potent_luck_elixir";
+count = 1;
+};
+chance = 0.005;
+}
+tbl_40[16] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.05;
+}
+local tbl_35 = {}
+var219 = {}
+local var250 = var219
+var221 = "item"
+var250.type = var221
+var221 = "xlarge_border_chance_potion"
+var250.item = var221
+var221 = 1
+var250.count = var221
+tbl_35.inner = var250
+var250 = 0.0125
+tbl_35.chance = var250
+var250 = {}
+local var251_upvr = var250
+var221 = {}
+local var252 = var221
+var223 = "item"
+var252.type = var223
+var223 = "xxlarge_border_chance_potion"
+var252.item = var223
+var223 = 1
+var252.count = var223
+var251_upvr.inner = var252
+var252 = 0.005
+var251_upvr.chance = var252
+var252 = {}
+local var253_upvr = var252
+var223 = {}
+local var254 = var223
+var225 = "item"
+var254.type = var225
+var225 = "boss_chance_potion"
+var254.item = var225
+var225 = 1
+var254.count = var225
+var253_upvr.inner = var254
+var254 = 0.05
+var253_upvr.chance = var254
+var254 = {}
+local var255_upvr = var254
+var225 = {}
+local var256 = var225
+var227 = "item"
+var256.type = var227
+var227 = "xlarge_boss_chance_potion"
+var256.item = var227
+var227 = 1
+var256.count = var227
+var255_upvr.inner = var256
+var256 = 0.0125
+var255_upvr.chance = var256
+var256 = {}
+local var257_upvr = var256
+var227 = {}
+local var258 = var227
+var258.type = "item"
+var258.item = "xxlarge_boss_chance_potion"
+var258.count = 1
+var257_upvr.inner = var258
+var258 = 0.005
+var257_upvr.chance = var258
+var258 = {}
+local var259_upvr = var258
+var259_upvr.inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+}
+var259_upvr.chance = 0.02
+tbl_40[17] = tbl_35
+tbl_40[18] = var251_upvr
+tbl_40[19] = var253_upvr
+tbl_40[20] = var255_upvr
+tbl_40[21] = var257_upvr
+tbl_40[22] = var259_upvr
+tbl_40[23] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03333333333333333;
+floorRange = {5, math.huge};
+}
+tbl_40[24] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+max = 30;
+chance = 0.020833333333333332;
+floorRange = {10, math.huge};
+}
+tbl_40[25] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+max = 10;
+chance = 0.017241379310344827;
+floorRange = {25, math.huge};
+}
+tbl_40[26] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+max = 5;
+chance = 0.007692307692307693;
+floorRange = {50, math.huge};
+}
+tbl_40[27] = {
+inner = {
+type = "item";
+item = "instant_roll_5000";
+count = 1;
+};
+max = 3;
+chance = 0.0020833333333333333;
+floorRange = {100, math.huge};
+}
+tbl_40[28] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+max = 5;
+chance = 0.0025;
+}
+tbl_40[29] = {
+inner = {
+type = "item";
+item = "hollow_mask";
+count = 1;
+};
+max = 1;
+chance = 0.0004;
+floorRange = {75, math.huge};
+}
+tbl_10.rewards = tbl_40
+tbl_10.baseHealth = 200
+tbl_10.baseDamage = 100
+tbl_10.baseSpread = 0.1
+local tbl_20 = {}
+var251_upvr = 50
+tbl_20.baseCount = var251_upvr
+var251_upvr = 10
+tbl_20.addCount = var251_upvr
+var251_upvr = 25
+tbl_20.addInterval = var251_upvr
+var251_upvr = 80
+tbl_20.cap = var251_upvr
+var251_upvr = 50
+tbl_20.startingFloor = var251_upvr
+var251_upvr = tbl_20.baseCount
+var253_upvr = tbl_20.addCount
+var255_upvr = tbl_20.addInterval
+var257_upvr = tbl_20.cap
+var259_upvr = tbl_20.startingFloor
+function tbl_10.rollCountFn(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: var259_upvr (readonly)
+[2]: var255_upvr (readonly)
+[3]: var251_upvr (readonly)
+[4]: var253_upvr (readonly)
+[5]: var257_upvr (readonly)
+]]
+local var283 = var259_upvr
+if var283 == nil then
+var283 = var255_upvr
+end
+local var284 = var251_upvr + var253_upvr * math.max(0, math.floor((arg1 - var283) /
+var255_upvr) + 1)
+if var257_upvr ~= nil then
+return math.min(var284, var257_upvr)
+end
+return var284
+end
+local tbl_2 = {}
+var251_upvr = 2
+tbl_2.addLuckAmount = var251_upvr
+var251_upvr = 5
+tbl_2.addLuckInterval = var251_upvr
+var251_upvr = 2
+tbl_2.addPercentAmount = var251_upvr
+var251_upvr = 25
+tbl_2.addPercentInterval = var251_upvr
+var251_upvr = 50
+tbl_2.addPercentStartsAtFloor = var251_upvr
+var251_upvr = tbl_2.addLuckInterval
+var253_upvr = tbl_2.addLuckAmount
+local var286_upvw = var253_upvr
+if var286_upvw == nil then
+var286_upvw = 1
+end
+var255_upvr = tbl_2.addPercentInterval
+var257_upvr = tbl_2.addPercentAmount
+local var287_upvw = var257_upvr
+if var287_upvw == nil then
+var287_upvw = 1
+end
+var259_upvr = tbl_2.addPercentStartsAtFloor
+function tbl_10.rollLuckFn(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var286_upvw (read and write)
+[2]: var251_upvr (readonly)
+[3]: var255_upvr (readonly)
+[4]: var259_upvr (readonly)
+[5]: var287_upvw (read and write)
+]]
+local module_3 = {
+add = var286_upvw * math.floor(arg1 / var251_upvr);
+}
+if var255_upvr ~= nil then
+local var290 = var259_upvr
+if var290 == nil then
+var290 = var255_upvr
+end
+local var291 = arg1 - var290 + 1
+if 0 < var291 then
+module_3.multiply = 1 + var287_upvw / 100 * (math.floor(var291 /
+var255_upvr) + 1)
+end
+end
+return module_3
+end
+tbl_10.scalingFn = hardStatScaling
+tbl_10.allowedCards = tbl_21_upvr
+tbl_14.potion = tbl_10
+local tbl_17 = {}
+local yellow_crystal = items_upvr.yellow_crystal
+var251_upvr = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes
+from {places_upvr.ninja_village.name} who grow stronger with each round. Earn
+{yellow_crystal.name}s to craft {items_upvr.ninja_scroll.name} to increase your luck and
+{cards_upvr.death_ninja.name} to fill out your deck and push your limits even further!
+\n{yellow_crystal.name}s have a 1% chance to drop from {"every floor"}.\nAfter completing every
+floor, 50 cards are rolled. The roll count increases by 10 every 25 floors starting at floor 50, and is
+capped out at 80 cards rolled per floor.\nFor every 5 floors climbed, +4 Bonus Luck is applied
+towards your reward card rolls.\nFor every 25 floors starting at floor 50, an additional +2.5%
+bonus luck is granted.`
+tbl_17.description = var251_upvr
+var251_upvr = {}
+local var337 = var251_upvr
+var337[1] = {
+inner = {
+type = "item";
+item = "small_luck_potion";
+count = 1;
+};
+chance = 0.4;
+}
+var337[2] = {
+inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.4;
+}
+var337[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var337[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var337[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var337[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var337[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var337[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var337[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var337[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var337[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var337[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var337[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var337[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var337[15] = {
+inner = {
+type = "item";
+item = "yellow_crystal";
+count = 1;
+};
+chance = 0.01;
+}
+tbl_17.rewards = var337
+var337 = 40
+tbl_17.baseHealth = var337
+var337 = 20
+tbl_17.baseDamage = var337
+var337 = 0.1
+tbl_17.baseSpread = var337
+local tbl = {
+baseCount = 50;
+addCount = 10;
+addInterval = 25;
+cap = 80;
+startingFloor = 50;
+}
+local startingFloor_upvr_2 = tbl.startingFloor
+local addInterval_upvr_14 = tbl.addInterval
+local baseCount_upvr_3 = tbl.baseCount
+local addCount_upvr_13 = tbl.addCount
+local cap_upvr_9 = tbl.cap
+function var337(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_2 (readonly)
+[2]: addInterval_upvr_14 (readonly)
+[3]: baseCount_upvr_3 (readonly)
+[4]: addCount_upvr_13 (readonly)
+[5]: cap_upvr_9 (readonly)
+]]
+local var332 = startingFloor_upvr_2
+if var332 == nil then
+var332 = addInterval_upvr_14
+end
+local var333 = baseCount_upvr_3 + addCount_upvr_13 * math.max(0, math.floor((arg1 -
+var332) / addInterval_upvr_14) + 1)
+if cap_upvr_9 ~= nil then
+return math.min(var333, cap_upvr_9)
+end
+return var333
+end
+tbl_17.rollCountFn = var337
+local tbl_50 = {}
+baseCount_upvr_3 = 4
+tbl_50.addLuckAmount = baseCount_upvr_3
+baseCount_upvr_3 = 5
+tbl_50.addLuckInterval = baseCount_upvr_3
+baseCount_upvr_3 = 2.5
+tbl_50.addPercentAmount = baseCount_upvr_3
+baseCount_upvr_3 = 25
+tbl_50.addPercentInterval = baseCount_upvr_3
+baseCount_upvr_3 = 50
+tbl_50.addPercentStartsAtFloor = baseCount_upvr_3
+baseCount_upvr_3 = tbl_50.addLuckInterval
+addCount_upvr_13 = tbl_50.addLuckAmount
+local var335_upvw = addCount_upvr_13
+if var335_upvw == nil then
+var335_upvw = 1
+end
+addInterval_upvr_14 = tbl_50.addPercentInterval
+cap_upvr_9 = tbl_50.addPercentAmount
+local var336_upvw = cap_upvr_9
+if var336_upvw == nil then
+var336_upvw = 1
+end
+startingFloor_upvr_2 = tbl_50.addPercentStartsAtFloor
+function var337(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var335_upvw (read and write)
+[2]: baseCount_upvr_3 (readonly)
+[3]: addInterval_upvr_14 (readonly)
+[4]: startingFloor_upvr_2 (readonly)
+[5]: var336_upvw (read and write)
+]]
+local module_10 = {
+add = var335_upvw * math.floor(arg1 / baseCount_upvr_3);
+}
+if addInterval_upvr_14 ~= nil then
+local var339 = startingFloor_upvr_2
+if var339 == nil then
+var339 = addInterval_upvr_14
+end
+local var340 = arg1 - var339 + 1
+if 0 < var340 then
+module_10.multiply = 1 + var336_upvw / 100 * (math.floor(var340 /
+addInterval_upvr_14) + 1)
+end
+end
+return module_10
+end
+tbl_17.rollLuckFn = var337
+tbl_17.scalingFn = storyTowerStatScaling
+tbl_14.ninja_village = createStoryInfinite("ninja_village", tbl_17)
+local tbl_7 = {}
+baseCount_upvr_3 = items_upvr.green_crystal
+local var342 = baseCount_upvr_3
+var337 = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes from
+{places_upvr.green_planet.name} who grow stronger with each round. Earn {var342.name}s to
+craft {items_upvr.dragon_ball.name} to increase your luck and
+{cards_upvr.berserker_warrior.name} to fill out your deck and push your limits even further!
+\n{var342.name}s have a 1% chance to drop from {"every floor"}.\nAfter completing every floor,
+50 cards are rolled. The roll count increases by 10 every 25 floors starting at floor 50, and is
+capped out at 80 cards rolled per floor.\nFor every 5 floors climbed, +4 Bonus Luck is applied
+towards your reward card rolls.\nFor every 25 floors starting at floor 50, an additional +2.5%
+bonus luck is granted.`
+tbl_7.description = var337
+var337 = {}
+local var385 = var337
+local tbl_52 = {}
+var342 = {}
+local var345 = var342
+var345.type = "item"
+var345.item = "small_luck_potion"
+var345.count = 1
+tbl_52.inner = var345
+var345 = 0.4
+tbl_52.chance = var345
+var345 = {}
+local var346_upvr = var345
+var346_upvr.inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+}
+var346_upvr.chance = 0.4
+var385[1] = tbl_52
+var385[2] = var346_upvr
+var385[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var385[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var385[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var385[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var385[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var385[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var385[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var385[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var385[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var385[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var385[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var385[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var385[15] = {
+inner = {
+type = "item";
+item = "green_crystal";
+count = 1;
+};
+chance = 0.01;
+}
+tbl_7.rewards = var385
+var385 = 60
+tbl_7.baseHealth = var385
+var385 = 30
+tbl_7.baseDamage = var385
+var385 = 0.1
+tbl_7.baseSpread = var385
+local tbl_56 = {}
+var346_upvr = 50
+tbl_56.baseCount = var346_upvr
+var346_upvr = 10
+tbl_56.addCount = var346_upvr
+var346_upvr = 25
+tbl_56.addInterval = var346_upvr
+var346_upvr = 80
+tbl_56.cap = var346_upvr
+var346_upvr = 50
+tbl_56.startingFloor = var346_upvr
+var346_upvr = tbl_56.baseCount
+local startingFloor_upvr_5 = tbl_56.startingFloor
+local addInterval_upvr_12 = tbl_56.addInterval
+local addCount_upvr_14 = tbl_56.addCount
+local cap_upvr_6 = tbl_56.cap
+function var385(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_5 (readonly)
+[2]: addInterval_upvr_12 (readonly)
+[3]: var346_upvr (readonly)
+[4]: addCount_upvr_14 (readonly)
+[5]: cap_upvr_6 (readonly)
+]]
+local var380 = startingFloor_upvr_5
+if var380 == nil then
+var380 = addInterval_upvr_12
+end
+addInterval_upvr_12) + 1)
+if cap_upvr_6 ~= nil then
+return math.min(var381, cap_upvr_6)
+local var381 = var346_upvr + addCount_upvr_14 * math.max(0, math.floor((arg1 - var380) /
+end
+return var381
+end
+tbl_7.rollCountFn = var385
+local tbl_3 = {}
+var346_upvr = 4
+tbl_3.addLuckAmount = var346_upvr
+var346_upvr = 5
+tbl_3.addLuckInterval = var346_upvr
+var346_upvr = 2.5
+tbl_3.addPercentAmount = var346_upvr
+var346_upvr = 25
+tbl_3.addPercentInterval = var346_upvr
+var346_upvr = 50
+tbl_3.addPercentStartsAtFloor = var346_upvr
+var346_upvr = tbl_3.addLuckInterval
+addCount_upvr_14 = tbl_3.addLuckAmount
+local var383_upvw = addCount_upvr_14
+if var383_upvw == nil then
+var383_upvw = 1
+end
+addInterval_upvr_12 = tbl_3.addPercentInterval
+cap_upvr_6 = tbl_3.addPercentAmount
+local var384_upvw = cap_upvr_6
+if var384_upvw == nil then
+var384_upvw = 1
+end
+startingFloor_upvr_5 = tbl_3.addPercentStartsAtFloor
+function var385(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var383_upvw (read and write)
+[2]: var346_upvr (readonly)
+[3]: addInterval_upvr_12 (readonly)
+[4]: startingFloor_upvr_5 (readonly)
+[5]: var384_upvw (read and write)
+]]
+local module_16 = {
+add = var383_upvw * math.floor(arg1 / var346_upvr);
+}
+if addInterval_upvr_12 ~= nil then
+local var387 = startingFloor_upvr_5
+if var387 == nil then
+var387 = addInterval_upvr_12
+end
+local var388 = arg1 - var387 + 1
+if 0 < var388 then
+module_16.multiply = 1 + var384_upvw / 100 * (math.floor(var388 /
+addInterval_upvr_12) + 1)
+end
+end
+return module_16
+end
+tbl_7.rollLuckFn = var385
+tbl_7.scalingFn = storyTowerStatScaling
+tbl_14.green_planet = createStoryInfinite("green_planet", tbl_7)
+local tbl_16 = {}
+var346_upvr = items_upvr.purple_crystal
+local var390 = var346_upvr
+var385 = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes from
+{places_upvr.shibuya_station.name} who grow stronger with each round. Earn {var390.name}s to
+craft {items_upvr.cursed_finger.name} to increase your luck and
+{cards_upvr.deranged_curse.name} to fill out your deck and push your limits even further!
+\n{var390.name}s have a 1% chance to drop from {"every floor"}.\nAfter completing every floor,
+50 cards are rolled. The roll count increases by 10 every 25 floors starting at floor 50, and is
+capped out at 80 cards rolled per floor.\nFor every 5 floors climbed, +4 Bonus Luck is applied
+towards your reward card rolls.\nFor every 25 floors starting at floor 50, an additional +2.5%
+bonus luck is granted.`
+tbl_16.description = var385
+var385 = {}
+local var433 = var385
+local tbl_18 = {}
+var390 = {}
+local var393 = var390
+var393.type = "item"
+var393.item = "small_luck_potion"
+var393.count = 1
+tbl_18.inner = var393
+var393 = 0.4
+tbl_18.chance = var393
+var393 = {}
+local var394_upvr = var393
+var394_upvr.inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+}
+var394_upvr.chance = 0.4
+var433[1] = tbl_18
+var433[2] = var394_upvr
+var433[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var433[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var433[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var433[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var433[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var433[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var433[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var433[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var433[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var433[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var433[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var433[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var433[15] = {
+inner = {
+type = "item";
+item = "purple_crystal";
+count = 1;
+};
+chance = 0.01;
+}
+tbl_16.rewards = var433
+var433 = 80
+tbl_16.baseHealth = var433
+var433 = 40
+tbl_16.baseDamage = var433
+var433 = 0.1
+tbl_16.baseSpread = var433
+local tbl_60 = {}
+var394_upvr = 50
+tbl_60.baseCount = var394_upvr
+var394_upvr = 10
+tbl_60.addCount = var394_upvr
+var394_upvr = 25
+tbl_60.addInterval = var394_upvr
+var394_upvr = 80
+tbl_60.cap = var394_upvr
+var394_upvr = 50
+tbl_60.startingFloor = var394_upvr
+var394_upvr = tbl_60.baseCount
+local startingFloor_upvr_10 = tbl_60.startingFloor
+local addInterval_upvr_4 = tbl_60.addInterval
+local addCount_upvr_3 = tbl_60.addCount
+local cap_upvr_8 = tbl_60.cap
+function var433(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_10 (readonly)
+[2]: addInterval_upvr_4 (readonly)
+[3]: var394_upvr (readonly)
+[4]: addCount_upvr_3 (readonly)
+[5]: cap_upvr_8 (readonly)
+]]
+local var428 = startingFloor_upvr_10
+if var428 == nil then
+var428 = addInterval_upvr_4
+end
+addInterval_upvr_4) + 1)
+if cap_upvr_8 ~= nil then
+return math.min(var429, cap_upvr_8)
+local var429 = var394_upvr + addCount_upvr_3 * math.max(0, math.floor((arg1 - var428) /
+end
+return var429
+end
+tbl_16.rollCountFn = var433
+local tbl_58 = {}
+var394_upvr = 4
+tbl_58.addLuckAmount = var394_upvr
+var394_upvr = 5
+tbl_58.addLuckInterval = var394_upvr
+var394_upvr = 2.5
+tbl_58.addPercentAmount = var394_upvr
+var394_upvr = 25
+tbl_58.addPercentInterval = var394_upvr
+var394_upvr = 50
+tbl_58.addPercentStartsAtFloor = var394_upvr
+var394_upvr = tbl_58.addLuckInterval
+addCount_upvr_3 = tbl_58.addLuckAmount
+local var431_upvw = addCount_upvr_3
+if var431_upvw == nil then
+var431_upvw = 1
+end
+addInterval_upvr_4 = tbl_58.addPercentInterval
+cap_upvr_8 = tbl_58.addPercentAmount
+local var432_upvw = cap_upvr_8
+if var432_upvw == nil then
+var432_upvw = 1
+end
+startingFloor_upvr_10 = tbl_58.addPercentStartsAtFloor
+function var433(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var431_upvw (read and write)
+[2]: var394_upvr (readonly)
+[3]: addInterval_upvr_4 (readonly)
+[4]: startingFloor_upvr_10 (readonly)
+[5]: var432_upvw (read and write)
+]]
+local module_7 = {
+add = var431_upvw * math.floor(arg1 / var394_upvr);
+}
+if addInterval_upvr_4 ~= nil then
+local var435 = startingFloor_upvr_10
+if var435 == nil then
+var435 = addInterval_upvr_4
+end
+local var436 = arg1 - var435 + 1
+if 0 < var436 then
+module_7.multiply = 1 + var432_upvw / 100 * (math.floor(var436 /
+addInterval_upvr_4) + 1)
+end
+end
+return module_7
+end
+tbl_16.rollLuckFn = var433
+tbl_16.scalingFn = storyTowerStatScaling
+tbl_14.shibuya_station = createStoryInfinite("shibuya_station", tbl_16)
+local tbl_45 = {}
+var394_upvr = items_upvr.orange_crystal
+local var438 = var394_upvr
+var433 = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes from
+{places_upvr.titans_city.name} who grow stronger with each round. Earn {var438.name}s to craft
+{items_upvr.titan_syringe.name} to increase your luck and {cards_upvr.elder_combat_giant.name}
+to fill out your deck and push your limits even further!\n{var438.name}s have a 1% chance to drop
+from {`floor {25} and above`}.\nAfter completing every floor, 50 cards are rolled. The roll count
+increases by 10 every 25 floors starting at floor 50, and is capped out at 80 cards rolled per floor.
+\nFor every 5 floors climbed, +4 Bonus Luck is applied towards your reward card rolls.\nFor every
+25 floors starting at floor 50, an additional +2.5% bonus luck is granted.`
+tbl_45.description = var433
+var433 = {}
+local var482 = var433
+local tbl_23 = {}
+var438 = {}
+local var441 = var438
+var441.type = "item"
+var441.item = "small_luck_potion"
+var441.count = 1
+tbl_23.inner = var441
+var441 = 0.4
+tbl_23.chance = var441
+var441 = {}
+local var442_upvr = var441
+var442_upvr.inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+}
+var442_upvr.chance = 0.4
+var482[1] = tbl_23
+var482[2] = var442_upvr
+var482[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var482[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var482[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var482[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var482[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var482[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var482[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var482[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var482[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var482[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var482[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var482[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var482[15] = {
+inner = {
+type = "item";
+item = "orange_crystal";
+count = 1;
+};
+chance = 0.01;
+floorRange = {25, math.huge};
+}
+tbl_45.rewards = var482
+var482 = 100
+tbl_45.baseHealth = var482
+var482 = 50
+tbl_45.baseDamage = var482
+var482 = 0.1
+tbl_45.baseSpread = var482
+local tbl_61 = {}
+var442_upvr = 50
+tbl_61.baseCount = var442_upvr
+var442_upvr = 10
+tbl_61.addCount = var442_upvr
+var442_upvr = 25
+tbl_61.addInterval = var442_upvr
+var442_upvr = 80
+tbl_61.cap = var442_upvr
+var442_upvr = 50
+tbl_61.startingFloor = var442_upvr
+var442_upvr = tbl_61.baseCount
+local startingFloor_upvr_12 = tbl_61.startingFloor
+local addInterval_upvr_13 = tbl_61.addInterval
+local addCount_upvr_8 = tbl_61.addCount
+local cap_upvr_5 = tbl_61.cap
+function var482(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_12 (readonly)
+[2]: addInterval_upvr_13 (readonly)
+[3]: var442_upvr (readonly)
+[4]: addCount_upvr_8 (readonly)
+[5]: cap_upvr_5 (readonly)
+]]
+local var477 = startingFloor_upvr_12
+if var477 == nil then
+var477 = addInterval_upvr_13
+end
+addInterval_upvr_13) + 1)
+if cap_upvr_5 ~= nil then
+return math.min(var478, cap_upvr_5)
+local var478 = var442_upvr + addCount_upvr_8 * math.max(0, math.floor((arg1 - var477) /
+end
+return var478
+end
+tbl_45.rollCountFn = var482
+local tbl_55 = {}
+var442_upvr = 4
+tbl_55.addLuckAmount = var442_upvr
+var442_upvr = 5
+tbl_55.addLuckInterval = var442_upvr
+var442_upvr = 2.5
+tbl_55.addPercentAmount = var442_upvr
+var442_upvr = 25
+tbl_55.addPercentInterval = var442_upvr
+var442_upvr = 50
+tbl_55.addPercentStartsAtFloor = var442_upvr
+var442_upvr = tbl_55.addLuckInterval
+addCount_upvr_8 = tbl_55.addLuckAmount
+local var480_upvw = addCount_upvr_8
+if var480_upvw == nil then
+var480_upvw = 1
+end
+addInterval_upvr_13 = tbl_55.addPercentInterval
+cap_upvr_5 = tbl_55.addPercentAmount
+local var481_upvw = cap_upvr_5
+if var481_upvw == nil then
+var481_upvw = 1
+end
+startingFloor_upvr_12 = tbl_55.addPercentStartsAtFloor
+function var482(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var480_upvw (read and write)
+[2]: var442_upvr (readonly)
+[3]: addInterval_upvr_13 (readonly)
+[4]: startingFloor_upvr_12 (readonly)
+[5]: var481_upvw (read and write)
+]]
+local module_15 = {
+add = var480_upvw * math.floor(arg1 / var442_upvr);
+}
+if addInterval_upvr_13 ~= nil then
+local var484 = startingFloor_upvr_12
+if var484 == nil then
+var484 = addInterval_upvr_13
+end
+local var485 = arg1 - var484 + 1
+if 0 < var485 then
+module_15.multiply = 1 + var481_upvw / 100 * (math.floor(var485 /
+addInterval_upvr_13) + 1)
+end
+end
+return module_15
+end
+tbl_45.rollLuckFn = var482
+tbl_45.scalingFn = storyTowerStatScaling
+tbl_14.titans_city = createStoryInfinite("titans_city", tbl_45)
+local tbl_28 = {}
+var442_upvr = items_upvr.red_crystal
+local var487 = var442_upvr
+var482 = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes from
+{places_upvr.green_planet.name} who grow stronger with each round. Earn {var487.name}s to
+craft {items_upvr.biwa.name} to increase your luck and {cards_upvr.biwa_demon.name} to fill out
+your deck and push your limits even further!\n{var487.name}s have a 1% chance to drop from
+{`floor {50} and above`}.\nAfter completing every floor, 50 cards are rolled. The roll count increases
+by 10 every 25 floors starting at floor 50, and is capped out at 80 cards rolled per floor.\nFor every
+5 floors climbed, +4 Bonus Luck is applied towards your reward card rolls.\nFor every 25 floors
+starting at floor 50, an additional +2.5% bonus luck is granted.`
+tbl_28.description = var482
+var482 = {}
+local var531 = var482
+local tbl_31 = {}
+var487 = {}
+local var490 = var487
+var490.type = "item"
+var490.item = "small_luck_potion"
+var490.count = 1
+tbl_31.inner = var490
+var490 = 0.4
+tbl_31.chance = var490
+var490 = {}
+local var491_upvr = var490
+var491_upvr.inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+}
+var491_upvr.chance = 0.4
+var531[1] = tbl_31
+var531[2] = var491_upvr
+var531[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var531[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var531[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var531[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var531[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var531[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var531[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var531[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var531[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var531[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var531[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var531[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var531[15] = {
+inner = {
+type = "item";
+item = "red_crystal";
+count = 1;
+};
+chance = 0.01;
+floorRange = {50, math.huge};
+}
+tbl_28.rewards = var531
+var531 = 120
+tbl_28.baseHealth = var531
+var531 = 60
+tbl_28.baseDamage = var531
+var531 = 0.1
+tbl_28.baseSpread = var531
+local tbl_49 = {}
+var491_upvr = 50
+tbl_49.baseCount = var491_upvr
+var491_upvr = 10
+tbl_49.addCount = var491_upvr
+var491_upvr = 25
+tbl_49.addInterval = var491_upvr
+var491_upvr = 80
+tbl_49.cap = var491_upvr
+var491_upvr = 50
+tbl_49.startingFloor = var491_upvr
+var491_upvr = tbl_49.baseCount
+local startingFloor_upvr_13 = tbl_49.startingFloor
+local addInterval_upvr_2 = tbl_49.addInterval
+local addCount_upvr_12 = tbl_49.addCount
+local cap_upvr_3 = tbl_49.cap
+function var531(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_13 (readonly)
+[2]: addInterval_upvr_2 (readonly)
+[3]: var491_upvr (readonly)
+[4]: addCount_upvr_12 (readonly)
+[5]: cap_upvr_3 (readonly)
+]]
+local var526 = startingFloor_upvr_13
+if var526 == nil then
+var526 = addInterval_upvr_2
+end
+addInterval_upvr_2) + 1)
+if cap_upvr_3 ~= nil then
+return math.min(var527, cap_upvr_3)
+local var527 = var491_upvr + addCount_upvr_12 * math.max(0, math.floor((arg1 - var526) /
+end
+return var527
+end
+tbl_28.rollCountFn = var531
+local tbl_48 = {}
+var491_upvr = 4
+tbl_48.addLuckAmount = var491_upvr
+var491_upvr = 5
+tbl_48.addLuckInterval = var491_upvr
+var491_upvr = 2.5
+tbl_48.addPercentAmount = var491_upvr
+var491_upvr = 25
+tbl_48.addPercentInterval = var491_upvr
+var491_upvr = 50
+tbl_48.addPercentStartsAtFloor = var491_upvr
+var491_upvr = tbl_48.addLuckInterval
+addCount_upvr_12 = tbl_48.addLuckAmount
+local var529_upvw = addCount_upvr_12
+if var529_upvw == nil then
+var529_upvw = 1
+end
+addInterval_upvr_2 = tbl_48.addPercentInterval
+cap_upvr_3 = tbl_48.addPercentAmount
+local var530_upvw = cap_upvr_3
+if var530_upvw == nil then
+var530_upvw = 1
+end
+startingFloor_upvr_13 = tbl_48.addPercentStartsAtFloor
+function var531(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var529_upvw (read and write)
+[2]: var491_upvr (readonly)
+[3]: addInterval_upvr_2 (readonly)
+[4]: startingFloor_upvr_13 (readonly)
+[5]: var530_upvw (read and write)
+]]
+local module_12 = {
+add = var529_upvw * math.floor(arg1 / var491_upvr);
+}
+if addInterval_upvr_2 ~= nil then
+local var533 = startingFloor_upvr_13
+if var533 == nil then
+var533 = addInterval_upvr_2
+end
+local var534 = arg1 - var533 + 1
+if 0 < var534 then
+module_12.multiply = 1 + var530_upvw / 100 * (math.floor(var534 /
+addInterval_upvr_2) + 1)
+end
+end
+return module_12
+end
+tbl_28.rollLuckFn = var531
+tbl_28.scalingFn = storyTowerStatScaling
+tbl_14.dimensional_fortress = createStoryInfinite("dimensional_fortress", tbl_28)
+local tbl_25 = {}
+var491_upvr = items_upvr.white_crystal
+local var536 = var491_upvr
+var531 = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes from
+{places_upvr.candy_island.name} who grow stronger with each round. Earn {var536.name}s to
+craft {items_upvr.soul_queen_hat.name} to increase your luck and {cards_upvr.lunar_beast.name}
+to fill out your deck and push your limits even further!\n{var536.name}s have a 1% chance to drop
+from {`floor {75} and above`}.\nAfter completing every floor, 50 cards are rolled. The roll count
+increases by 10 every 25 floors starting at floor 50, and is capped out at 80 cards rolled per floor.
+\nFor every 5 floors climbed, +4 Bonus Luck is applied towards your reward card rolls.\nFor every
+25 floors starting at floor 50, an additional +2.5% bonus luck is granted.`
+tbl_25.description = var531
+var531 = {}
+local var580 = var531
+local tbl_47 = {}
+var536 = {}
+local var539 = var536
+var539.type = "item"
+var539.item = "small_luck_potion"
+var539.count = 1
+tbl_47.inner = var539
+var539 = 0.4
+tbl_47.chance = var539
+var539 = {}
+local var540_upvr = var539
+var540_upvr.inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+}
+var540_upvr.chance = 0.4
+var580[1] = tbl_47
+var580[2] = var540_upvr
+var580[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var580[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var580[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var580[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var580[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var580[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var580[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var580[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var580[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var580[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var580[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var580[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var580[15] = {
+inner = {
+type = "item";
+item = "white_crystal";
+count = 1;
+};
+chance = 0.01;
+floorRange = {75, math.huge};
+}
+tbl_25.rewards = var580
+var580 = 140
+tbl_25.baseHealth = var580
+var580 = 70
+tbl_25.baseDamage = var580
+var580 = 0.1
+tbl_25.baseSpread = var580
+local tbl_57 = {}
+var540_upvr = 50
+tbl_57.baseCount = var540_upvr
+var540_upvr = 10
+tbl_57.addCount = var540_upvr
+var540_upvr = 25
+tbl_57.addInterval = var540_upvr
+var540_upvr = 80
+tbl_57.cap = var540_upvr
+var540_upvr = 50
+tbl_57.startingFloor = var540_upvr
+var540_upvr = tbl_57.baseCount
+local startingFloor_upvr_4 = tbl_57.startingFloor
+local addInterval_upvr_10 = tbl_57.addInterval
+local addCount_upvr_11 = tbl_57.addCount
+local cap_upvr_13 = tbl_57.cap
+function var580(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_4 (readonly)
+[2]: addInterval_upvr_10 (readonly)
+[3]: var540_upvr (readonly)
+[4]: addCount_upvr_11 (readonly)
+[5]: cap_upvr_13 (readonly)
+]]
+local var575 = startingFloor_upvr_4
+if var575 == nil then
+var575 = addInterval_upvr_10
+end
+addInterval_upvr_10) + 1)
+if cap_upvr_13 ~= nil then
+return math.min(var576, cap_upvr_13)
+local var576 = var540_upvr + addCount_upvr_11 * math.max(0, math.floor((arg1 - var575) /
+end
+return var576
+end
+tbl_25.rollCountFn = var580
+local tbl_29 = {}
+var540_upvr = 4
+tbl_29.addLuckAmount = var540_upvr
+var540_upvr = 5
+tbl_29.addLuckInterval = var540_upvr
+var540_upvr = 2.5
+tbl_29.addPercentAmount = var540_upvr
+var540_upvr = 25
+tbl_29.addPercentInterval = var540_upvr
+var540_upvr = 50
+tbl_29.addPercentStartsAtFloor = var540_upvr
+var540_upvr = tbl_29.addLuckInterval
+addCount_upvr_11 = tbl_29.addLuckAmount
+local var578_upvw = addCount_upvr_11
+if var578_upvw == nil then
+var578_upvw = 1
+end
+addInterval_upvr_10 = tbl_29.addPercentInterval
+cap_upvr_13 = tbl_29.addPercentAmount
+local var579_upvw = cap_upvr_13
+if var579_upvw == nil then
+var579_upvw = 1
+end
+startingFloor_upvr_4 = tbl_29.addPercentStartsAtFloor
+function var580(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var578_upvw (read and write)
+[2]: var540_upvr (readonly)
+[3]: addInterval_upvr_10 (readonly)
+[4]: startingFloor_upvr_4 (readonly)
+[5]: var579_upvw (read and write)
+]]
+local module_6 = {
+add = var578_upvw * math.floor(arg1 / var540_upvr);
+}
+if addInterval_upvr_10 ~= nil then
+local var582 = startingFloor_upvr_4
+if var582 == nil then
+var582 = addInterval_upvr_10
+end
+local var583 = arg1 - var582 + 1
+if 0 < var583 then
+module_6.multiply = 1 + var579_upvw / 100 * (math.floor(var583 /
+addInterval_upvr_10) + 1)
+end
+end
+return module_6
+end
+tbl_25.rollLuckFn = var580
+tbl_25.scalingFn = storyTowerStatScaling
+tbl_14.candy_island = createStoryInfinite("candy_island", tbl_25)
+local tbl_42 = {}
+var540_upvr = items_upvr.regal_crystal
+local var585 = var540_upvr
+var580 = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes from
+{places_upvr.solo_city.name} who grow stronger with each round. Earn {var585.name}s to craft
+{items_upvr.dragon_king_daggers.name} to increase your luck and
+{cards_upvr.fragment_of_light.name} to fill out your deck and push your limits even further!
+\n{var585.name}s have a 1% chance to drop from {`floor {100} and above`}.\nAfter completing
+every floor, 50 cards are rolled. The roll count increases by 10 every 25 floors starting at floor 50,
+and is capped out at 80 cards rolled per floor.\nFor every 5 floors climbed, +4 Bonus Luck is
+applied towards your reward card rolls.\nFor every 25 floors starting at floor 50, an additional
++2.5% bonus luck is granted.`
+tbl_42.description = var580
+var580 = {}
+local var629 = var580
+local tbl_41 = {}
+var585 = {}
+local var588 = var585
+var588.type = "item"
+var588.item = "small_luck_potion"
+var588.count = 1
+tbl_41.inner = var588
+var588 = 0.4
+tbl_41.chance = var588
+var588 = {}
+local var589_upvr = var588
+var589_upvr.inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+}
+var589_upvr.chance = 0.4
+var629[1] = tbl_41
+var629[2] = var589_upvr
+var629[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var629[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var629[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var629[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var629[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var629[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var629[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var629[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var629[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var629[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var629[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var629[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var629[15] = {
+inner = {
+type = "item";
+item = "regal_crystal";
+count = 1;
+};
+chance = 0.01;
+floorRange = {100, math.huge};
+}
+tbl_42.rewards = var629
+var629 = 160
+tbl_42.baseHealth = var629
+var629 = 80
+tbl_42.baseDamage = var629
+var629 = 0.1
+tbl_42.baseSpread = var629
+local tbl_37 = {}
+var589_upvr = 50
+tbl_37.baseCount = var589_upvr
+var589_upvr = 10
+tbl_37.addCount = var589_upvr
+var589_upvr = 25
+tbl_37.addInterval = var589_upvr
+var589_upvr = 80
+tbl_37.cap = var589_upvr
+var589_upvr = 50
+tbl_37.startingFloor = var589_upvr
+var589_upvr = tbl_37.baseCount
+local startingFloor_upvr_8 = tbl_37.startingFloor
+local addInterval_upvr_8 = tbl_37.addInterval
+local addCount_upvr_10 = tbl_37.addCount
+local cap_upvr_14 = tbl_37.cap
+function var629(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_8 (readonly)
+[2]: addInterval_upvr_8 (readonly)
+[3]: var589_upvr (readonly)
+[4]: addCount_upvr_10 (readonly)
+[5]: cap_upvr_14 (readonly)
+]]
+local var624 = startingFloor_upvr_8
+if var624 == nil then
+var624 = addInterval_upvr_8
+end
+addInterval_upvr_8) + 1)
+if cap_upvr_14 ~= nil then
+return math.min(var625, cap_upvr_14)
+local var625 = var589_upvr + addCount_upvr_10 * math.max(0, math.floor((arg1 - var624) /
+end
+return var625
+end
+tbl_42.rollCountFn = var629
+local tbl_36 = {}
+var589_upvr = 4
+tbl_36.addLuckAmount = var589_upvr
+var589_upvr = 5
+tbl_36.addLuckInterval = var589_upvr
+var589_upvr = 2.5
+tbl_36.addPercentAmount = var589_upvr
+var589_upvr = 25
+tbl_36.addPercentInterval = var589_upvr
+var589_upvr = 50
+tbl_36.addPercentStartsAtFloor = var589_upvr
+var589_upvr = tbl_36.addLuckInterval
+addCount_upvr_10 = tbl_36.addLuckAmount
+local var627_upvw = addCount_upvr_10
+if var627_upvw == nil then
+var627_upvw = 1
+end
+addInterval_upvr_8 = tbl_36.addPercentInterval
+cap_upvr_14 = tbl_36.addPercentAmount
+local var628_upvw = cap_upvr_14
+if var628_upvw == nil then
+var628_upvw = 1
+end
+startingFloor_upvr_8 = tbl_36.addPercentStartsAtFloor
+function var629(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var627_upvw (read and write)
+[2]: var589_upvr (readonly)
+[3]: addInterval_upvr_8 (readonly)
+[4]: startingFloor_upvr_8 (readonly)
+[5]: var628_upvw (read and write)
+]]
+local module_14 = {
+add = var627_upvw * math.floor(arg1 / var589_upvr);
+}
+if addInterval_upvr_8 ~= nil then
+local var631 = startingFloor_upvr_8
+if var631 == nil then
+var631 = addInterval_upvr_8
+end
+local var632 = arg1 - var631 + 1
+if 0 < var632 then
+module_14.multiply = 1 + var628_upvw / 100 * (math.floor(var632 /
+addInterval_upvr_8) + 1)
+end
+end
+return module_14
+end
+tbl_42.rollLuckFn = var629
+tbl_42.scalingFn = storyTowerStatScaling
+tbl_14.solo_city = createStoryInfinite("solo_city", tbl_42)
+local tbl_30 = {}
+var589_upvr = items_upvr.emanating_black_crystal
+local var634 = var589_upvr
+var629 = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes from
+{places_upvr.eminence_lookout.name} who grow stronger with each round. Earn {var634.name}s
+to craft {items_upvr.hidden_mask.name} to increase your luck and
+{cards_upvr.catastrophe_mage.name} to fill out your deck and push your limits even further!
+\n{var634.name}s have a 1% chance to drop from {`floor {125} and above`}.\nAfter completing
+every floor, 50 cards are rolled. The roll count increases by 10 every 25 floors starting at floor 50,
+and is capped out at 80 cards rolled per floor.\nFor every 5 floors climbed, +4 Bonus Luck is
+applied towards your reward card rolls.\nFor every 25 floors starting at floor 50, an additional
++2.5% bonus luck is granted.`
+tbl_30.description = var629
+var629 = {}
+local var678 = var629
+local tbl_34 = {}
+var634 = {}
+local var637 = var634
+var637.type = "item"
+var637.item = "small_luck_potion"
+var637.count = 1
+tbl_34.inner = var637
+var637 = 0.4
+tbl_34.chance = var637
+var637 = {}
+local var638_upvr = var637
+var638_upvr.inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+}
+var638_upvr.chance = 0.4
+var678[1] = tbl_34
+var678[2] = var638_upvr
+var678[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var678[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var678[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var678[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var678[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var678[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var678[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var678[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var678[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var678[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var678[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var678[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var678[15] = {
+inner = {
+type = "item";
+item = "emanating_black_crystal";
+count = 1;
+};
+chance = 0.01;
+floorRange = {125, math.huge};
+}
+tbl_30.rewards = var678
+var678 = 180
+tbl_30.baseHealth = var678
+var678 = 90
+tbl_30.baseDamage = var678
+var678 = 0.1
+tbl_30.baseSpread = var678
+local tbl_44 = {}
+var638_upvr = 50
+tbl_44.baseCount = var638_upvr
+var638_upvr = 10
+tbl_44.addCount = var638_upvr
+var638_upvr = 25
+tbl_44.addInterval = var638_upvr
+var638_upvr = 80
+tbl_44.cap = var638_upvr
+var638_upvr = 50
+tbl_44.startingFloor = var638_upvr
+var638_upvr = tbl_44.baseCount
+local startingFloor_upvr_11 = tbl_44.startingFloor
+local addInterval_upvr_7 = tbl_44.addInterval
+local addCount_upvr_9 = tbl_44.addCount
+local cap_upvr_4 = tbl_44.cap
+function var678(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_11 (readonly)
+[2]: addInterval_upvr_7 (readonly)
+[3]: var638_upvr (readonly)
+[4]: addCount_upvr_9 (readonly)
+[5]: cap_upvr_4 (readonly)
+]]
+local var673 = startingFloor_upvr_11
+if var673 == nil then
+var673 = addInterval_upvr_7
+end
+addInterval_upvr_7) + 1)
+if cap_upvr_4 ~= nil then
+return math.min(var674, cap_upvr_4)
+local var674 = var638_upvr + addCount_upvr_9 * math.max(0, math.floor((arg1 - var673) /
+end
+return var674
+end
+tbl_30.rollCountFn = var678
+local tbl_33 = {}
+var638_upvr = 4
+tbl_33.addLuckAmount = var638_upvr
+var638_upvr = 5
+tbl_33.addLuckInterval = var638_upvr
+var638_upvr = 2.5
+tbl_33.addPercentAmount = var638_upvr
+var638_upvr = 25
+tbl_33.addPercentInterval = var638_upvr
+var638_upvr = 50
+tbl_33.addPercentStartsAtFloor = var638_upvr
+var638_upvr = tbl_33.addLuckInterval
+addCount_upvr_9 = tbl_33.addLuckAmount
+local var676_upvw = addCount_upvr_9
+if var676_upvw == nil then
+var676_upvw = 1
+end
+addInterval_upvr_7 = tbl_33.addPercentInterval
+cap_upvr_4 = tbl_33.addPercentAmount
+local var677_upvw = cap_upvr_4
+if var677_upvw == nil then
+var677_upvw = 1
+end
+startingFloor_upvr_11 = tbl_33.addPercentStartsAtFloor
+function var678(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var676_upvw (read and write)
+[2]: var638_upvr (readonly)
+[3]: addInterval_upvr_7 (readonly)
+[4]: startingFloor_upvr_11 (readonly)
+[5]: var677_upvw (read and write)
+]]
+local module_11 = {
+add = var676_upvw * math.floor(arg1 / var638_upvr);
+}
+if addInterval_upvr_7 ~= nil then
+local var680 = startingFloor_upvr_11
+if var680 == nil then
+var680 = addInterval_upvr_7
+end
+local var681 = arg1 - var680 + 1
+if 0 < var681 then
+module_11.multiply = 1 + var677_upvw / 100 * (math.floor(var681 /
+addInterval_upvr_7) + 1)
+end
+end
+return module_11
+end
+tbl_30.rollLuckFn = var678
+tbl_30.scalingFn = storyTowerStatScaling
+tbl_14.eminence_lookout = createStoryInfinite("eminence_lookout", tbl_30)
+local tbl_5 = {}
+var638_upvr = items_upvr.shadow_crystal
+local var683 = var638_upvr
+var678 = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes from
+{places_upvr.invaded_ninja_village.name} who grow stronger with each round. Earn
+{var683.name}s to craft {items_upvr.chakra_fruit.name} to increase your luck and
+{cards_upvr.fallen_deity.name} to fill out your deck and push your limits even further!
+\n{var683.name}s have a 1% chance to drop from {`floor {125} and above`}.\nAfter completing
+every floor, 50 cards are rolled. The roll count increases by 10 every 25 floors starting at floor 50,
+and is capped out at 80 cards rolled per floor.\nFor every 5 floors climbed, +4 Bonus Luck is
+applied towards your reward card rolls.\nFor every 25 floors starting at floor 50, an additional
++2.5% bonus luck is granted.`
+tbl_5.description = var678
+var678 = {}
+local var727 = var678
+local tbl_8 = {}
+var683 = {}
+local var686 = var683
+var686.type = "item"
+var686.item = "small_luck_potion"
+var686.count = 1
+tbl_8.inner = var686
+var686 = 0.4
+tbl_8.chance = var686
+var686 = {}
+local var687_upvr = var686
+var687_upvr.inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+}
+var687_upvr.chance = 0.4
+var727[1] = tbl_8
+var727[2] = var687_upvr
+var727[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var727[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var727[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var727[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var727[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var727[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var727[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var727[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var727[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var727[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var727[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var727[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var727[15] = {
+inner = {
+type = "item";
+item = "shadow_crystal";
+count = 1;
+};
+chance = 0.01;
+floorRange = {125, math.huge};
+}
+tbl_5.rewards = var727
+var727 = 200
+tbl_5.baseHealth = var727
+var727 = 100
+tbl_5.baseDamage = var727
+var727 = 0.1
+tbl_5.baseSpread = var727
+local tbl_51 = {}
+var687_upvr = 50
+tbl_51.baseCount = var687_upvr
+var687_upvr = 10
+tbl_51.addCount = var687_upvr
+var687_upvr = 25
+tbl_51.addInterval = var687_upvr
+var687_upvr = 80
+tbl_51.cap = var687_upvr
+var687_upvr = 50
+tbl_51.startingFloor = var687_upvr
+var687_upvr = tbl_51.baseCount
+local startingFloor_upvr_6 = tbl_51.startingFloor
+local addInterval_upvr_5 = tbl_51.addInterval
+local addCount_upvr_5 = tbl_51.addCount
+local cap_upvr_11 = tbl_51.cap
+function var727(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_6 (readonly)
+[2]: addInterval_upvr_5 (readonly)
+[3]: var687_upvr (readonly)
+[4]: addCount_upvr_5 (readonly)
+[5]: cap_upvr_11 (readonly)
+]]
+local var722 = startingFloor_upvr_6
+if var722 == nil then
+var722 = addInterval_upvr_5
+end
+local var723 = var687_upvr + addCount_upvr_5 * math.max(0, math.floor((arg1 - var722) /
+addInterval_upvr_5) + 1)
+if cap_upvr_11 ~= nil then
+return math.min(var723, cap_upvr_11)
+end
+return var723
+end
+tbl_5.rollCountFn = var727
+local tbl_27 = {}
+var687_upvr = 4
+tbl_27.addLuckAmount = var687_upvr
+var687_upvr = 5
+tbl_27.addLuckInterval = var687_upvr
+var687_upvr = 2.5
+tbl_27.addPercentAmount = var687_upvr
+var687_upvr = 25
+tbl_27.addPercentInterval = var687_upvr
+var687_upvr = 50
+tbl_27.addPercentStartsAtFloor = var687_upvr
+var687_upvr = tbl_27.addLuckInterval
+addCount_upvr_5 = tbl_27.addLuckAmount
+local var725_upvw = addCount_upvr_5
+if var725_upvw == nil then
+var725_upvw = 1
+end
+addInterval_upvr_5 = tbl_27.addPercentInterval
+cap_upvr_11 = tbl_27.addPercentAmount
+local var726_upvw = cap_upvr_11
+if var726_upvw == nil then
+var726_upvw = 1
+end
+startingFloor_upvr_6 = tbl_27.addPercentStartsAtFloor
+function var727(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var725_upvw (read and write)
+[2]: var687_upvr (readonly)
+[3]: addInterval_upvr_5 (readonly)
+[4]: startingFloor_upvr_6 (readonly)
+[5]: var726_upvw (read and write)
+]]
+local module_9 = {
+add = var725_upvw * math.floor(arg1 / var687_upvr);
+}
+if addInterval_upvr_5 ~= nil then
+local var729 = startingFloor_upvr_6
+if var729 == nil then
+var729 = addInterval_upvr_5
+end
+local var730 = arg1 - var729 + 1
+if 0 < var730 then
+module_9.multiply = 1 + var726_upvw / 100 * (math.floor(var730 /
+addInterval_upvr_5) + 1)
+end
+end
+return module_9
+end
+tbl_5.rollLuckFn = var727
+tbl_5.scalingFn = storyTowerStatScaling
+tbl_14.invaded_ninja_village = createStoryInfinite("invaded_ninja_village", tbl_5)
+local tbl_9 = {}
+var687_upvr = items_upvr.grim_black_crystal
+local var732 = var687_upvr
+var727 = `Face wave after wave in a relentless test of skill and strategy. Fight familiar foes from
+{places_upvr.necromancer_graveyard.name} who grow stronger with each round. Earn
+{var732.name}s to craft {items_upvr.undead_staﬀ.name} to increase your luck and
+{cards_upvr.undead_actor.name} to fill out your deck and push your limits even further!
+\n{var732.name}s have a 1% chance to drop from {`floor {150} and above`}.\nAfter completing
+every floor, 50 cards are rolled. The roll count increases by 10 every 25 floors starting at floor 50,
+and is capped out at 80 cards rolled per floor.\nFor every 5 floors climbed, +4 Bonus Luck is
+applied towards your reward card rolls.\nFor every 25 floors starting at floor 50, an additional
++2.5% bonus luck is granted.`
+tbl_9.description = var727
+var727 = {}
+local var776 = var727
+local tbl_24 = {}
+var732 = {}
+local var735 = var732
+var735.type = "item"
+var735.item = "small_luck_potion"
+var735.count = 1
+tbl_24.inner = var735
+var735 = 0.4
+tbl_24.chance = var735
+var735 = {}
+local var736_upvr = var735
+var736_upvr.inner = {
+type = "item";
+item = "small_cooldown_reduction_potion";
+count = 1;
+}
+var736_upvr.chance = 0.4
+var776[1] = tbl_24
+var776[2] = var736_upvr
+var776[3] = {
+inner = {
+type = "item";
+item = "medium_luck_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var776[4] = {
+inner = {
+type = "item";
+item = "medium_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.2;
+}
+var776[5] = {
+inner = {
+type = "item";
+item = "large_luck_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var776[6] = {
+inner = {
+type = "item";
+item = "large_cooldown_reduction_potion";
+count = 1;
+};
+chance = 0.05;
+}
+var776[7] = {
+inner = {
+type = "item";
+item = "border_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var776[8] = {
+inner = {
+type = "item";
+item = "boss_chance_potion";
+count = 1;
+};
+chance = 0.025;
+}
+var776[9] = {
+inner = {
+type = "item";
+item = "moon_cycle_reroll_potion";
+count = 1;
+};
+chance = 0.02;
+}
+var776[10] = {
+inner = {
+type = "item";
+item = "instant_roll_50";
+count = 1;
+};
+chance = 0.03;
+max = 50;
+}
+var776[11] = {
+inner = {
+type = "item";
+item = "instant_roll_100";
+count = 1;
+};
+chance = 0.02;
+max = 25;
+}
+var776[12] = {
+inner = {
+type = "item";
+item = "instant_roll_500";
+count = 1;
+};
+chance = 0.015;
+max = 15;
+}
+var776[13] = {
+inner = {
+type = "item";
+item = "instant_roll_1000";
+count = 1;
+};
+chance = 0.0075;
+max = 5;
+}
+var776[14] = {
+inner = {
+type = "item";
+item = "trait_reroll";
+count = 1;
+};
+chance = 0.0025;
+}
+var776[15] = {
+inner = {
+type = "item";
+item = "grim_black_crystal";
+count = 1;
+};
+chance = 0.01;
+floorRange = {150, math.huge};
+}
+tbl_9.rewards = var776
+var776 = 220
+tbl_9.baseHealth = var776
+var776 = 110
+tbl_9.baseDamage = var776
+var776 = 0.1
+tbl_9.baseSpread = var776
+local tbl_22 = {}
+var736_upvr = 50
+tbl_22.baseCount = var736_upvr
+var736_upvr = 10
+tbl_22.addCount = var736_upvr
+var736_upvr = 25
+tbl_22.addInterval = var736_upvr
+var736_upvr = 80
+tbl_22.cap = var736_upvr
+var736_upvr = 50
+tbl_22.startingFloor = var736_upvr
+var736_upvr = tbl_22.baseCount
+local startingFloor_upvr_3 = tbl_22.startingFloor
+local addInterval_upvr_3 = tbl_22.addInterval
+local addCount_upvr_7 = tbl_22.addCount
+local cap_upvr_7 = tbl_22.cap
+function var776(arg1) -- Line 51
+--[[ Upvalues[5]:
+[1]: startingFloor_upvr_3 (readonly)
+[2]: addInterval_upvr_3 (readonly)
+[3]: var736_upvr (readonly)
+[4]: addCount_upvr_7 (readonly)
+[5]: cap_upvr_7 (readonly)
+]]
+local var771 = startingFloor_upvr_3
+if var771 == nil then
+var771 = addInterval_upvr_3
+end
+addInterval_upvr_3) + 1)
+if cap_upvr_7 ~= nil then
+return math.min(var772, cap_upvr_7)
+local var772 = var736_upvr + addCount_upvr_7 * math.max(0, math.floor((arg1 - var771) /
+end
+return var772
+end
+tbl_9.rollCountFn = var776
+local tbl_54 = {}
+var736_upvr = 4
+tbl_54.addLuckAmount = var736_upvr
+var736_upvr = 5
+tbl_54.addLuckInterval = var736_upvr
+var736_upvr = 2.5
+tbl_54.addPercentAmount = var736_upvr
+var736_upvr = 25
+tbl_54.addPercentInterval = var736_upvr
+var736_upvr = 50
+tbl_54.addPercentStartsAtFloor = var736_upvr
+var736_upvr = tbl_54.addLuckInterval
+addCount_upvr_7 = tbl_54.addLuckAmount
+local var774_upvw = addCount_upvr_7
+if var774_upvw == nil then
+var774_upvw = 1
+end
+addInterval_upvr_3 = tbl_54.addPercentInterval
+cap_upvr_7 = tbl_54.addPercentAmount
+local var775_upvw = cap_upvr_7
+if var775_upvw == nil then
+var775_upvw = 1
+end
+startingFloor_upvr_3 = tbl_54.addPercentStartsAtFloor
+function var776(arg1) -- Line 26
+--[[ Upvalues[5]:
+[1]: var774_upvw (read and write)
+[2]: var736_upvr (readonly)
+[3]: addInterval_upvr_3 (readonly)
+[4]: startingFloor_upvr_3 (readonly)
+[5]: var775_upvw (read and write)
+]]
+local module_4 = {
+add = var774_upvw * math.floor(arg1 / var736_upvr);
+}
+if addInterval_upvr_3 ~= nil then
+local var778 = startingFloor_upvr_3
+if var778 == nil then
+var778 = addInterval_upvr_3
+end
+local var779 = arg1 - var778 + 1
+if 0 < var779 then
+module_4.multiply = 1 + var775_upvw / 100 * (math.floor(var779 /
+addInterval_upvr_3) + 1)
+end
+end
+return module_4
+end
+tbl_9.rollLuckFn = var776
+tbl_9.scalingFn = storyTowerStatScaling
+tbl_14.necromancer_graveyard = createStoryInfinite("necromancer_graveyard", tbl_9)
+return {
+infiniteGamemodes = tbl_14;
+}

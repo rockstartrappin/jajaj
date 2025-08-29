@@ -1,0 +1,267 @@
+BATTLE BUT MAIN
+local module_2 =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local module_4 = {}
+local any_import_result1_5 = module_2.import(script, game:GetService("ReplicatedStorage"),
+"rbxts_include", "node_modules", "@rbxts", "jecs", "jecs")
+local pair_upvr = any_import_result1_5.pair
+local any_import_result1_2 = module_2.import(script, game:GetService("ReplicatedStorage"),
+"shared", "components")
+local BattlePlayer_upvr = any_import_result1_2.BattlePlayer
+local any_import_result1 = module_2.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "cards")
+local cards_upvr = any_import_result1.cards
+local splitCardId_upvr = any_import_result1.splitCardId
+local any_import_result1_3 = module_2.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "battle", "stat")
+if not any_import_result1_3 then
+any_import_result1_3 = {}
+end
+for i, v in any_import_result1_3 do
+module_4[i] = v
+end
+local guid_upvr = module_2.import(script, game:GetService("ReplicatedStorage"), "shared",
+"guid").guid
+local traits_upvr = module_2.import(script, game:GetService("ReplicatedStorage"), "shared",
+"game", "trait").traits
+local any_import_result1_4_upvr = module_2.import(script,
+game:GetService("ReplicatedStorage"), "rbxts_include", "node_modules", "@rbxts", "sift", "out")
+local ChildOf_upvr = any_import_result1_5.ChildOf
+local BattleHost_upvr = any_import_result1_2.BattleHost
+local function getUserBattleEntity_upvr(arg1, arg2) -- Line 133, Named "getUserBattleEntity"
+--[[ Upvalues[3]:
+[1]: BattlePlayer_upvr (readonly)
+[2]: pair_upvr (readonly)
+[3]: BattleHost_upvr (readonly)
+for i_8 in arg1:query(BattlePlayer_upvr, pair_upvr(BattleHost_upvr, arg2)) do
+return arg1:parent(i_8)
+]]
+end
+end
+local User_upvr = any_import_result1_2.User
+local places_upvr = module_2.import(script, game:GetService("ReplicatedStorage"), "shared",
+"game", "places").places
+local allCards_upvr = any_import_result1.allCards
+local StoryBattle_upvr = any_import_result1_2.StoryBattle
+local PvpBattle_upvr = any_import_result1_2.PvpBattle
+local function getActiveBattleType_upvr(arg1, arg2) -- Line 141, Named "getActiveBattleType"
+--[[ Upvalues[6]:
+[1]: User_upvr (readonly)
+[2]: places_upvr (readonly)
+[3]: allCards_upvr (readonly)
+[4]: getUserBattleEntity_upvr (readonly)
+[5]: StoryBattle_upvr (readonly)
+[6]: PvpBattle_upvr (readonly)
+]]
+local any_get_result1 = arg1:get(arg2, User_upvr)
+if not any_get_result1 then
+return nil
+end
+local restartBossState = any_get_result1.restartBossState
+if any_get_result1.battleTowerState then
+return "battle_tower"
+end
+if any_get_result1.infiniteTowerState.activeMode ~= nil then
+return "infinite_tower"
+end
+if restartBossState and not restartBossState.stopped then
+if places_upvr[restartBossState.lastBoss] ~= nil then
+return "raid"
+end
+if allCards_upvr[`{restartBossState.lastBoss}:basic`] ~= nil then
+return "global_boss"
+end
+end
+local getUserBattleEntity_upvr_result1 = getUserBattleEntity_upvr(arg1, arg2)
+if getUserBattleEntity_upvr_result1 ~= nil then
+if arg1:has(getUserBattleEntity_upvr_result1, StoryBattle_upvr) then
+return "story"
+end
+if arg1:has(getUserBattleEntity_upvr_result1, PvpBattle_upvr) then
+return "pvp"
+end
+return "unknown"
+end
+return nil
+end
+function module_4.nextBattleSide(arg1) -- Line 24
+if arg1 == "player_1" then
+return "player_2"
+end
+return "player_1"
+end
+function module_4.createBattleState(arg1, arg2, arg3) -- Line 27
+if arg3 == nil then
+local var15 = "player_1"
+end
+local module_3 = {
+startedAt = os.time();
+}
+module_3.showEndScreen = arg2
+module_3.started = false
+module_3.round = 0
+module_3.startingSide = var15
+module_3.turn = var15
+module_3.speed = arg1
+return module_3
+end
+function module_4.createBattlePlayer(arg1, arg2, arg3, arg4, arg5, arg6, arg7) -- Line 41
+--[[ Upvalues[4]:
+[1]: splitCardId_upvr (readonly)
+[2]: guid_upvr (readonly)
+[3]: traits_upvr (readonly)
+[4]: any_import_result1_4_upvr (readonly)
+]]
+if arg7 == nil then
+end
+local tbl_3 = {}
+for i_2, v_2 in pairs(arg2.attack) do
+local splitCardId_upvr_result1 = splitCardId_upvr(v_2)
+local tbl = {}
+for i_3, v_3 in {} do
+local clone = table.clone(v_3)
+setmetatable(clone, nil)
+clone.id = guid_upvr()
+clone.startedAtRound = 0
+clone.sourceSide = arg5
+clone.sourcePosition = i_2
+clone.sourceSupport = false
+table.insert(tbl, clone)
+end
+local var47 = arg4[i_2]
+if var47 then
+local tbl_2 = {
+stats = var47;
+type = "stat_change";
+startedAtRound = 0;
+}
+tbl_2.sourceSide = arg5
+tbl_2.sourcePosition = i_2
+tbl_2.id = guid_upvr()
+tbl_2.sourceSupport = false
+tbl_2.meta = "stat_boss"
+i_3 = tbl
+v_3 = tbl_2
+table.insert(i_3, v_3)
+end
+for i_4, v_4 in pairs(arg3) do
+if i_4 == splitCardId_upvr_result1 then
+local tbl_5 = {}
+for i_5, v_5 in pairs(traits_upvr[v_4].stats) do
+if i_5 == "damage" then
+tbl_5.battle_damage = v_5
+elseif i_5 == "health" then
+tbl_5.battle_health = v_5
+end
+end
+if any_import_result1_4_upvr.Dictionary.count(tbl_5) ~= 0 then
+local tbl_4 = {
+stats = tbl_5;
+type = "stat_change";
+startedAtRound = 0;
+}
+tbl_4.sourceSide = arg5
+tbl_4.sourcePosition = i_2
+tbl_4.id = guid_upvr()
+tbl_4.sourceSupport = false
+tbl_4.meta = "stat_trait"
+i_5 = tbl_4
+table.insert(tbl, i_5)
+end
+end
+end
+local tbl_6 = {
+card = v_2;
+eﬀects = tbl;
+trait = arg3[splitCardId_upvr_result1];
+type = "attack";
+}
+tbl_6.cosmetic = arg6
+tbl_3[i_2] = tbl_6
+end
+for i_6, v_6 in pairs(arg2.support) do
+({})[i_6] = {
+card = v_6;
+type = "support";
+shown = false;
+}
+local var63
+end
+local module = {}
+module.name = arg1
+module.attack = tbl_3
+module.support = var63
+module.entered = false
+module.position = 1
+module.side = arg5
+return module
+end
+function module_4.getBattlePlayerWithSide(arg1, arg2, arg3) -- Line 126
+--[[ Upvalues[3]:
+[1]: BattlePlayer_upvr (readonly)
+[2]: pair_upvr (readonly)
+[3]: ChildOf_upvr (readonly)
+]]
+for i_7, v_7 in arg1:query(BattlePlayer_upvr, pair_upvr(ChildOf_upvr, arg3)) do
+if v_7.side == arg2 then
+return {i_7, v_7}
+end
+end
+end
+module_4.getUserBattleEntity = getUserBattleEntity_upvr
+function module_4.isUserInBattle(arg1, arg2) -- Line 138
+--[[ Upvalues[1]:
+[1]: getUserBattleEntity_upvr (readonly)
+]]
+local var77
+if getUserBattleEntity_upvr(arg1, arg2) == nil then
+var77 = false
+else
+var77 = true
+end
+return var77
+end
+module_4.getActiveBattleType = getActiveBattleType_upvr
+function module_4.isUserInOtherBattleType(arg1, arg2, arg3) -- Line 175
+--[[ Upvalues[1]:
+[1]: getActiveBattleType_upvr (readonly)
+]]
+local getActiveBattleType_result1 = getActiveBattleType_upvr(arg1, arg2)
+local var87 = false
+if getActiveBattleType_result1 ~= nil then
+if getActiveBattleType_result1 == arg3 then
+var87 = false
+else
+var87 = true
+end
+end
+return var87
+end
+function module_4.getMemberSkillId(arg1) -- Line 179
+--[[ Upvalues[2]:
+[1]: splitCardId_upvr (readonly)
+[2]: cards_upvr (readonly)
+]]
+return cards_upvr[splitCardId_upvr(arg1.card)].skill
+end
+function module_4.countFullPartySkillSelfActivation(arg1, arg2, arg3) -- Line 183
+--[[ Upvalues[2]:
+[1]: splitCardId_upvr (readonly)
+[2]: cards_upvr (readonly)
+]]
+if arg3 == nil then
+end
+for i_9, v_8 in pairs(arg1.self.attack) do
+if cards_upvr[splitCardId_upvr(v_8.card)].skill == arg2 then
+for _, v_9 in v_8.eﬀects do
+if v_9.type == "counter" and v_9.meta == "activated" and
+v_9.sourceSide == arg1.self.side and v_9.sourcePosition == i_9 and v_9.sourceSupport == false
+then
+end
+end
+end
+end
+return 0 + v_9.count
+end
+return module_4

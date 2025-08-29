@@ -1,0 +1,1048 @@
+INVENTORY SPEC
+local module =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local any_import_result1 = module.import(script, game:GetService("ReplicatedStorage"),
+"rbxts_include", "node_modules", "@rbxts", "jest-globals", "src")
+local describe = any_import_result1.describe
+local expect_upvr = any_import_result1.expect
+local it_upvr = any_import_result1.it
+local any_import_result1_3_upvr = module.import(script, game:GetService("ReplicatedStorage"),
+"shared", "result")
+local any_import_result1_2 = module.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "inventory")
+local defaultPartyLayout_upvr = module.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "party").defaultPartyLayout
+local addFullCards_upvr = any_import_result1_2.addFullCards
+describe("addFullCards", function() -- Line 26
+--[[ Upvalues[3]:
+[1]: it_upvr (readonly)
+[2]: addFullCards_upvr (readonly)
+[3]: expect_upvr (readonly)
+]]
+it_upvr("creates a new deck when input deck is empty", function() -- Line 27
+--[[ Upvalues[2]:
+[1]: addFullCards_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+local formatted_20 = `{"green_bomber"}:{"basic"}`
+expect_upvr(addFullCards_upvr({}, {
+[formatted_20] = 1;
+})).toEqual({
+[formatted_20] = 1;
+})
+end)
+it_upvr("increments quantities for existing cards without mutating input", function() -- Line
+37
+--[[ Upvalues[2]:
+[1]: addFullCards_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+local formatted_19 = `{"green_bomber"}:{"basic"}`
+local tbl_2 = {
+[formatted_19] = 2;
+}
+local addFullCards_upvr_result1 = addFullCards_upvr(tbl_2, {
+[formatted_19] = 3;
+})
+expect_upvr(addFullCards_upvr_result1).toEqual({
+[formatted_19] = 5;
+})
+expect_upvr(addFullCards_upvr_result1).never.toBe(tbl_2)
+end)
+it_upvr("merges multiple ids at once", function() -- Line 50
+--[[ Upvalues[2]:
+[1]: addFullCards_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+local formatted_15 = `{"green_bomber"}:{"basic"}`
+local formatted_16 = `{"wild_hunter"}:{"gold"}`
+expect_upvr(addFullCards_upvr({
+[formatted_15] = 1;
+}, {
+[formatted_15] = 2;
+[formatted_16] = 4;
+})).toEqual({
+[formatted_15] = 3;
+[formatted_16] = 4;
+})
+end)
+end)
+local addItems_upvr = any_import_result1_2.addItems
+describe("addItems", function() -- Line 66
+--[[ Upvalues[3]:
+[1]: it_upvr (readonly)
+[2]: addItems_upvr (readonly)
+[3]: expect_upvr (readonly)
+]]
+it_upvr("adds to existing and new items without mutating input", function() -- Line 67
+--[[ Upvalues[2]:
+[1]: addItems_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+local tbl_7 = {
+sun_spirit_axe = 2;
+}
+local var28_result1 = addItems_upvr(tbl_7, {
+sun_spirit_axe = 3;
+spirit_armor = 1;
+})
+expect_upvr(var28_result1).toEqual({
+sun_spirit_axe = 5;
+spirit_armor = 1;
+})
+expect_upvr(var28_result1).never.toBe(tbl_7)
+end)
+end)
+local removeItems_upvr = any_import_result1_2.removeItems
+describe("removeItems", function() -- Line 82
+--[[ Upvalues[4]:
+[1]: it_upvr (readonly)
+[2]: removeItems_upvr (readonly)
+[3]: expect_upvr (readonly)
+[4]: any_import_result1_3_upvr (readonly)
+]]
+it_upvr("returns error if any quantity is insuﬃcient", function() -- Line 83
+--[[ Upvalues[3]:
+[1]: removeItems_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_3_upvr (copied, readonly)
+]]
+local removeItems_upvr_result1_2 = removeItems_upvr({
+sun_spirit_axe = 1;
+}, {
+sun_spirit_axe = 2;
+})
+expect_upvr(any_import_result1_3_upvr:isErr(removeItems_upvr_result1_2)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(removeItems_upvr_result1_2) then
+expect_upvr(removeItems_upvr_result1_2.err).toBe("Insuﬃcient items")
+end
+end)
+it_upvr("removes exactly to zero and keeps other keys intact", function() -- Line 95
+--[[ Upvalues[3]:
+[1]: removeItems_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_3_upvr (copied, readonly)
+]]
+local removeItems_upvr_result1 = removeItems_upvr({
+sun_spirit_axe = 2;
+spirit_armor = 5;
+}, {
+sun_spirit_axe = 2;
+})
+expect_upvr(any_import_result1_3_upvr:isOk(removeItems_upvr_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(removeItems_upvr_result1) then
+expect_upvr(removeItems_upvr_result1.value).toEqual({
+spirit_armor = 5;
+sun_spirit_axe = 0;
+})
+end
+end)
+end)
+local removeFullCards_upvr = any_import_result1_2.removeFullCards
+describe("removeFullCards", function() -- Line 112
+--[[ Upvalues[4]:
+[1]: it_upvr (readonly)
+[2]: removeFullCards_upvr (readonly)
+[3]: expect_upvr (readonly)
+[4]: any_import_result1_3_upvr (readonly)
+it_upvr("removes cards and keeps other rarities of same unit untouched", function() -- Line
+125
+]]
+it_upvr("errors when any requested card count exceeds available", function() -- Line 113
+--[[ Upvalues[3]:
+[1]: removeFullCards_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_11 = `{"green_bomber"}:{"basic"}`
+local var46_result1 = removeFullCards_upvr({
+[formatted_11] = 1;
+}, {
+[formatted_11] = 2;
+})
+expect_upvr(any_import_result1_3_upvr:isErr(var46_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(var46_result1) then
+expect_upvr(var46_result1.err).toBe("Insuﬃcient cards")
+end
+end)
+--[[ Upvalues[3]:
+[1]: removeFullCards_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_5 = `{"green_bomber"}:{"basic"}`
+local formatted = `{"green_bomber"}:{"gold"}`
+local removeFullCards_upvr_result1 = removeFullCards_upvr({
+[formatted_5] = 3;
+[formatted] = 2;
+}, {
+})
+[formatted_5] = 1;
+expect_upvr(any_import_result1_3_upvr:isOk(removeFullCards_upvr_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(removeFullCards_upvr_result1) then
+expect_upvr(removeFullCards_upvr_result1.value).toEqual({
+[formatted_5] = 2;
+[formatted] = 2;
+})
+end
+end)
+end)
+local setTrait_upvr = any_import_result1_2.setTrait
+describe("setTrait", function() -- Line 143
+--[[ Upvalues[4]:
+[1]: it_upvr (readonly)
+[2]: setTrait_upvr (readonly)
+[3]: expect_upvr (readonly)
+[4]: any_import_result1_3_upvr (readonly)
+]]
+it_upvr("fails when combined count across rarities is zero", function() -- Line 144
+--[[ Upvalues[3]:
+[1]: setTrait_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_3_upvr (copied, readonly)
+]]
+local var60_result1 = setTrait_upvr({}, {}, "green_bomber", "brawler_3")
+expect_upvr(any_import_result1_3_upvr:isErr(var60_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(var60_result1) then
+expect_upvr(var60_result1.err).toBe("Card not found")
+end
+end)
+it_upvr("overwrites existing trait and leaves others", function() -- Line 152
+--[[ Upvalues[3]:
+[1]: setTrait_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_3_upvr (copied, readonly)
+]]
+local setTrait_upvr_result1 = setTrait_upvr({
+[`{"green_bomber"}:{"basic"}`] = 1;
+}, {
+green_bomber = "brawler_3";
+wild_hunter = "midas";
+}, "green_bomber", "midas")
+expect_upvr(any_import_result1_3_upvr:isOk(setTrait_upvr_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(setTrait_upvr_result1) then
+expect_upvr(setTrait_upvr_result1.value).toEqual({
+green_bomber = "midas";
+wild_hunter = "midas";
+})
+end
+end)
+end)
+local giveRewards_upvr = any_import_result1_2.giveRewards
+describe("giveRewards", function() -- Line 171
+--[[ Upvalues[3]:
+[1]: it_upvr (readonly)
+[2]: giveRewards_upvr (readonly)
+[3]: expect_upvr (readonly)
+]]
+it_upvr("supports multiple mixed reward types in single call", function() -- Line 172
+--[[ Upvalues[2]:
+[1]: giveRewards_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+local formatted_10 = `{"green_bomber"}:{"basic"}`
+local var69_result1 = giveRewards_upvr({}, {}, {{
+type = "card";
+card = formatted_10;
+count = 2;
+}, {
+type = "item";
+item = "vip";
+count = 1;
+expect_upvr(var69_result1.deck).toEqual({
+[formatted_10] = 2;
+expect_upvr(var69_result1.backpack).toEqual({
+vip = 1;
+}})
+})
+})
+end)
+end)
+local craftRecipe_upvr = any_import_result1_2.craftRecipe
+describe("craftRecipe", function() -- Line 194
+--[[ Upvalues[4]:
+[1]: it_upvr (readonly)
+[2]: craftRecipe_upvr (readonly)
+[3]: expect_upvr (readonly)
+[4]: any_import_result1_3_upvr (readonly)
+]]
+it_upvr("crafts successfully and returns updated state for item reward", function() -- Line
+195
+--[[ Upvalues[3]:
+[1]: craftRecipe_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_9 = `{"green_bomber"}:{"basic"}`
+local craftRecipe_upvr_result1_2 = craftRecipe_upvr({
+group = "regular";
+reward = {
+type = "item";
+item = "vip";
+count = 1;
+};
+requirements = {{
+type = "card";
+card = formatted_9;
+count = 1;
+}};
+[formatted_9] = 1;
+}, {
+}, {}, 1)
+expect_upvr(any_import_result1_3_upvr:isOk(craftRecipe_upvr_result1_2)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(craftRecipe_upvr_result1_2) then
+expect_upvr(craftRecipe_upvr_result1_2.value.deck).toEqual({
+[formatted_9] = 0;
+})
+expect_upvr(craftRecipe_upvr_result1_2.value.backpack).toEqual({
+vip = 1;
+})
+end
+end)
+it_upvr("fails when either cards or items are insuﬃcient", function() -- Line 223
+--[[ Upvalues[3]:
+[1]: craftRecipe_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_14 = `{"green_bomber"}:{"basic"}`
+local craftRecipe_upvr_result1 = craftRecipe_upvr({
+group = "regular";
+reward = {
+type = "card";
+card = formatted_14;
+count = 1;
+};
+requirements = {{
+type = "card";
+card = formatted_14;
+count = 2;
+}, {
+type = "item";
+item = "sun_spirit_axe";
+count = 1;
+}};
+}, {}, {
+sun_spirit_axe = 0;
+}, 1)
+expect_upvr(any_import_result1_3_upvr:isErr(craftRecipe_upvr_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(craftRecipe_upvr_result1) then
+expect_upvr(craftRecipe_upvr_result1.err).toBe("Requirements not met")
+end
+end)
+it_upvr("fails when the item already exists for one time crafts", function() -- Line 250
+--[[ Upvalues[3]:
+[1]: craftRecipe_upvr (copied, readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_3 = `{"green_bomber"}:{"basic"}`
+local var79_result1 = craftRecipe_upvr({
+group = "regular";
+reward = {
+type = "card";
+card = formatted_3;
+count = 1;
+};
+requirements = {{
+type = "card";
+card = formatted_3;
+count = 2;
+}, {
+}, {
+}, {
+type = "item";
+item = "sun_spirit_axe";
+count = 1;
+}};
+oneTimeCraft = true;
+[formatted_3] = 1;
+sun_spirit_axe = 0;
+}, 1)
+expect_upvr(any_import_result1_3_upvr:isErr(var79_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(var79_result1) then
+expect_upvr(var79_result1.err).toBe("Already crafted")
+end
+end)
+end)
+local addCardToParty_upvr = any_import_result1_2.addCardToParty
+describe("addCardToParty", function() -- Line 281
+--[[ Upvalues[5]:
+[1]: it_upvr (readonly)
+[2]: defaultPartyLayout_upvr (readonly)
+[3]: addCardToParty_upvr (readonly)
+[4]: expect_upvr (readonly)
+[5]: any_import_result1_3_upvr (readonly)
+]]
+it_upvr("returns error when card is not in deck", function() -- Line 282
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: addCardToParty_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local var110_result1_4 = addCardToParty_upvr({}, defaultPartyLayout_upvr(),
+`{"green_bomber"}:{"basic"}`)
+expect_upvr(any_import_result1_3_upvr:isErr(var110_result1_4)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(var110_result1_4) then
+expect_upvr(var110_result1_4.err).toBe("Insuﬃcient cards")
+end
+end)
+it_upvr("successfully adds attack card to party", function() -- Line 291
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: addCardToParty_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local formatted_7 = `{"green_bomber"}:{"basic"}`
+local var110_result1_5 = addCardToParty_upvr({
+[formatted_7] = 1;
+}, defaultPartyLayout_upvr(), formatted_7)
+expect_upvr(any_import_result1_3_upvr:isOk(var110_result1_5)).toBeTruthy()
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [70] 56. Error Block 8 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [70] 56. Error Block 8 end (CF ANALYSIS FAILED)
+end)
+it_upvr("returns error when party attack positions are full", function() -- Line 313
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: addCardToParty_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_6 = `{"wild_hunter"}:{"secret"}`
+local tbl_5 = {
+activeSlot = "slot_1";
+}
+local clone_11 = table.clone(defaultPartyLayout_upvr().slots)
+setmetatable(clone_11, nil)
+clone_11.slot_1 = {
+attack = {`{"wild_hunter"}:{"basic"}`, `{"wild_hunter"}:{"gold"}`,
+`{"green_bomber"}:{"gold"}`, `{"green_bomber"}:{"basic"}`};
+support = {};
+}
+tbl_5.slots = clone_11
+local var110_result1 = addCardToParty_upvr({
+[formatted_6] = 1;
+}, tbl_5, formatted_6)
+expect_upvr(any_import_result1_3_upvr:isErr(var110_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(var110_result1) then
+expect_upvr(var110_result1.err).toBe("Party is full")
+end
+end)
+-- Line 345
+it_upvr("allows adding multiple copies of same attack card up to owned count", function()
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: addCardToParty_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_8 = `{"green_bomber"}:{"basic"}`
+local tbl_4 = {
+activeSlot = "slot_1";
+}
+local clone = table.clone(defaultPartyLayout_upvr().slots)
+setmetatable(clone, nil)
+clone.slot_1 = {
+attack = {formatted_8};
+support = {};
+}
+tbl_4.slots = clone
+local var110_result1_3 = addCardToParty_upvr({
+[formatted_8] = 3;
+}, tbl_4, formatted_8)
+expect_upvr(any_import_result1_3_upvr:isOk(var110_result1_3)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(var110_result1_3) then
+local attack = var110_result1_3.value.party.slots[tbl_4.activeSlot].attack
+expect_upvr(attack[1]).toBe(formatted_8)
+expect_upvr(attack[2]).toBe(formatted_8)
+373
+end
+end)
+it_upvr("returns error when trying to add more attack cards than owned", function() -- Line
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: addCardToParty_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_17 = `{"green_bomber"}:{"basic"}`
+local tbl = {
+activeSlot = "slot_1";
+}
+local clone_9 = table.clone(defaultPartyLayout_upvr().slots)
+setmetatable(clone_9, nil)
+clone_9.slot_1 = {
+attack = {formatted_17, formatted_17};
+support = {};
+}
+tbl.slots = clone_9
+local var110_result1_2 = addCardToParty_upvr({
+[formatted_17] = 2;
+}, tbl, formatted_17)
+expect_upvr(any_import_result1_3_upvr:isErr(var110_result1_2)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(var110_result1_2) then
+expect_upvr(var110_result1_2.err).toBe("Insuﬃcient cards")
+end
+end)
+end)
+local removePartyPosition_upvr = any_import_result1_2.removePartyPosition
+describe("removePartyPosition", function() -- Line 400
+--[[ Upvalues[5]:
+[1]: it_upvr (readonly)
+[2]: defaultPartyLayout_upvr (readonly)
+[3]: removePartyPosition_upvr (readonly)
+[4]: expect_upvr (readonly)
+[5]: any_import_result1_3_upvr (readonly)
+]]
+it_upvr("returns error when position is empty", function() -- Line 401
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: removePartyPosition_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local removePartyPosition_upvr_result1 =
+removePartyPosition_upvr(defaultPartyLayout_upvr(), "attack", 1)
+expect_upvr(any_import_result1_3_upvr:isErr(removePartyPosition_upvr_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(removePartyPosition_upvr_result1) then
+expect_upvr(removePartyPosition_upvr_result1.err).toBe("Position empty")
+end
+end)
+it_upvr("shifts cards down when a middle position is removed", function() -- Line 409
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: removePartyPosition_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_13 = `{"wild_hunter"}:{"basic"}`
+local tbl_3 = {
+activeSlot = "slot_1";
+}
+local clone_3 = table.clone(defaultPartyLayout_upvr().slots)
+setmetatable(clone_3, nil)
+clone_3.slot_1 = {
+attack = {`{"green_bomber"}:{"basic"}`, formatted_13};
+support = {};
+}
+tbl_3.slots = clone_3
+local var143_result1 = removePartyPosition_upvr(tbl_3, "attack", 1)
+expect_upvr(any_import_result1_3_upvr:isOk(var143_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(var143_result1) then
+expect_upvr(var143_result1.value.party.slots[tbl_3.activeSlot].attack).toEqual({formatted_13})
+end
+end)
+it_upvr("correctly shifts positions when removing a card with cards in later positions",
+function() -- Line 437
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: removePartyPosition_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_4 = `{"green_bomber"}:{"basic"}`
+local formatted_2 = `{"wild_hunter"}:{"basic"}`
+local tbl_6 = {
+activeSlot = "slot_1";
+}
+local clone_10 = table.clone(defaultPartyLayout_upvr().slots)
+setmetatable(clone_10, nil)
+clone_10.slot_1 = {
+attack = {formatted_4, formatted_2, `{"wild_hunter"}:{"gold"}`};
+support = {};
+}
+tbl_6.slots = clone_10
+local removePartyPosition_upvr_result1_2 = removePartyPosition_upvr(tbl_6,
+"attack", 3)
+expect_upvr(any_import_result1_3_upvr:isOk(removePartyPosition_upvr_result1_2)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(removePartyPosition_upvr_result1_2) then
+expect_upvr(removePartyPosition_upvr_result1_2.value.party.slots[tbl_6.activeSlot].attack).toEqua
+l({formatted_4, formatted_2})
+end
+end)
+end)
+local places_upvr = module.import(script, game:GetService("ReplicatedStorage"), "shared",
+"game", "places").places
+local advanceRaidProgress_upvr = any_import_result1_2.advanceRaidProgress
+describe("advanceRaidProgress", function() -- Line 469
+--[[ Upvalues[5]:
+[1]: places_upvr (readonly)
+[2]: it_upvr (readonly)
+[3]: advanceRaidProgress_upvr (readonly)
+[4]: expect_upvr (readonly)
+[5]: any_import_result1_3_upvr (readonly)
+]]
+local var166 = places_upvr
+local raid_eternal_dragon = var166.raid_eternal_dragon
+if raid_eternal_dragon.type ~= 2 then
+var166 = false
+else
+var166 = true
+end
+assert(var166)
+local damageThresholds_upvr = raid_eternal_dragon.damageThresholds
+it_upvr("advances correctly for damage under the max", function() -- Line 474
+--[[ Upvalues[4]:
+[1]: advanceRaidProgress_upvr (copied, readonly)
+[2]: damageThresholds_upvr (readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local var165_result1 = advanceRaidProgress_upvr(0, 100000,
+damageThresholds_upvr)
+expect_upvr(any_import_result1_3_upvr:isOk(var165_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(var165_result1) then
+expect_upvr(var165_result1.value.damage).toBe(100000)
+expect_upvr(var165_result1.value.rewards).toEqual({{
+type = "item";
+item = "treasure_coin";
+count = 9;
+}, {
+type = "item";
+item = "boss_shard";
+count = 1;
+}})
+end
+end)
+it_upvr("advances correctly for rollover damage", function() -- Line 490
+--[[ Upvalues[4]:
+[1]: advanceRaidProgress_upvr (copied, readonly)
+[2]: damageThresholds_upvr (readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local var165_result1_2 = advanceRaidProgress_upvr(100000, 200000,
+damageThresholds_upvr)
+expect_upvr(any_import_result1_3_upvr:isOk(var165_result1_2)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(var165_result1_2) then
+expect_upvr(var165_result1_2.value.damage).toBe(50000)
+expect_upvr(var165_result1_2.value.rewards).toEqual({{
+type = "item";
+item = "treasure_coin";
+count = 28;
+}, {
+type = "item";
+item = "boss_shard";
+count = 9;
+}})
+end
+end)
+end)
+local mergeCard_upvr = any_import_result1_2.mergeCard
+describe("mergeCard", function() -- Line 507
+--[[ Upvalues[5]:
+[1]: it_upvr (readonly)
+[2]: defaultPartyLayout_upvr (readonly)
+[3]: mergeCard_upvr (readonly)
+[4]: expect_upvr (readonly)
+[5]: any_import_result1_3_upvr (readonly)
+]]
+it_upvr("should merge 100 basic into 1 gold", function() -- Line 508
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: mergeCard_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local var180_result1_4 = mergeCard_upvr({
+[`{"green_bomber"}:{"basic"}`] = 100;
+[`{"sun_lion"}:{"basic"}`] = 5;
+}, defaultPartyLayout_upvr(), `{"green_bomber"}:{"basic"}`)
+expect_upvr(any_import_result1_3_upvr:isOk(var180_result1_4)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(var180_result1_4) then
+expect_upvr(var180_result1_4.value.deck).toEqual({
+[`{"green_bomber"}:{"basic"}`] = 0;
+[`{"green_bomber"}:{"gold"}`] = 1;
+[`{"sun_lion"}:{"basic"}`] = 5;
+})
+end
+end)
+it_upvr("should merge 101 basic into 1 gold and leave 1", function() -- Line 524
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: mergeCard_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local var180_result1 = mergeCard_upvr({
+[`{"green_bomber"}:{"basic"}`] = 101;
+[`{"sun_lion"}:{"basic"}`] = 5;
+}, defaultPartyLayout_upvr(), `{"green_bomber"}:{"basic"}`)
+expect_upvr(any_import_result1_3_upvr:isOk(var180_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(var180_result1) then
+expect_upvr(var180_result1.value.deck).toEqual({
+[`{"green_bomber"}:{"basic"}`] = 1;
+[`{"green_bomber"}:{"gold"}`] = 1;
+[`{"sun_lion"}:{"basic"}`] = 5;
+})
+end
+end)
+it_upvr("should not merge 99 basic into 1 gold", function() -- Line 540
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: mergeCard_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+expect_upvr(any_import_result1_3_upvr:isOk(mergeCard_upvr({
+[`{"green_bomber"}:{"basic"}`] = 99;
+[`{"sun_lion"}:{"basic"}`] = 5;
+}, defaultPartyLayout_upvr(), `{"green_bomber"}:{"basic"}`))).toBeFalsy()
+end)
+it_upvr("should remove cards from party when not enough left after merge", function() --
+Line 549
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: mergeCard_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_12 = `{"green_bomber"}:{"basic"}`
+local defaultPartyLayout_upvr_result1_2 = defaultPartyLayout_upvr()
+defaultPartyLayout_upvr_result1_2.slots[defaultPartyLayout_upvr_result1_2.activeSlot].attack[1] =
+formatted_12
+defaultPartyLayout_upvr_result1_2.slots[defaultPartyLayout_upvr_result1_2.activeSlot].attack[2] =
+formatted_12
+defaultPartyLayout_upvr_result1_2.slots[defaultPartyLayout_upvr_result1_2.activeSlot].attack[3] =
+formatted_12
+local var180_result1_2 = mergeCard_upvr({
+[formatted_12] = 102;
+}, defaultPartyLayout_upvr_result1_2, formatted_12)
+expect_upvr(any_import_result1_3_upvr:isOk(var180_result1_2)).toBeTruthy()
+local var200
+if any_import_result1_3_upvr:isOk(var180_result1_2) then
+var200 = expect_upvr(var180_result1_2.value.deck[formatted_12])
+var200 = 2
+var200.toBe(var200)
+var200 = expect_upvr(var180_result1_2.value.deck[`{"green_bomber"}:
+{"gold"}`])
+var200 = 1
+var200.toBe(var200)
+var200 =
+var180_result1_2.value.party.slots[defaultPartyLayout_upvr_result1_2.activeSlot]
+var200 = 0
+for _, v in {1, 2, 3} do
+if var200.attack[v] == formatted_12 then
+var200 += 1
+end
+end
+expect_upvr(var200).toBe(2)
+end
+end)
+it_upvr("should not remove cards from party when enough left after merge", function() --
+Line 573
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: mergeCard_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_21 = `{"green_bomber"}:{"basic"}`
+local defaultPartyLayout_upvr_result1 = defaultPartyLayout_upvr()
+defaultPartyLayout_upvr_result1.slots[defaultPartyLayout_upvr_result1.activeSlot].attack[1] =
+formatted_21
+defaultPartyLayout_upvr_result1.slots[defaultPartyLayout_upvr_result1.activeSlot].attack[2] =
+formatted_21
+defaultPartyLayout_upvr_result1.slots[defaultPartyLayout_upvr_result1.activeSlot].attack[3] =
+formatted_21
+local var180_result1_3 = mergeCard_upvr({
+[formatted_21] = 105;
+}, defaultPartyLayout_upvr_result1, formatted_21)
+expect_upvr(any_import_result1_3_upvr:isOk(var180_result1_3)).toBeTruthy()
+local var211
+if any_import_result1_3_upvr:isOk(var180_result1_3) then
+var211 = expect_upvr(var180_result1_3.value.deck[formatted_21])
+var211 = 5
+var211.toBe(var211)
+var211 =
+var180_result1_3.value.party.slots[defaultPartyLayout_upvr_result1.activeSlot]
+var211 = 0
+for _, v_2 in {1, 2, 3} do
+if var211.attack[v_2] == formatted_21 then
+var211 += 1
+end
+end
+expect_upvr(var211).toBe(3)
+end
+end)
+end)
+local deconstructCard_upvr = any_import_result1_2.deconstructCard
+describe("deconstructCard", function() -- Line 597
+--[[ Upvalues[5]:
+[1]: it_upvr (readonly)
+[2]: defaultPartyLayout_upvr (readonly)
+[3]: deconstructCard_upvr (readonly)
+[4]: expect_upvr (readonly)
+[5]: any_import_result1_3_upvr (readonly)
+]]
+it_upvr("should deconstruct 1 gold into 100 basic", function() -- Line 598
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: deconstructCard_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local deconstructCard_upvr_result1_2 = deconstructCard_upvr({
+[`{"green_bomber"}:{"gold"}`] = 1;
+[`{"sun_lion"}:{"basic"}`] = 5;
+}, defaultPartyLayout_upvr(), `{"green_bomber"}:{"gold"}`)
+expect_upvr(any_import_result1_3_upvr:isOk(deconstructCard_upvr_result1_2)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(deconstructCard_upvr_result1_2) then
+expect_upvr(deconstructCard_upvr_result1_2.value.deck).toEqual({
+[`{"green_bomber"}:{"gold"}`] = 0;
+[`{"green_bomber"}:{"basic"}`] = 100;
+[`{"sun_lion"}:{"basic"}`] = 5;
+})
+end
+end)
+it_upvr("should not deconstruct 0 gold", function() -- Line 614
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: deconstructCard_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+expect_upvr(any_import_result1_3_upvr:isOk(deconstructCard_upvr({
+[`{"green_bomber"}:{"gold"}`] = 0;
+[`{"sun_lion"}:{"basic"}`] = 5;
+}, defaultPartyLayout_upvr(), `{"green_bomber"}:{"gold"}`))).toBeFalsy()
+end)
+it_upvr("should remove all cards from party when deconstructing", function() -- Line 623
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: deconstructCard_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local formatted_18 = `{"green_bomber"}:{"gold"}`
+local var8_result1 = defaultPartyLayout_upvr()
+var8_result1.slots.slot_1.attack[1] = formatted_18
+var8_result1.slots.slot_2.attack[1] = formatted_18
+local deconstructCard_upvr_result1 = deconstructCard_upvr({
+[formatted_18] = 1;
+}, var8_result1, formatted_18)
+expect_upvr(any_import_result1_3_upvr:isOk(deconstructCard_upvr_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(deconstructCard_upvr_result1) then
+expect_upvr(deconstructCard_upvr_result1.value.deck[formatted_18]).toBe(0)
+expect_upvr(deconstructCard_upvr_result1.value.deck[`{"green_bomber"}:
+{"basic"}`]).toBe(100)
+expect_upvr(deconstructCard_upvr_result1.value.party.slots.slot_1.attack[1]).toBeUndefined()
+expect_upvr(deconstructCard_upvr_result1.value.party.slots.slot_2.attack[1]).toBeUndefined()
+end
+end)
+end)
+local mergeAll_upvr = any_import_result1_2.mergeAll
+describe("mergeAll", function() -- Line 641
+--[[ Upvalues[5]:
+[1]: it_upvr (readonly)
+[2]: defaultPartyLayout_upvr (readonly)
+[3]: mergeAll_upvr (readonly)
+[4]: expect_upvr (readonly)
+[5]: any_import_result1_3_upvr (readonly)
+]]
+it_upvr("should merge all basic into gold", function() -- Line 642
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: mergeAll_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local var227_result1 = mergeAll_upvr({
+[`{"green_bomber"}:{"basic"}`] = 100;
+[`{"sun_lion"}:{"basic"}`] = 100;
+}, defaultPartyLayout_upvr())
+expect_upvr(any_import_result1_3_upvr:isOk(var227_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isOk(var227_result1) then
+expect_upvr(var227_result1.value.deck).toEqual({
+[`{"green_bomber"}:{"basic"}`] = 0;
+[`{"green_bomber"}:{"gold"}`] = 1;
+[`{"sun_lion"}:{"basic"}`] = 0;
+[`{"sun_lion"}:{"gold"}`] = 1;
+})
+end
+end)
+it_upvr("should not merge all basic into gold if not enough", function() -- Line 659
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: mergeAll_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+expect_upvr(any_import_result1_3_upvr:isOk(mergeAll_upvr({
+[`{"green_bomber"}:{"basic"}`] = 99;
+[`{"sun_lion"}:{"basic"}`] = 5;
+}, defaultPartyLayout_upvr()))).toBeFalsy()
+end)
+end)
+local getCardsAvailableForExploration_upvr =
+any_import_result1_2.getCardsAvailableForExploration
+describe("getCardsAvailableForExploration", function() -- Line 669
+--[[ Upvalues[4]:
+[1]: it_upvr (readonly)
+[2]: getCardsAvailableForExploration_upvr (readonly)
+[3]: defaultPartyLayout_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+it_upvr("should return all attack cards when party is empty", function() -- Line 670
+--[[ Upvalues[3]:
+[1]: getCardsAvailableForExploration_upvr (copied, readonly)
+[2]: defaultPartyLayout_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+expect_upvr(getCardsAvailableForExploration_upvr({
+[`{"green_bomber"}:{"basic"}`] = 3;
+[`{"space_cowboy"}:{"basic"}`] = 2;
+}, defaultPartyLayout_upvr())).toEqual({
+[`{"green_bomber"}:{"basic"}`] = 3;
+[`{"space_cowboy"}:{"basic"}`] = 2;
+})
+end)
+it_upvr("should exclude support cards from availability", function() -- Line 681
+--[[ Upvalues[3]:
+[1]: getCardsAvailableForExploration_upvr (copied, readonly)
+[2]: defaultPartyLayout_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+expect_upvr(getCardsAvailableForExploration_upvr({
+[`{"green_bomber"}:{"basic"}`] = 3;
+[`{"ladder"}:{"basic"}`] = 2;
+}, defaultPartyLayout_upvr())).toEqual({
+[`{"green_bomber"}:{"basic"}`] = 3;
+})
+end)
+it_upvr("should subtract cards in party from available count", function() -- Line 691
+--[[ Upvalues[3]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: getCardsAvailableForExploration_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local clone_6 = table.clone(defaultPartyLayout_upvr())
+setmetatable(clone_6, nil)
+local clone_2 = table.clone(defaultPartyLayout_upvr().slots)
+setmetatable(clone_2, nil)
+clone_2.slot_1 = {
+attack = {`{"green_bomber"}:{"basic"}`, `{"green_bomber"}:{"basic"}`};
+support = {};
+}
+clone_2.slot_2 = {
+support = {};
+attack = {`{"green_bomber"}:{"basic"}`, `{"green_bomber"}:{"basic"}`};
+}
+clone_6.slots = clone_2
+expect_upvr(getCardsAvailableForExploration_upvr({
+[`{"green_bomber"}:{"basic"}`] = 3;
+}, clone_6)).toEqual({
+[`{"green_bomber"}:{"basic"}`] = 1;
+})
+end)
+it_upvr("should not include cards with zero availability", function() -- Line 721
+--[[ Upvalues[3]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: getCardsAvailableForExploration_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local clone_5 = table.clone(defaultPartyLayout_upvr())
+setmetatable(clone_5, nil)
+local clone_8 = table.clone(defaultPartyLayout_upvr().slots)
+setmetatable(clone_8, nil)
+clone_8.slot_1 = {
+attack = {`{"green_bomber"}:{"basic"}`, `{"green_bomber"}:{"basic"}`};
+support = {};
+}
+clone_5.slots = clone_8
+expect_upvr(getCardsAvailableForExploration_upvr({
+[`{"green_bomber"}:{"basic"}`] = 2;
+}, clone_5)).toEqual({})
+end)
+end)
+local canUseCardsForExploration_upvr = any_import_result1_2.canUseCardsForExploration
+describe("canUseCardsForExploration", function() -- Line 743
+--[[ Upvalues[5]:
+[1]: it_upvr (readonly)
+[2]: defaultPartyLayout_upvr (readonly)
+[3]: canUseCardsForExploration_upvr (readonly)
+[4]: expect_upvr (readonly)
+[5]: any_import_result1_3_upvr (readonly)
+]]
+it_upvr("should allow using available attack cards", function() -- Line 744
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: canUseCardsForExploration_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+expect_upvr(any_import_result1_3_upvr:isOk(canUseCardsForExploration_upvr({
+[`{"undead_actor"}:{"basic"}`] = 3;
+}, defaultPartyLayout_upvr(), {
+[`{"undead_actor"}:{"basic"}`] = 2;
+}, "easy"))).toBeTruthy()
+end)
+it_upvr("should reject support cards", function() -- Line 755
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: canUseCardsForExploration_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local var258_result1 = canUseCardsForExploration_upvr({
+[`{"ladder"}:{"basic"}`] = 3;
+}, defaultPartyLayout_upvr(), {
+[`{"ladder"}:{"basic"}`] = 1;
+}, "easy")
+expect_upvr(any_import_result1_3_upvr:isErr(var258_result1)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(var258_result1) then
+expect_upvr(var258_result1.err).toBe("Support card cannot be used in
+exploration")
+end
+end)
+it_upvr("should reject insuﬃcient cards considering party counts", function() -- Line 769
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: canUseCardsForExploration_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local clone_4 = table.clone(defaultPartyLayout_upvr())
+setmetatable(clone_4, nil)
+local clone_7 = table.clone(defaultPartyLayout_upvr().slots)
+setmetatable(clone_7, nil)
+clone_7.slot_1 = {
+attack = {`{"undead_actor"}:{"basic"}`, `{"undead_actor"}:{"basic"}`};
+support = {};
+}
+clone_4.slots = clone_7
+local canUseCardsForExploration_upvr_result1 =
+canUseCardsForExploration_upvr({
+[`{"undead_actor"}:{"basic"}`] = 3;
+}, clone_4, {
+[`{"undead_actor"}:{"basic"}`] = 2;
+}, "easy")
+expect_upvr(any_import_result1_3_upvr:isErr(canUseCardsForExploration_upvr_result1)).toBeTrut
+hy()
+if any_import_result1_3_upvr:isErr(canUseCardsForExploration_upvr_result1) then
+expect_upvr(canUseCardsForExploration_upvr_result1.err).toBe("Insuﬃcient cards")
+end
+end)
+it_upvr("should reject cards below denominator", function() -- Line 796
+--[[ Upvalues[4]:
+[1]: defaultPartyLayout_upvr (copied, readonly)
+[2]: canUseCardsForExploration_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+[4]: any_import_result1_3_upvr (copied, readonly)
+]]
+local var258_result1_2 = canUseCardsForExploration_upvr({
+[`{"green_bomber"}:{"basic"}`] = 3;
+}, defaultPartyLayout_upvr(), {
+[`{"green_bomber"}:{"basic"}`] = 1;
+}, "easy")
+expect_upvr(any_import_result1_3_upvr:isErr(var258_result1_2)).toBeTruthy()
+if any_import_result1_3_upvr:isErr(var258_result1_2) then
+expect_upvr(var258_result1_2.err).toBe("Insuﬃcient denominator")
+end
+end)
+end)

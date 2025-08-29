@@ -1,0 +1,2080 @@
+BATTLE SPEC
+local module_3 =
+require(game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("Runti
+meLib"))
+local any_import_result1 = module_3.import(script, game:GetService("ReplicatedStorage"),
+"rbxts_include", "node_modules", "@rbxts", "jest-globals", "src")
+local describe = any_import_result1.describe
+local expect_upvr = any_import_result1.expect
+local it_upvr = any_import_result1.it
+local getBattleMemberAppliedStats_upvr = module_3.import(script,
+game:GetService("ReplicatedStorage"), "shared", "game", "battle",
+"stat").getBattleMemberAppliedStats
+local function _(arg1) -- Line 12, Named "createAttackMemberIfExists"
+if not arg1 then
+return nil
+end
+local module_2 = {}
+module_2.card = arg1
+module_2.eﬀects = {}
+module_2.type = "attack"
+return module_2
+end
+local function _(arg1) -- Line 22, Named "createSupportMemberIfExists"
+if not arg1 then
+return nil
+end
+local module = {}
+module.card = arg1
+module.type = "support"
+module.shown = false
+return module
+end
+local createBattleState_upvr = module_3.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "battle").createBattleState
+local function createState_upvr(arg1, arg2) -- Line 32, Named "createState"
+--[[ Upvalues[1]:
+[1]: createBattleState_upvr (readonly)
+]]
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect variable
+assignments
+local module_4 = {}
+local var11 = false
+module_4.battle = createBattleState_upvr(1, var11)
+local tbl_7 = {
+name = "Test";
+}
+local tbl_3 = {}
+local var14
+if not var14 then
+var11 = nil
+else
+var11 = {}
+var11.card = var14
+var11.eﬀects = {}
+var11.type = "attack"
+end
+tbl_3[1] = var11
+var11 = arg1[2]
+local var15 = var11
+if var15 ~= nil then
+var15 = var15[1]
+end
+local var16 = var15
+if not var16 then
+var14 = nil
+else
+var14 = {}
+var14.card = var16
+var14.eﬀects = {}
+var14.type = "attack"
+end
+tbl_3[2] = var14
+var14 = arg1[3]
+if var14 ~= nil then
+var14 = var14[1]
+end
+local var17 = var14
+if not var17 then
+local _
+else
+end
+tbl_3[3] = {
+card = var17;
+eﬀects = {};
+type = "attack";
+}
+local _4_6 = arg1[4]
+if _4_6 ~= nil then
+end
+local _1 = _4_6[1]
+if not _1 then
+local _
+else
+end
+tbl_3[4] = {
+card = _1;
+eﬀects = {};
+type = "attack";
+}
+tbl_7.attack = tbl_3
+local tbl_5 = {}
+local _2 = arg1[1][2]
+if not _2 then
+local _
+else
+local tbl_13 = {
+card = _2;
+type = "support";
+shown = false;
+}
+end
+tbl_5[1] = tbl_13
+tbl_13 = arg1[2]
+local var28 = tbl_13
+if var28 ~= nil then
+var28 = var28[2]
+end
+local var29 = var28
+if not var29 then
+local _
+else
+local tbl_17 = {
+card = var29;
+type = "support";
+shown = false;
+}
+end
+tbl_5[2] = tbl_17
+tbl_17 = arg1[3]
+local var32 = tbl_17
+if var32 ~= nil then
+var32 = var32[2]
+end
+local var33 = var32
+if not var33 then
+local _
+else
+local tbl_12 = {
+card = var33;
+type = "support";
+shown = false;
+}
+end
+tbl_5[3] = tbl_12
+tbl_12 = arg1[4]
+local var36 = tbl_12
+if var36 ~= nil then
+var36 = var36[2]
+end
+local var37 = var36
+if not var37 then
+local _
+else
+end
+tbl_5[4] = {
+card = var37;
+type = "support";
+shown = false;
+}
+tbl_7.support = tbl_5
+tbl_7.position = 1
+tbl_7.side = "player_1"
+tbl_7.entered = false
+module_4.player1 = tbl_7
+local tbl_18 = {
+name = "Test";
+}
+local tbl_10 = {}
+local _1_2 = arg2[1][1]
+if not _1_2 then
+local _
+else
+local tbl_2 = {
+card = _1_2;
+eﬀects = {};
+type = "attack";
+}
+end
+tbl_10[1] = tbl_2
+tbl_2 = arg2[2]
+local var45 = tbl_2
+if var45 ~= nil then
+var45 = var45[1]
+end
+local var46 = var45
+if not var46 then
+local _
+else
+local tbl_6 = {
+card = var46;
+eﬀects = {};
+type = "attack";
+}
+end
+tbl_10[2] = tbl_6
+tbl_6 = arg2[3]
+local var49 = tbl_6
+if var49 ~= nil then
+var49 = var49[1]
+end
+local var50 = var49
+if not var50 then
+local _
+else
+local tbl_14 = {
+card = var50;
+eﬀects = {};
+type = "attack";
+}
+end
+tbl_10[3] = tbl_14
+tbl_14 = arg2[4]
+local var53 = tbl_14
+if var53 ~= nil then
+var53 = var53[1]
+end
+local var54 = var53
+if not var54 then
+local _
+else
+end
+tbl_10[4] = {
+card = var54;
+eﬀects = {};
+type = "attack";
+}
+tbl_18.attack = tbl_10
+local tbl_8 = {}
+local _2_5 = arg2[1][2]
+if not _2_5 then
+local _
+else
+local tbl_15 = {
+card = _2_5;
+type = "support";
+shown = false;
+}
+end
+tbl_8[1] = tbl_15
+tbl_15 = arg2[2]
+local var61 = tbl_15
+if var61 ~= nil then
+var61 = var61[2]
+end
+local var62 = var61
+if not var62 then
+local _
+else
+local tbl = {
+card = var62;
+type = "support";
+shown = false;
+}
+end
+tbl_8[2] = tbl
+tbl = arg2[3]
+local var65 = tbl
+if var65 ~= nil then
+var65 = var65[2]
+end
+local var66 = var65
+if not var66 then
+local _
+else
+local tbl_19 = {
+card = var66;
+type = "support";
+shown = false;
+}
+end
+tbl_8[3] = tbl_19
+tbl_19 = arg2[4]
+local var69 = tbl_19
+if var69 ~= nil then
+var69 = var69[2]
+end
+local var70 = var69
+if not var70 then
+local _
+else
+end
+tbl_8[4] = {
+card = var70;
+type = "support";
+shown = false;
+}
+tbl_18.support = tbl_8
+tbl_18.position = 1
+tbl_18.side = "player_2"
+tbl_18.entered = false
+module_4.player2 = tbl_18
+module_4.queue = {{
+type = "start";
+}}
+return module_4
+end
+local function _(arg1) -- Line 149, Named "getEﬀectDamage"
+if not arg1 or arg1.type ~= "stat_change" then
+return 0
+end
+local battle_health_6 = arg1.stats.battle_health
+if battle_health_6 ~= nil then
+battle_health_6 = battle_health_6.add
+end
+local var76 = battle_health_6
+if var76 == nil then
+return 0
+end
+return math.abs(var76)
+end
+local simulateBattleFrame_upvr = module_3.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "battle", "frame").simulateBattleFrame
+local function simulateBattle_upvr(arg1) -- Line 163, Named "simulateBattle"
+--[[ Upvalues[1]:
+[1]: simulateBattleFrame_upvr (readonly)
+]]
+repeat
+task.wait()
+local simulateBattleFrame_upvr_result1 = simulateBattleFrame_upvr(math.huge,
+arg1)
+until simulateBattleFrame_upvr_result1.battle.winner ~= nil and
+#simulateBattleFrame_upvr_result1.queue == 0
+return simulateBattleFrame_upvr_result1
+end
+describe("Green Bomber vs. Space Cowboy", function() -- Line 174
+--[[ Upvalues[5]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: getBattleMemberAppliedStats_upvr (readonly)
+[5]: expect_upvr (readonly)
+]]
+local function var80_upvr() -- Line 175
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"green_bomber:basic"},
+{"green_bomber:basic"}, {"green_bomber:basic"}, {"green_bomber:basic"}},
+{{"space_cowboy:basic"}, {"space_cowboy:basic"}, {"space_cowboy:basic"},
+{"space_cowboy:basic"}}))
+end
+it_upvr("Green Bomber should be at the right health", function() -- Line 179
+--[[ Upvalues[3]:
+[1]: var80_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var80_result1 = var80_upvr()
+for _, v in pairs(var80_result1.player1.attack) do
+expect_upvr(getBattleMemberAppliedStats_upvr(v,
+var80_result1.battle.round).battle_health).toBeCloseTo(-3.3000000000000007)
+end
+end)
+it_upvr("Space Cowboy should be at the right health", function() -- Line 186
+--[[ Upvalues[3]:
+[1]: var80_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var80_result1_2 = var80_upvr()
+for _, v_2 in pairs(var80_result1_2.player2.attack) do
+expect_upvr(getBattleMemberAppliedStats_upvr(v_2,
+var80_result1_2.battle.round).battle_health).toBeCloseTo(0)
+end
+end)
+it_upvr("the winner should be Space Cowboy", function() -- Line 193
+--[[ Upvalues[2]:
+[1]: var80_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var80_upvr().battle.winner).toBe("player_2")
+end)
+end)
+describe("Eminence Cat's Berserker Outrage", function() -- Line 198
+--[[ Upvalues[5]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: getBattleMemberAppliedStats_upvr (readonly)
+[5]: expect_upvr (readonly)
+]]
+local function var111_upvr() -- Line 199
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"eminence_cat:basic"},
+{"green_bomber:basic"}, {"green_bomber:basic"}, {"eminence_cat:basic"}},
+{{"space_cowboy:basic"}, {"eminence_cat:basic"}, {"eminence_cat:basic"},
+{"space_cowboy:basic"}}))
+end
+local function _(arg1, arg2) -- Line 203, Named "getDeadPartyBuﬀMultiplier"
+return {
+battle_damage = 1 + 0.25 * arg1 + 0.35 * arg2;
+battle_health = 1 + 0.35 * arg2;
+}
+end
+it_upvr("Player 1's 1st member should not be buﬀed at all", function() -- Line 209
+--[[ Upvalues[3]:
+[1]: var111_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var111_result1_2 = var111_upvr()
+local var6_result1_3 =
+getBattleMemberAppliedStats_upvr(var111_result1_2.player1.attack[1],
+var111_result1_2.battle.round, true)
+local tbl_11 = {
+battle_damage = 1;
+battle_health = 1;
+}
+expect_upvr(var6_result1_3.battle_damage).toBeCloseTo(4162 *
+tbl_11.battle_damage)
+expect_upvr(var6_result1_3.battle_health).toBeCloseTo(8324 * tbl_11.battle_health)
+end)
+it_upvr("Player 2's 2nd member should only have damage buﬀed by 25%", function() --
+Line 217
+--[[ Upvalues[3]:
+[1]: var111_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var111_result1_4 = var111_upvr()
+local var6_result1_4 =
+getBattleMemberAppliedStats_upvr(var111_result1_4.player2.attack[2],
+var111_result1_4.battle.round, true)
+local tbl_4 = {
+battle_damage = 1.25;
+battle_health = 1;
+}
+expect_upvr(var6_result1_4.battle_damage).toBeCloseTo(4162 *
+tbl_4.battle_damage)
+expect_upvr(var6_result1_4.battle_health).toBeCloseTo(8324 * tbl_4.battle_health)
+end)
+it_upvr("Player 2's 3rd member should have health buﬀed by 35% and damage buﬀed by
+60%", function() -- Line 225
+--[[ Upvalues[3]:
+[1]: var111_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var111_result1_3 = var111_upvr()
+local var6_result1_5 =
+getBattleMemberAppliedStats_upvr(var111_result1_3.player2.attack[3],
+var111_result1_3.battle.round, true)
+local tbl_16 = {
+battle_damage = 1.6;
+battle_health = 1.35;
+}
+expect_upvr(var6_result1_5.battle_damage).toBeCloseTo(4162 *
+tbl_16.battle_damage)
+expect_upvr(var6_result1_5.battle_health).toBeCloseTo(8324 * tbl_16.battle_health)
+end)
+it_upvr("Player 1's 4th member should have health buﬀed by 35% and damage buﬀed by
+85%", function() -- Line 233
+--[[ Upvalues[3]:
+[1]: var111_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var111_result1 = var111_upvr()
+local var6_result1_2 =
+getBattleMemberAppliedStats_upvr(var111_result1.player1.attack[4], var111_result1.battle.round,
+true)
+local tbl_9 = {
+battle_damage = 1.85;
+battle_health = 1.35;
+}
+expect_upvr(var6_result1_2.battle_damage).toBeCloseTo(4162 *
+tbl_9.battle_damage)
+expect_upvr(var6_result1_2.battle_health).toBeCloseTo(8324 * tbl_9.battle_health)
+end)
+it_upvr("the winner should be Player 2", function() -- Line 241
+--[[ Upvalues[2]:
+[1]: var111_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var111_upvr().battle.winner).toBe("player_2")
+end)
+end)
+describe("Skill: Unwavering Loyalty (Eminence Solider)", function() -- Line 246
+--[[ Upvalues[5]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: getBattleMemberAppliedStats_upvr (readonly)
+[5]: expect_upvr (readonly)
+]]
+local function var141_upvr() -- Line 247
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"eminence_soldier:basic"},
+{"eminence_soldier:basic"}, {"eminence_soldier:basic"}, {"eminence_soldier:basic"}},
+{{"eminence_soldier:basic"}, {"eminence_soldier:basic"}, {"eminence_soldier:basic"},
+{"eminence_soldier:basic"}}))
+end
+it_upvr("First Eminence Soldier should have no boost to HP", function() -- Line 251
+--[[ Upvalues[3]:
+[1]: var141_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var141_result1 = var141_upvr()
+expect_upvr(getBattleMemberAppliedStats_upvr(var141_result1.player1.attack[1],
+var141_result1.battle.round, true).battle_health).toBeCloseTo(4504)
+end)
+it_upvr("Second Eminence Soldier should have a 50% boost to HP", function() -- Line 257
+--[[ Upvalues[3]:
+[1]: var141_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var141_upvr_result1 = var141_upvr()
+expect_upvr(getBattleMemberAppliedStats_upvr(var141_upvr_result1.player1.attack[2],
+var141_upvr_result1.battle.round, true).battle_health).toBeCloseTo(6756)
+end)
+it_upvr("Third Eminence Soldier should have a 75% boost to HP", function() -- Line 263
+--[[ Upvalues[3]:
+[1]: var141_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var141_upvr_result1_3 = var141_upvr()
+expect_upvr(getBattleMemberAppliedStats_upvr(var141_upvr_result1_3.player1.attack[3],
+var141_upvr_result1_3.battle.round, true).battle_health).toBeCloseTo(7882)
+end)
+it_upvr("Fourth Eminence Soldier should have a 87.5% boost to HP", function() -- Line 269
+--[[ Upvalues[3]:
+[1]: var141_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var141_upvr_result1_2 = var141_upvr()
+expect_upvr(getBattleMemberAppliedStats_upvr(var141_upvr_result1_2.player1.attack[4],
+var141_upvr_result1_2.battle.round, true).battle_health).toBeCloseTo(8445)
+end)
+it_upvr("the winner should be Player 1", function() -- Line 275
+--[[ Upvalues[2]:
+[1]: var141_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var141_upvr().battle.winner).toBe("player_1")
+end)
+end)
+local isEﬀectDamaging_upvr = module_3.import(script, game:GetService("ReplicatedStorage"),
+"shared", "game", "battle", "eﬀect").isEﬀectDamaging
+describe("Skill: 200% Purple (Awakened Limitless Master)", function() -- Line 280
+--[[ Upvalues[5]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: expect_upvr (readonly)
+[5]: isEﬀectDamaging_upvr (readonly)
+]]
+local function var163_upvr() -- Line 281
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"awakened_limitless_master:basic"},
+{"awakened_limitless_master:basic"}, {"awakened_limitless_master:basic"},
+{"awakened_limitless_master:basic"}}, {{"awakened_limitless_master:basic"},
+{"awakened_limitless_master:basic"}, {"awakened_limitless_master:basic"},
+{"awakened_limitless_master:basic"}}))
+end
+it_upvr("Player 1's first party member should have been able to activate 200% purple",
+function() -- Line 285
+--[[ Upvalues[2]:
+[1]: var163_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var163_result1_upvr_3 = var163_upvr()
+local function _(arg1) -- Line 291
+--[[ Upvalues[1]:
+[1]: var163_result1_upvr_3 (readonly)
+]]
+local var180 = false
+if arg1.type == "counter" then
+var180 = false
+if arg1.meta == "activated" then
+var180 = false
+if arg1.sourceSide == var163_result1_upvr_3.player1.side
+then
+var180 = false
+if arg1.sourcePosition == 1 then
+var180 = not arg1.sourceSupport
+end
+end
+end
+end
+return var180
+end
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [47] 34. Error Block 9 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [47] 34. Error Block 9 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [16] 14. Error Block 2 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [47.11]
+-- KONSTANTERROR: [16] 14. Error Block 2 end (CF ANALYSIS FAILED)
+end)
+it_upvr("Player 2's first and second party member should have been able to activate 200%
+purple", function() -- Line 303
+--[[ Upvalues[2]:
+[1]: var163_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var163_result1_upvr = var163_upvr()
+local function _(arg1) -- Line 310
+--[[ Upvalues[1]:
+[1]: var163_result1_upvr (readonly)
+]]
+local var189 = false
+if arg1.type == "counter" then
+var189 = false
+if arg1.meta == "activated" then
+var189 = false
+if arg1.sourceSide == var163_result1_upvr.player2.side then
+var189 = false
+if arg1.sourcePosition == 1 then
+var189 = not arg1.sourceSupport
+end
+end
+incorrect
+with nil [52.13]
+decompilation is incorrect
+end
+end
+return var189
+end
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [52] 37. Error Block 9 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [52] 37. Error Block 9 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [21] 17. Error Block 31 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [52.12]
+if nil == "counter" then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+if nil == "activated" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+if nil == nil then
+-- KONSTANTERROR: Expression was reused,
+if nil == 1 then
+end
+end
+end
+end
+if nil then
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [52.11]
+expect_upvr(false).toBe(true)
+var163_result1_upvr.player2.side then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+local function _(arg1) -- Line 324
+--[[ Upvalues[1]:
+[1]: var163_result1_upvr (readonly)
+]]
+local var191 = false
+if arg1.type == "counter" then
+var191 = false
+if arg1.meta == "activated" then
+var191 = false
+if arg1.sourceSide ==
+var191 = false
+if arg1.sourcePosition == 2 then
+var191 = not arg1.sourceSupport
+end
+end
+end
+end
+return var191
+end
+-- KONSTANTWARNING: GOTO [70] #52
+end
+-- KONSTANTERROR: [21] 17. Error Block 31 end (CF ANALYSIS FAILED)
+end)
+it_upvr("All of Player 1's party members should have been damaged by Player 2's first
+party member", function() -- Line 336
+--[[ Upvalues[3]:
+[1]: var163_upvr (readonly)
+[2]: isEﬀectDamaging_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var163_result1_upvr_2 = var163_upvr()
+local _1_3_upvr = var163_result1_upvr_2.player1.attack[1]
+local _2_13_upvr = var163_result1_upvr_2.player1.attack[2]
+local function _(arg1) -- Line 345
+--[[ Upvalues[3]:
+[1]: isEﬀectDamaging_upvr (copied, readonly)
+[2]: _1_3_upvr (readonly)
+[3]: var163_result1_upvr_2 (readonly)
+]]
+local isEﬀectDamaging_upvr_result1 = isEﬀectDamaging_upvr(arg1,
+_1_3_upvr, var163_result1_upvr_2.battle.round)
+if isEﬀectDamaging_upvr_result1 then
+isEﬀectDamaging_upvr_result1 = false
+if arg1.sourceSide == var163_result1_upvr_2.player2.side then
+isEﬀectDamaging_upvr_result1 = false
+if arg1.sourcePosition == 1 then
+isEﬀectDamaging_upvr_result1 = not
+arg1.sourceSupport
+end
+end
+end
+return isEﬀectDamaging_upvr_result1
+end
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [63] 46. Error Block 8 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [63] 46. Error Block 8 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [33] 25. Error Block 54 start (CF ANALYSIS FAILED)
+[63.14]
+[63.15]
+incorrect
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [63.13]
+if nil then
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+if nil == nil then
+-- KONSTANTERROR: Expression was reused, decompilation is
+if nil == 1 then
+end
+end
+end
+if nil then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+expect_upvr(false).toBe(true)
+local function _(arg1) -- Line 359
+--[[ Upvalues[3]:
+[1]: isEﬀectDamaging_upvr (copied, readonly)
+[2]: _2_13_upvr (readonly)
+[3]: var163_result1_upvr_2 (readonly)
+var163_result1_upvr_2.battle.round)
+]]
+local var162_result1_7 = isEﬀectDamaging_upvr(arg1, _2_13_upvr,
+if var162_result1_7 then
+var162_result1_7 = false
+if arg1.sourceSide == var163_result1_upvr_2.player2.side
+then
+var162_result1_7 = false
+if arg1.sourcePosition == 1 then
+var162_result1_7 = not arg1.sourceSupport
+end
+end
+end
+return var162_result1_7
+end
+-- KONSTANTWARNING: GOTO [83] #63
+end
+-- KONSTANTERROR: [33] 25. Error Block 54 end (CF ANALYSIS FAILED)
+end)
+it_upvr("All of Player 1's party members should have been damaged by Player 2's second
+party member", function() -- Line 399
+--[[ Upvalues[3]:
+[1]: var163_upvr (readonly)
+[2]: isEﬀectDamaging_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var163_result1_upvr_4 = var163_upvr()
+local _1_upvr = var163_result1_upvr_4.player1.attack[1]
+local _2_12_upvr = var163_result1_upvr_4.player1.attack[2]
+local function _(arg1) -- Line 408
+--[[ Upvalues[3]:
+[1]: isEﬀectDamaging_upvr (copied, readonly)
+[2]: _1_upvr (readonly)
+[3]: var163_result1_upvr_4 (readonly)
+]]
+local var162_result1_3 = isEﬀectDamaging_upvr(arg1, _1_upvr,
+var163_result1_upvr_4.battle.round)
+if var162_result1_3 then
+[63.14]
+[63.15]
+incorrect
+var162_result1_3 = false
+if arg1.sourceSide == var163_result1_upvr_4.player2.side then
+var162_result1_3 = false
+if arg1.sourcePosition == 2 then
+var162_result1_3 = not arg1.sourceSupport
+end
+end
+end
+return var162_result1_3
+end
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [63] 46. Error Block 8 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [63] 46. Error Block 8 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [33] 25. Error Block 54 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [63.13]
+if nil then
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+if nil == nil then
+-- KONSTANTERROR: Expression was reused, decompilation is
+if nil == 2 then
+end
+end
+end
+if nil then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+expect_upvr(false).toBe(true)
+local function _(arg1) -- Line 422
+--[[ Upvalues[3]:
+[1]: isEﬀectDamaging_upvr (copied, readonly)
+[2]: _2_12_upvr (readonly)
+[3]: var163_result1_upvr_4 (readonly)
+var163_result1_upvr_4.battle.round)
+]]
+local var162_result1_6 = isEﬀectDamaging_upvr(arg1, _2_12_upvr,
+if var162_result1_6 then
+var162_result1_6 = false
+if arg1.sourceSide == var163_result1_upvr_4.player2.side
+then
+var162_result1_6 = false
+if arg1.sourcePosition == 2 then
+var162_result1_6 = not arg1.sourceSupport
+end
+end
+end
+return var162_result1_6
+end
+-- KONSTANTWARNING: GOTO [83] #63
+end
+-- KONSTANTERROR: [33] 25. Error Block 54 end (CF ANALYSIS FAILED)
+end)
+it_upvr("All of Player 2's party members should have been damaged by Player 2's first
+party member", function() -- Line 462
+--[[ Upvalues[3]:
+[1]: var163_upvr (readonly)
+[2]: isEﬀectDamaging_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var163_upvr_result1_upvr_2 = var163_upvr()
+local _1_12_upvr = var163_upvr_result1_upvr_2.player2.attack[1]
+local _2_2_upvr = var163_upvr_result1_upvr_2.player2.attack[2]
+local function _(arg1) -- Line 471
+--[[ Upvalues[3]:
+[1]: isEﬀectDamaging_upvr (copied, readonly)
+[2]: _1_12_upvr (readonly)
+[3]: var163_upvr_result1_upvr_2 (readonly)
+]]
+local var162_result1_2 = isEﬀectDamaging_upvr(arg1, _1_12_upvr,
+var163_upvr_result1_upvr_2.battle.round)
+if var162_result1_2 then
+var162_result1_2 = false
+if arg1.sourceSide == var163_upvr_result1_upvr_2.player1.side then
+var162_result1_2 = false
+if arg1.sourcePosition == 1 then
+var162_result1_2 = not arg1.sourceSupport
+end
+[63.14]
+[63.15]
+incorrect
+end
+end
+return var162_result1_2
+end
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [63] 46. Error Block 8 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [63] 46. Error Block 8 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [33] 25. Error Block 54 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [63.13]
+if nil then
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+if nil == nil then
+-- KONSTANTERROR: Expression was reused, decompilation is
+if nil == 1 then
+end
+end
+end
+if nil then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+expect_upvr(false).toBe(true)
+local function _(arg1) -- Line 485
+--[[ Upvalues[3]:
+[1]: isEﬀectDamaging_upvr (copied, readonly)
+[2]: _2_2_upvr (readonly)
+[3]: var163_upvr_result1_upvr_2 (readonly)
+]]
+var163_upvr_result1_upvr_2.battle.round)
+if var162_result1 then
+var162_result1 = false
+if arg1.sourceSide ==
+local var162_result1 = isEﬀectDamaging_upvr(arg1, _2_2_upvr,
+var163_upvr_result1_upvr_2.player1.side then
+var162_result1 = false
+if arg1.sourcePosition == 1 then
+var162_result1 = not arg1.sourceSupport
+end
+end
+end
+return var162_result1
+end
+-- KONSTANTWARNING: GOTO [83] #63
+end
+-- KONSTANTERROR: [33] 25. Error Block 54 end (CF ANALYSIS FAILED)
+end)
+it_upvr("the winner should be Player 2", function() -- Line 525
+--[[ Upvalues[2]:
+[1]: var163_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var163_upvr().battle.winner).toBe("player_2")
+end)
+end)
+local any_import_result1_2_upvr = module_3.import(script, game:GetService("ReplicatedFirst"),
+"assets")
+describe("Skill: Failed Test (Homeroom Teacher)", function() -- Line 530
+--[[ Upvalues[6]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: getBattleMemberAppliedStats_upvr (readonly)
+[5]: expect_upvr (readonly)
+[6]: any_import_result1_2_upvr (readonly)
+]]
+local function var228_upvr() -- Line 531
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"homeroom_teacher:basic"},
+{"homeroom_teacher:basic"}, {"homeroom_teacher:basic"}, {"homeroom_teacher:basic"}},
+{{"homeroom_teacher:basic"}, {"homeroom_teacher:basic"}, {"homeroom_teacher:basic"},
+{"homeroom_teacher:basic"}}))
+end
+it_upvr("Homeroom Teacher should have both stats increased by 20%", function() -- Line
+535
+--[[ Upvalues[3]:
+[1]: var228_upvr (readonly)
+[2]: getBattleMemberAppliedStats_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+local var228_result1 = var228_upvr()
+local var6_result1 =
+getBattleMemberAppliedStats_upvr(var228_result1.player1.attack[1], var228_result1.battle.round,
+true)
+expect_upvr(var6_result1.battle_health).toBeCloseTo(321.59999999999997)
+expect_upvr(var6_result1.battle_damage).toBeCloseTo(160.79999999999998)
+end)
+it_upvr("Homeroom Teacher should have their override asset set to
+assets.images.card.character.homeroom_teacher_form_2", function() -- Line 542
+--[[ Upvalues[3]:
+[1]: var228_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+[3]: any_import_result1_2_upvr (copied, readonly)
+]]
+expect_upvr(var228_upvr().player1.attack[1].overrideAsset).toBe(any_import_result1_2_upvr.image
+s.card.character.homeroom_teacher_form_2)
+end)
+it_upvr("the winner should be Player 1", function() -- Line 547
+--[[ Upvalues[2]:
+[1]: var228_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var228_upvr().battle.winner).toBe("player_1")
+end)
+end)
+describe.skip("Skill: Arcane Surge (Eminence Scout)", function() -- Line 552
+--[[ Upvalues[4]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+local function var245_upvr() -- Line 553
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"eminence_scout:basic"},
+{"eminence_scout:basic"}, {"eminence_scout:basic"}, {"eminence_scout:basic"}},
+{{"eminence_scout:basic"}, {"eminence_scout:basic"}, {"eminence_scout:basic"},
+{"eminence_scout:basic"}}))
+end
+it_upvr("Second Eminence Scout should 1 buﬀ and debuﬀ on round 3", function() -- Line
+557
+--[[ Upvalues[2]:
+[1]: var245_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var245_result1_upvr = var245_upvr()
+local function _(arg1, arg2) -- Line 563
+--[[ Upvalues[1]:
+[1]: var245_result1_upvr (readonly)
+]]
+if arg2.startedAtRound < 3 then
+if arg2.type == "stat_change" and arg2.meta == "stat_buﬀ" and
+arg2.sourceSide == var245_result1_upvr.player1.side then
+if not arg2.sourceSupport then
+return arg1 + 1
+end
+[46.197970]
+end
+end
+return arg1
+end
+local _ = 1
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [46] 33. Error Block 9 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [46] 33. Error Block 9 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [16] 14. Error Block 24 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [46.10]
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [46.11]
+if nil < nil then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+(x2)
+if nil == "stat_change" and nil == "stat_buﬀ" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+incorrect (x3)
+if nil == nil and not nil then
+-- KONSTANTWARNING: GOTO [46] #33
+end
+end
+end
+-- KONSTANTERROR: [16] 14. Error Block 24 end (CF ANALYSIS FAILED)
+end)
+it_upvr("Third Eminence Scout should 2 buﬀs and debuﬀs on round 6", function() -- Line
+585
+--[[ Upvalues[2]:
+[1]: var245_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var245_upvr_result1_upvr_3 = var245_upvr()
+local function _(arg1, arg2) -- Line 591
+--[[ Upvalues[1]:
+[1]: var245_upvr_result1_upvr_3 (readonly)
+]]
+if arg2.startedAtRound < 6 then
+if arg2.type == "stat_change" and arg2.meta == "stat_buﬀ" and
+arg2.sourceSide == var245_upvr_result1_upvr_3.player1.side then
+if not arg2.sourceSupport then
+return arg1 + 1
+end
+[46.197970]
+(x2)
+incorrect (x3)
+613
+end
+end
+return arg1
+end
+local _ = 1
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [46] 33. Error Block 9 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [46] 33. Error Block 9 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [16] 14. Error Block 24 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [46.10]
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [46.11]
+if nil < nil then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+if nil == "stat_change" and nil == "stat_buﬀ" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+if nil == nil and not nil then
+-- KONSTANTWARNING: GOTO [46] #33
+end
+end
+end
+-- KONSTANTERROR: [16] 14. Error Block 24 end (CF ANALYSIS FAILED)
+end)
+it_upvr("Fourth Eminence Scout should 3 buﬀs and debuﬀs on round 9", function() -- Line
+--[[ Upvalues[2]:
+[1]: var245_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var245_upvr_result1_upvr = var245_upvr()
+local function _(arg1, arg2) -- Line 619
+--[[ Upvalues[1]:
+[1]: var245_upvr_result1_upvr (readonly)
+]]
+if arg2.startedAtRound < 9 then
+if arg2.type == "stat_change" and arg2.meta == "stat_buﬀ" and
+arg2.sourceSide == var245_upvr_result1_upvr.player1.side then
+if not arg2.sourceSupport then
+return arg1 + 1
+end
+[46.197970]
+(x2)
+incorrect (x3)
+end
+end
+return arg1
+end
+local _ = 1
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [46] 33. Error Block 9 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [46] 33. Error Block 9 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [16] 14. Error Block 24 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [46.10]
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [46.11]
+if nil < nil then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+if nil == "stat_change" and nil == "stat_buﬀ" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+if nil == nil and not nil then
+-- KONSTANTWARNING: GOTO [46] #33
+end
+end
+end
+-- KONSTANTERROR: [16] 14. Error Block 24 end (CF ANALYSIS FAILED)
+end)
+it_upvr("the winner should be Player 1", function() -- Line 641
+--[[ Upvalues[2]:
+[1]: var245_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var245_upvr().battle.winner).toBe("player_1")
+end)
+end)
+describe("Skill: Forest Blessing (Forest Sage)", function() -- Line 646
+--[[ Upvalues[4]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+local function var277_upvr() -- Line 647
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"forest_sage:basic"},
+{"forest_sage:basic"}, {"forest_sage:basic"}, {"forest_sage:basic"}}, {{"forest_sage:basic"},
+{"forest_sage:basic"}, {"forest_sage:basic"}, {"forest_sage:basic"}}))
+end
+it_upvr("First Forest Sage should have no boosts", function() -- Line 651
+--[[ Upvalues[2]:
+[1]: var277_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var277_result1_upvr = var277_upvr()
+local function _(arg1, arg2) -- Line 657
+--[[ Upvalues[1]:
+[1]: var277_result1_upvr (readonly)
+]]
+if arg2.type == "stat_change" and arg2.meta == "stat_buﬀ" and
+arg2.sourceSide == var277_result1_upvr.player1.side and not arg2.sourceSupport then
+return arg1 + 1
+end
+return arg1
+end
+local _ = 1
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 30. Error Block 8 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 30. Error Block 8 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [16] 14. Error Block 14 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [41.10]
+if nil == "stat_change" then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+if nil == "stat_buﬀ" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+incorrect
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+with nil [41.197970]
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+with nil [41.11]
+if nil == nil then
+-- KONSTANTERROR: Expression was reused,
+decompilation is incorrect
+if not nil then
+-- KONSTANTWARNING: GOTO [41] #30
+end
+end
+end
+end
+-- KONSTANTERROR: [16] 14. Error Block 14 end (CF ANALYSIS FAILED)
+end)
+it_upvr("Second Forest Sage should have 1 boost", function() -- Line 667
+--[[ Upvalues[2]:
+[1]: var277_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var277_result1_upvr_3 = var277_upvr()
+local function _(arg1, arg2) -- Line 673
+--[[ Upvalues[1]:
+[1]: var277_result1_upvr_3 (readonly)
+]]
+if arg2.type == "stat_change" and arg2.meta == "stat_buﬀ" and
+arg2.sourceSide == var277_result1_upvr_3.player1.side and not arg2.sourceSupport then
+return arg1 + 1
+end
+return arg1
+end
+local _ = 1
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 30. Error Block 8 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 30. Error Block 8 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [16] 14. Error Block 14 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [41.10]
+if nil == "stat_change" then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+if nil == "stat_buﬀ" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+incorrect
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+with nil [41.197970]
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+with nil [41.11]
+if nil == nil then
+-- KONSTANTERROR: Expression was reused,
+decompilation is incorrect
+if not nil then
+-- KONSTANTWARNING: GOTO [41] #30
+end
+end
+end
+end
+-- KONSTANTERROR: [16] 14. Error Block 14 end (CF ANALYSIS FAILED)
+end)
+it_upvr("Third Forest Sage should have 2 boosts", function() -- Line 683
+--[[ Upvalues[2]:
+[1]: var277_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var277_result1_upvr_4 = var277_upvr()
+local function _(arg1, arg2) -- Line 689
+--[[ Upvalues[1]:
+[1]: var277_result1_upvr_4 (readonly)
+]]
+if arg2.type == "stat_change" and arg2.meta == "stat_buﬀ" and
+arg2.sourceSide == var277_result1_upvr_4.player1.side and not arg2.sourceSupport then
+return arg1 + 1
+end
+return arg1
+end
+local _ = 1
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 30. Error Block 8 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 30. Error Block 8 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [16] 14. Error Block 14 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [41.10]
+if nil == "stat_change" then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+if nil == "stat_buﬀ" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+incorrect
+with nil [41.197970]
+with nil [41.11]
+decompilation is incorrect
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+if nil == nil then
+-- KONSTANTERROR: Expression was reused,
+if not nil then
+-- KONSTANTWARNING: GOTO [41] #30
+end
+end
+end
+end
+-- KONSTANTERROR: [16] 14. Error Block 14 end (CF ANALYSIS FAILED)
+end)
+it_upvr("Fourth Forest Sage should have 3 boosts", function() -- Line 699
+--[[ Upvalues[2]:
+[1]: var277_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var277_upvr_result1_upvr = var277_upvr()
+local function _(arg1, arg2) -- Line 705
+--[[ Upvalues[1]:
+[1]: var277_upvr_result1_upvr (readonly)
+]]
+if arg2.type == "stat_change" and arg2.meta == "stat_buﬀ" and
+arg2.sourceSide == var277_upvr_result1_upvr.player1.side and not arg2.sourceSupport then
+return arg1 + 1
+end
+return arg1
+end
+local _ = 1
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 30. Error Block 8 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 30. Error Block 8 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [16] 14. Error Block 14 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [41.10]
+if nil == "stat_change" then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+if nil == "stat_buﬀ" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+incorrect
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+with nil [41.197970]
+-- KONSTANTWARNING: Failed to evaluate expression, replaced
+with nil [41.11]
+if nil == nil then
+-- KONSTANTERROR: Expression was reused,
+decompilation is incorrect
+if not nil then
+-- KONSTANTWARNING: GOTO [41] #30
+end
+end
+end
+end
+-- KONSTANTERROR: [16] 14. Error Block 14 end (CF ANALYSIS FAILED)
+end)
+it_upvr("the winner should be Player 1", function() -- Line 715
+--[[ Upvalues[2]:
+]]
+[1]: var277_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+expect_upvr(var277_upvr().battle.winner).toBe("player_1")
+end)
+end)
+describe("Skill: Psychic Burst (Esper Prodigy)", function() -- Line 720
+--[[ Upvalues[4]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+local function var314_upvr() -- Line 721
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"esper_prodigy:basic"},
+{"esper_prodigy:basic"}, {"esper_prodigy:basic"}, {"esper_prodigy:basic"}},
+{{"esper_prodigy:basic"}, {"esper_prodigy:basic"}, {"esper_prodigy:basic"},
+{"esper_prodigy:basic"}}))
+end
+it_upvr("Player 2's first esper prodigy should be buﬀed on Round 2 for +434 DMG",
+function() -- Line 725
+--[[ Upvalues[2]:
+[1]: var314_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local var314_upvr_result1_upvr = var314_upvr()
+local function _(arg1) -- Line 730
+--[[ Upvalues[1]:
+[1]: var314_upvr_result1_upvr (readonly)
+]]
+local var332 = false
+if arg1.startedAtRound < 2 then
+var332 = false
+if arg1.type == "stat_change" then
+var332 = false
+if arg1.meta == "stat_buﬀ" then
+var332 = false
+if arg1.sourceSide ==
+var314_upvr_result1_upvr.player2.side then
+var332 = false
+if arg1.sourcePosition == 1 then
+var332 = not arg1.sourceSupport
+end
+end
+end
+end
+end
+return var332
+end
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [54] 38. Error Block 10 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [54] 38. Error Block 10 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [16] 14. Error Block 40 start (CF ANALYSIS FAILED)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [54.11]
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+(x2)
+incorrect (x3)
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [54.12]
+if nil < nil then
+-- KONSTANTERROR: Expression was reused, decompilation is incorrect
+if nil == "stat_change" and nil == "stat_buﬀ" then
+-- KONSTANTERROR: Expression was reused, decompilation is
+if nil == nil and nil == 1 then
+end
+end
+end
+-- KONSTANTWARNING: Failed to evaluate expression, replaced with nil [54.10]
+if nil == true then
+if nil == nil then
+-- KONSTANTWARNING: GOTO [62] #44
+end
+-- KONSTANTWARNING: GOTO [61] #43
+end
+-- KONSTANTERROR: [16] 14. Error Block 40 end (CF ANALYSIS FAILED)
+end)
+it_upvr("the winner should be Player 1", function() -- Line 763
+--[[ Upvalues[2]:
+[1]: var314_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var314_upvr().battle.winner).toBe("player_1")
+end)
+end)
+describe("Green Bomber vs. Green Bomber", function() -- Line 768
+--[[ Upvalues[4]:
+[1]: it_upvr (readonly)
+[2]: createState_upvr (readonly)
+[3]: simulateBattle_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+it_upvr("the winner should be Green Bomber", function() -- Line 769
+--[[ Upvalues[3]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+expect_upvr(simulateBattle_upvr(createState_upvr({{"green_bomber:basic"},
+{"green_bomber:basic"}, {"green_bomber:basic"}, {"green_bomber:basic"}},
+{{"green_bomber:basic"}, {"green_bomber:basic"}, {"green_bomber:basic"},
+{"green_bomber:basic"}})).battle.winner).toBe("player_1")
+end)
+end)
+describe("1 Awakened Dragon King vs. 1 Awakened Dragon King", function() -- Line 775
+--[[ Upvalues[4]:
+[1]: it_upvr (readonly)
+[2]: createState_upvr (readonly)
+[3]: simulateBattle_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+it_upvr("the winner should be Player 1", function() -- Line 776
+--[[ Upvalues[3]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+[3]: expect_upvr (copied, readonly)
+]]
+expect_upvr(simulateBattle_upvr(createState_upvr({{"awakened_dragon_king:basic"}},
+{{"awakened_dragon_king:basic"}})).battle.winner).toBe("player_1")
+end)
+end)
+describe("Skill: Shadow's Wrath (Elite Shadow Knight)", function() -- Line 782
+--[[ Upvalues[4]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+local function var353_upvr() -- Line 784
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"elite_shadow_knight:basic"},
+{"elite_shadow_knight:basic"}, {"elite_shadow_knight:basic"}, {"elite_shadow_knight:basic",
+"limitless:basic"}}, {{"water_hashira:secret"}, {"water_hashira:secret"}, {"water_hashira:secret"},
+{"water_hashira:secret"}}))
+end
+it_upvr("player 2's first party member should have 4 damage eﬀects with 1x, 1.2x, 1.4x,
+and 1.6x damage respectively from round 1", function() -- Line 788
+--[[ Upvalues[2]:
+[1]: var353_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect
+variable assignments
+local _1_13 = var353_upvr().player2.attack[1]
+expect_upvr(_1_13).toBeTruthy()
+local var374 = _1_13
+if var374 ~= nil then
+local function _(arg1) -- Line 797
+local var376 = false
+if arg1.startedAtRound == 1 then
+var376 = false
+if arg1.type == "stat_change" then
+if arg1.meta ~= "stat_damage" then
+var376 = false
+else
+var376 = true
+end
+end
+end
+return var376
+end
+for _, v_3 in var374.eﬀects do
+local var377 = false
+if v_3.startedAtRound == 1 then
+var377 = false
+if v_3.type == "stat_change" then
+if v_3.meta ~= "stat_damage" then
+var377 = false
+else
+var377 = true
+end
+end
+end
+if var377 == true then
+({})[0 + 1] = v_3
+end
+end
+var374 = {}
+end
+local var378 = var374
+if var378 == nil then
+var378 = {}
+end
+local var379 = var378
+expect_upvr(#var379).toBe(4)
+local _1_6 = var379[1]
+local var381
+if not _1_6 or _1_6.type ~= "stat_change" then
+else
+local battle_health = _1_6.stats.battle_health
+if battle_health ~= nil then
+end
+local add = battle_health.add
+if add == nil then
+else
+end
+end
+expect_upvr(math.abs(add)).toBeCloseTo(464)
+local _2_7 = var379[2]
+local var385
+if not _2_7 or _2_7.type ~= "stat_change" then
+else
+local battle_health_11 = _2_7.stats.battle_health
+if battle_health_11 ~= nil then
+end
+local add_2 = battle_health_11.add
+if add_2 == nil then
+else
+end
+end
+expect_upvr(math.abs(add_2)).toBeCloseTo(556.8)
+local _3_6 = var379[3]
+local var389
+if not _3_6 or _3_6.type ~= "stat_change" then
+else
+local battle_health_4 = _3_6.stats.battle_health
+if battle_health_4 ~= nil then
+end
+local add_4 = battle_health_4.add
+if add_4 == nil then
+else
+end
+end
+expect_upvr(math.abs(add_4)).toBeCloseTo(649.5999999999999)
+local _4 = var379[4]
+local var393
+if not _4 or _4.type ~= "stat_change" then
+else
+local battle_health_10 = _4.stats.battle_health
+if battle_health_10 ~= nil then
+end
+local add_8 = battle_health_10.add
+if add_8 == nil then
+else
+end
+end
+expect_upvr(math.abs(add_8)).toBeCloseTo(742.4000000000001)
+end)
+it_upvr("player 2's first party member should have 3 damage eﬀects with 1x, 1.2x, and
+1.4x damage respectively from round 2", function() -- Line 821
+--[[ Upvalues[2]:
+[1]: var353_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect
+variable assignments
+local _1_8 = var353_upvr().player2.attack[1]
+expect_upvr(_1_8).toBeTruthy()
+local var406 = _1_8
+if var406 ~= nil then
+local function _(arg1) -- Line 830
+local var408 = false
+if arg1.startedAtRound == 2 then
+var408 = false
+if arg1.type == "stat_change" then
+if arg1.meta ~= "stat_damage" then
+var408 = false
+else
+var408 = true
+end
+end
+end
+return var408
+end
+for _, v_4 in var406.eﬀects do
+local var409 = false
+if v_4.startedAtRound == 2 then
+var409 = false
+if v_4.type == "stat_change" then
+if v_4.meta ~= "stat_damage" then
+var409 = false
+else
+var409 = true
+end
+end
+end
+if var409 == true then
+({})[0 + 1] = v_4
+end
+end
+var406 = {}
+end
+local var410 = var406
+if var410 == nil then
+var410 = {}
+end
+local var411 = var410
+expect_upvr(#var411).toBe(3)
+local _1_11 = var411[1]
+local var413
+if not _1_11 or _1_11.type ~= "stat_change" then
+else
+local battle_health_5 = _1_11.stats.battle_health
+if battle_health_5 ~= nil then
+end
+local add_3 = battle_health_5.add
+if add_3 == nil then
+else
+end
+end
+expect_upvr(math.abs(add_3)).toBeCloseTo(464)
+local _2_6 = var411[2]
+local var417
+if not _2_6 or _2_6.type ~= "stat_change" then
+else
+local battle_health_9 = _2_6.stats.battle_health
+if battle_health_9 ~= nil then
+end
+local add_10 = battle_health_9.add
+if add_10 == nil then
+else
+end
+end
+expect_upvr(math.abs(add_10)).toBeCloseTo(556.8)
+local _3 = var411[3]
+local var421
+if not _3 or _3.type ~= "stat_change" then
+else
+local battle_health_8 = _3.stats.battle_health
+if battle_health_8 ~= nil then
+end
+local add_6 = battle_health_8.add
+if add_6 == nil then
+else
+end
+end
+expect_upvr(math.abs(add_6)).toBeCloseTo(649.5999999999999)
+end)
+it_upvr("player 2's first party member should have 2 damage eﬀects with 1x and 1.2x
+damage respectively from round 3", function() -- Line 853
+--[[ Upvalues[2]:
+[1]: var353_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect
+variable assignments
+local _1_5 = var353_upvr().player2.attack[1]
+expect_upvr(_1_5).toBeTruthy()
+local var434 = _1_5
+if var434 ~= nil then
+local function _(arg1) -- Line 862
+local var436 = false
+if arg1.startedAtRound == 3 then
+var436 = false
+if arg1.type == "stat_change" then
+if arg1.meta ~= "stat_damage" then
+var436 = false
+else
+var436 = true
+end
+end
+end
+return var436
+end
+for _, v_5 in var434.eﬀects do
+local var437 = false
+if v_5.startedAtRound == 3 then
+var437 = false
+if v_5.type == "stat_change" then
+if v_5.meta ~= "stat_damage" then
+var437 = false
+else
+var437 = true
+end
+end
+end
+if var437 == true then
+({})[0 + 1] = v_5
+end
+end
+var434 = {}
+end
+local var438 = var434
+if var438 == nil then
+var438 = {}
+end
+local var439 = var438
+expect_upvr(#var439).toBe(2)
+local _1_10 = var439[1]
+local var441
+if not _1_10 or _1_10.type ~= "stat_change" then
+else
+local battle_health_2 = _1_10.stats.battle_health
+if battle_health_2 ~= nil then
+end
+local add_7 = battle_health_2.add
+if add_7 == nil then
+else
+end
+end
+expect_upvr(math.abs(add_7)).toBeCloseTo(464)
+local _2_10 = var439[2]
+local var445
+if not _2_10 or _2_10.type ~= "stat_change" then
+else
+local battle_health_3 = _2_10.stats.battle_health
+if battle_health_3 ~= nil then
+end
+local add_9 = battle_health_3.add
+if add_9 == nil then
+else
+end
+end
+expect_upvr(math.abs(add_9)).toBeCloseTo(556.8)
+end)
+it_upvr("player 2's second party member should have 1 damage eﬀect with 1x respectively
+from round 5", function() -- Line 884
+--[[ Upvalues[2]:
+[1]: var353_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+variable assignments
+-- KONSTANTWARNING: Variable analysis failed. Output will have some incorrect
+local _2_8 = var353_upvr().player2.attack[2]
+expect_upvr(_2_8).toBeTruthy()
+local var458 = _2_8
+if var458 ~= nil then
+local function _(arg1) -- Line 893
+local var460 = false
+if arg1.startedAtRound == 5 then
+var460 = false
+if arg1.type == "stat_change" then
+if arg1.meta ~= "stat_damage" then
+var460 = false
+else
+var460 = true
+end
+end
+end
+return var460
+end
+for _, v_6 in var458.eﬀects do
+local var461 = false
+if v_6.startedAtRound == 5 then
+var461 = false
+if v_6.type == "stat_change" then
+if v_6.meta ~= "stat_damage" then
+var461 = false
+else
+var461 = true
+end
+end
+end
+if var461 == true then
+({})[0 + 1] = v_6
+end
+end
+var458 = {}
+end
+local var462 = var458
+if var462 == nil then
+var462 = {}
+end
+local var463 = var462
+local len = #var463
+expect_upvr(len).toBe(1)
+local _1_9 = var463[1]
+local var466
+if not _1_9 or _1_9.type ~= "stat_change" then
+len = 0
+else
+local battle_health_7 = _1_9.stats.battle_health
+if battle_health_7 ~= nil then
+end
+local add_5 = battle_health_7.add
+if add_5 == nil then
+len = 0
+else
+len = math.abs(add_5)
+end
+end
+expect_upvr(len).toBeCloseTo(464)
+end)
+it_upvr("the winner should be Player 2", function() -- Line 914
+--[[ Upvalues[2]:
+[1]: var353_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var353_upvr().battle.winner).toBe("player_2")
+end)
+end)
+describe("Skill: Awaken (Slayer Mark) - Check if triggering out of position", function() -- Line 919
+--[[ Upvalues[4]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+local function var471_upvr() -- Line 920
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"deranged_elder_assassin:secret"},
+{"deranged_assassin:basic", "slayer_mark:basic"}, {"deranged_assassin:basic",
+"slayer_mark:basic"}, {"deranged_assassin:basic", "slayer_mark:basic"}},
+{{"deranged_elder_assassin:secret"}, {"deranged_assassin:basic", "slayer_mark:basic"},
+{"deranged_assassin:basic", "slayer_mark:basic"}, {"deranged_assassin:basic",
+"slayer_mark:basic"}}))
+end
+it_upvr("player 1's second party member should not have activated slayer mark", function()
+-- Line 924
+--[[ Upvalues[2]:
+[1]: var471_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _2_14 = var471_upvr().player1.attack[2]
+expect_upvr(_2_14).toBeTruthy()
+local var484 = _2_14
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var484).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+-- Line 947
+it_upvr("player 2's second party member should not have activated slayer mark", function()
+--[[ Upvalues[2]:
+[1]: var471_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _2_9 = var471_upvr().player2.attack[2]
+expect_upvr(_2_9).toBeTruthy()
+local var487 = _2_9
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var487).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+it_upvr("player 1's third party member should not have activated slayer mark", function() --
+Line 970
+--[[ Upvalues[2]:
+[1]: var471_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _3_5 = var471_upvr().player1.attack[3]
+expect_upvr(_3_5).toBeTruthy()
+local var490 = _3_5
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var490).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+it_upvr("player 2's third party member should not have activated slayer mark", function() --
+Line 993
+--[[ Upvalues[2]:
+[1]: var471_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _3_3 = var471_upvr().player2.attack[3]
+expect_upvr(_3_3).toBeTruthy()
+local var493 = _3_3
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var493).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+Line 1016
+it_upvr("player 1's four party member should not have activated slayer mark", function() --
+--[[ Upvalues[2]:
+[1]: var471_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _4_4 = var471_upvr().player1.attack[4]
+expect_upvr(_4_4).toBeTruthy()
+local var496 = _4_4
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var496).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+Line 1039
+it_upvr("player 2's four party member should not have activated slayer mark", function() --
+--[[ Upvalues[2]:
+[1]: var471_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _4_2 = var471_upvr().player2.attack[4]
+expect_upvr(_4_2).toBeTruthy()
+local var499 = _4_2
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var499).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+it_upvr("the winner should be Player 1", function() -- Line 1062
+--[[ Upvalues[2]:
+[1]: var471_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var471_upvr().battle.winner).toBe("player_1")
+end)
+end)
+describe("Skill: Infinity (Limitless) - Check if triggering out of position", function() -- Line 1067
+--[[ Upvalues[4]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+local function var502_upvr() -- Line 1068
+--[[ Upvalues[2]:
+[1]: createState_upvr (copied, readonly)
+[2]: simulateBattle_upvr (copied, readonly)
+]]
+return simulateBattle_upvr(createState_upvr({{"deranged_elder_assassin:secret"},
+{"deranged_assassin:basic", "limitless:basic"}, {"deranged_assassin:basic", "limitless:basic"},
+{"deranged_assassin:basic", "limitless:basic"}}, {{"deranged_elder_assassin:secret"},
+{"deranged_assassin:basic", "limitless:basic"}, {"deranged_assassin:basic", "limitless:basic"},
+{"deranged_assassin:basic", "limitless:basic"}}))
+end
+it_upvr("player 1's second party member should not have activated infinity", function() --
+Line 1072
+--[[ Upvalues[2]:
+[1]: var502_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _2_3 = var502_upvr().player1.attack[2]
+expect_upvr(_2_3).toBeTruthy()
+local var515 = _2_3
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var515).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+Line 1095
+it_upvr("player 2's second party member should not have activated infinity", function() --
+--[[ Upvalues[2]:
+[1]: var502_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _2_4 = var502_upvr().player2.attack[2]
+expect_upvr(_2_4).toBeTruthy()
+local var518 = _2_4
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var518).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+it_upvr("player 1's third party member should not have activated infinity", function() -- Line
+1118
+--[[ Upvalues[2]:
+[1]: var502_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+1141
+1164
+1187
+local _3_4 = var502_upvr().player1.attack[3]
+expect_upvr(_3_4).toBeTruthy()
+local var521 = _3_4
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var521).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+it_upvr("player 2's third party member should not have activated infinity", function() -- Line
+--[[ Upvalues[2]:
+[1]: var502_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _3_2 = var502_upvr().player2.attack[3]
+expect_upvr(_3_2).toBeTruthy()
+local var524 = _3_2
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var524).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+it_upvr("player 1's four party member should not have activated infinity", function() -- Line
+--[[ Upvalues[2]:
+[1]: var502_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _4_3 = var502_upvr().player1.attack[4]
+expect_upvr(_4_3).toBeTruthy()
+local var527 = _4_3
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var527).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+it_upvr("player 2's four party member should not have activated infinity", function() -- Line
+--[[ Upvalues[2]:
+[1]: var502_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _4_5 = var502_upvr().player2.attack[4]
+expect_upvr(_4_5).toBeTruthy()
+local var530 = _4_5
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 33. Error Block 13 start (CF ANALYSIS FAILED)
+expect_upvr(var530).toBeFalsy()
+-- KONSTANTERROR: [42] 33. Error Block 13 end (CF ANALYSIS FAILED)
+end)
+it_upvr("the winner should be Player 1", function() -- Line 1210
+--[[ Upvalues[2]:
+[1]: var502_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+expect_upvr(var502_upvr().battle.winner).toBe("player_1")
+end)
+end)
+describe("Skill: Path of Truth (Truth Seeking Orbs) - Check if supports are being disabled
+correctly", function() -- Line 1215
+--[[ Upvalues[4]:
+[1]: createState_upvr (readonly)
+[2]: simulateBattle_upvr (readonly)
+[3]: it_upvr (readonly)
+[4]: expect_upvr (readonly)
+]]
+local simulateBattle_result1_upvr =
+simulateBattle_upvr(createState_upvr({{"water_hashira:basic", "truth_seeking_orbs:basic"}},
+{{"wild_hunter:gold", "limitless:basic"}}))
+it_upvr("player 2's first party member should be able to activate nen charge 3 times",
+function() -- Line 1218
+--[[ Upvalues[2]:
+[1]: simulateBattle_result1_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _1_14 = simulateBattle_result1_upvr.player2.attack[1]
+expect_upvr(_1_14).toBeTruthy()
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 32. Error Block 38 start (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [41] 32. Error Block 38 end (CF ANALYSIS FAILED)
+end)
+it_upvr("player 2's first party member should not have activated infinity before the skill
+disable expires", function() -- Line 1264
+--[[ Upvalues[2]:
+[1]: simulateBattle_result1_upvr (readonly)
+[2]: expect_upvr (copied, readonly)
+]]
+-- KONSTANTERROR: [0] 1. Error Block 1 start (CF ANALYSIS FAILED)
+local _1_7 = simulateBattle_result1_upvr.player2.attack[1]
+expect_upvr(_1_7).toBeTruthy()
+local var543 = _1_7
+-- KONSTANTERROR: [0] 1. Error Block 1 end (CF ANALYSIS FAILED)
+-- KONSTANTERROR: [42] 32. Error Block 17 start (CF ANALYSIS FAILED)
+local var544 = var543
+if var544 ~= nil then
+var544 = var544.startedAtRound
+end
+expect_upvr(var544).toBe(3)
+-- KONSTANTERROR: [42] 32. Error Block 17 end (CF ANALYSIS FAILED)
+end)
+it_upvr("winner should be Player 2", function() -- Line 1291
+--[[ Upvalues[2]:
+[1]: expect_upvr (copied, readonly)
+[2]: simulateBattle_result1_upvr (readonly)
+]]
+expect_upvr(simulateBattle_result1_upvr.battle.winner).toBe("player_2")
+end)
+end)
